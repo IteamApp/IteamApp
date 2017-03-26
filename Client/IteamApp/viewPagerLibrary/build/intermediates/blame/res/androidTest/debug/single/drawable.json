@@ -4,6 +4,10 @@
         "source": "D:\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_text_color_indicator.xml"
     },
     {
+        "merged": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_text_color_indicator.xml",
+        "source": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_text_color_indicator.xml"
+    },
+    {
         "merged": "D:\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\btn_tab_text_selector.xml",
         "source": "D:\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\btn_tab_text_selector.xml"
     },
@@ -14,5 +18,17 @@
     {
         "merged": "D:\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
         "source": "D:\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
+    },
+    {
+        "merged": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\news_tab_item_bg_select.9.png",
+        "source": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\news_tab_item_bg_select.9.png"
+    },
+    {
+        "merged": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
+        "source": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
+    },
+    {
+        "merged": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\btn_tab_text_selector.xml",
+        "source": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\btn_tab_text_selector.xml"
     }
 ]

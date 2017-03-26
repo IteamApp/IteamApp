@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:state_checked="true"  android:drawable="@mipmap/govaffairs_press"></item>
-    <item android:drawable="@mipmap/ic_bottomtabbar_message"></item>
+<item android:state_checked="true"
+    android:drawable="@mipmap/me_b"></item>
+    <item android:drawable="@mipmap/me_k"></item>
 </selector>
