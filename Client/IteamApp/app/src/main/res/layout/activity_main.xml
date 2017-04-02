@@ -14,28 +14,36 @@
     <RadioGroup
         android:id="@+id/rg_group"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:paddingTop="5dp"
         android:background="#fff">
 
         <RadioButton
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
             android:id="@+id/rb_home"
             style="@style/BottomTabStyle"
             android:checked="true"
             android:drawableBottom="@drawable/btn_tab_home_selector"/>
 
         <RadioButton
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
             android:id="@+id/rb_news"
             style="@style/BottomTabStyle"
             android:drawableBottom="@drawable/btn_tab_news_selector"/>
 
         <RadioButton
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
             android:id="@+id/rb_service"
             style="@style/BottomTabStyle"
             android:drawableBottom="@drawable/btn_tab_service_selector"/>
 
         <RadioButton
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
             android:id="@+id/rb_gov"
             style="@style/BottomTabStyle"
             android:drawableBottom="@drawable/btn_tab_gov_selector"/>

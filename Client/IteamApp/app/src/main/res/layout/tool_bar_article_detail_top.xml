@@ -14,7 +14,7 @@
             android:layout_alignParentLeft="true"
             android:paddingLeft="20dp"
             android:paddingRight="10dp"
-            android:src="@drawable/ic_menu_back"/>
+            android:src="@mipmap/back"/>
 
         <ImageView
             android:id="@+id/menu_more"

@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import iteamapp.iteamapp.Tools.RecyclerViewDivider;
 import iteamapp.iteamapp.adapter.MyPageAdapter;
 
 
@@ -53,6 +55,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         initdata();//初始化数据
         mRecyclerView.setAdapter(adapter);
 
+
         return view;
     }
 
@@ -72,18 +75,13 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
 
     private void initdata() {
-
-
-
         //初始化recycleview的数据
         adapter.nameDatas = new ArrayList<String>();
         adapter.infoDatas = new ArrayList<String>();
         adapter.idDatas = new ArrayList<String>();
-
         for (int i=0;i<10;i++){
             adapter.nameDatas.add("XX社团"+i+1);
         }
-
         for (int i=0;i<10;i++){
             adapter.infoDatas.add("XX时间"+i+1);
         }
@@ -91,10 +89,6 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         for (int i=0;i<10;i++){
             adapter.idDatas.add(i+1+"");
         }
-
-
-
-
 
         int[] imageResIDs = {R.drawable.a, R.drawable.b, R.drawable.c};
         adapter.imageList = new ArrayList<ImageView>();

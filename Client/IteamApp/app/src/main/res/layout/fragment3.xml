@@ -1,30 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <include layout="@layout/tool_bar_top"></include>
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="218dp"
-        android:text="Page:"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/titile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:textSize="50sp"
-        android:text="3"/>
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/layout_club"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/white"
+            >
+
+
+        <RadioGroup
+            android:id="@+id/radio_club"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:background="#fff">
+
+            <RadioButton
+                android:layout_height="70dp"
+                android:layout_width="wrap_content"
+                style="@style/BottomTabStyle"
+                android:checked="true"
+                android:text="热门社团"
+                />
+
+            <RadioButton
+                android:layout_height="70dp"
+                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:text="信息科学与工程学院"
+                style="@style/BottomTabStyle"
+               />
+
+            <RadioButton
+                android:layout_height="70dp"
+                android:layout_width="wrap_content"
+                android:text="法政学院"
+                style="@style/BottomTabStyle"
+                />
+        </RadioGroup>
+
+        </RelativeLayout>
+
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/club_swiperefreshlayout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scrollbars="vertical"
+                >
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_toRightOf="@id/layout_club"
+                android:id="@+id/recycle_club"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
+</LinearLayout>
