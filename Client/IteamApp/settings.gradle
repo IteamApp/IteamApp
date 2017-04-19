@@ -1,1 +1,1 @@
-include ':app', ':viewPagerLibrary'
+include ':app', ':viewPagerLibrary', ':scheduleview'

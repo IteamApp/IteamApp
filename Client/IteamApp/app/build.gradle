@@ -32,4 +32,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.catalina.servlets:7.0.23'
     compile 'com.makeramen:roundedimageview:2.3.0'
+    compile project(':scheduleview')
 }

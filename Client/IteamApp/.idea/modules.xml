@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/IteamApp.iml" filepath="$PROJECT_DIR$/IteamApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scheduleview/scheduleview.iml" filepath="$PROJECT_DIR$/scheduleview/scheduleview.iml" />
       <module fileurl="file://$PROJECT_DIR$/viewPagerLibrary/viewPagerLibrary.iml" filepath="$PROJECT_DIR$/viewPagerLibrary/viewPagerLibrary.iml" />
     </modules>
   </component>

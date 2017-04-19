@@ -278,6 +278,8 @@
                 />
 
             <TextView
+                android:id="@+id/txtFreeTime"
+                android:clickable="true"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="空闲时间查询"
