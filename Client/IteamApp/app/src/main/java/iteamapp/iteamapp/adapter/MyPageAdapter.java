@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import iteamapp.iteamapp.ItemDetail;
@@ -39,6 +40,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public List<String> infoDatas;
     public ArrayList<ImageView> imageList;
     public  List<String> idDatas;
+
 
     private static final int HEAD_VIEW = 0;//头布局
     private static final int BODY_VIEW = 2;//内容布局
@@ -91,9 +93,25 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((MyHeadViewHolder) holder).indicator.setViewPager(((MyHeadViewHolder) holder).mViewPager);
             ((MyHeadViewHolder) holder).indicator.setSnap(true);
         }
-        /*if (holder instanceof MyTabViewHolder) {
-            ((MyTabViewHolder) holder).img.setImageResource(R.mipmap.setting);
-        }*/
+        if (holder instanceof MyTabViewHolder) {
+            ((MyTabViewHolder) holder).rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    if (i == R.id.club_mine) {
+                       mydata();
+                       notifyDataSetChanged();
+
+                    }
+
+                    if (i == R.id.club_hot) {
+                        hotdata();;
+                        notifyDataSetChanged();
+
+                    }
+
+                }
+            });
+        }
         if (holder instanceof MyBodyViewHolder) {
             ((MyBodyViewHolder) holder).tv.setText(nameDatas.get(position-2));
             ((MyBodyViewHolder) holder).tvinfo.setText(infoDatas.get(position-2));
@@ -125,6 +143,19 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     }
 
+    private void mydata() {
+
+        for (int i=0;i<10;i++) {
+            nameDatas.set(i, "我的社团" + i + 1);
+        }
+    }
+
+    private void hotdata() {
+        for (int i=0;i<10;i++) {
+            nameDatas.set(i, "热门社团" + i + 1);
+        }
+    }
+
     @Override
     public int getItemCount() {
         return nameDatas.size() + 2;
@@ -154,11 +185,11 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     class MyTabViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
+        RadioGroup rgGroup;
 
         public MyTabViewHolder(View itemView) {
             super(itemView);
-            //img = (ImageView) itemView.findViewById(R.id.gird_img);
+            rgGroup = (RadioGroup) itemView.findViewById(R.id.club_group);
         }
     }
 

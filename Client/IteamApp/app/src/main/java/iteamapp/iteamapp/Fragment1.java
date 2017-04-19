@@ -16,8 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-
+import android.widget.RadioGroup;
 
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import iteamapp.iteamapp.adapter.MyPageAdapter;
 /**
  * Created by HongJay on 2016/8/11.
  */
-public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mRecyclerView;
 
@@ -56,6 +55,9 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         mRecyclerView.setAdapter(adapter);
 
 
+
+
+
         return view;
     }
 
@@ -70,6 +72,18 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         mSwipeRefreshLayout.setColorSchemeResources(R.color.blue, R.color.black);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
+
+
+
+    }
+
+    private void update(){
+        for (int i=0;i<10;i++){
+            adapter.nameDatas.set(i,"up社团"+i);
+        }
+        for (int i=0;i<10;i++){
+            adapter.infoDatas.add("XX时间"+i+1);
+        }
 
     }
 

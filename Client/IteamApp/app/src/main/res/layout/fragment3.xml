@@ -21,7 +21,7 @@
 
 
         <RadioGroup
-            android:id="@+id/radio_club"
+            android:id="@+id/radio_all"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -29,6 +29,7 @@
             android:background="#fff">
 
             <RadioButton
+                android:id="@+id/radio_all_hot"
                 android:layout_height="70dp"
                 android:layout_width="wrap_content"
                 style="@style/BottomTabStyle"
@@ -37,6 +38,7 @@
                 />
 
             <RadioButton
+                android:id="@+id/radio_all_xinxi"
                 android:layout_height="70dp"
                 android:layout_width="wrap_content"
                 android:gravity="left"
@@ -45,6 +47,7 @@
                />
 
             <RadioButton
+                android:id="@+id/radio_all_fazheng"
                 android:layout_height="70dp"
                 android:layout_width="wrap_content"
                 android:text="法政学院"
@@ -55,13 +58,7 @@
         </RelativeLayout>
 
 
-            <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/club_swiperefreshlayout"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scrollbars="vertical"
-                >
-                </android.support.v4.widget.SwipeRefreshLayout>
+
 
             <android.support.v7.widget.RecyclerView
                 android:layout_toRightOf="@id/layout_club"

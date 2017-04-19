@@ -11,7 +11,7 @@
     android:layout_height="match_parent">
 
     <RadioGroup
-        android:id="@+id/rg_group"
+        android:id="@+id/club_group"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -19,6 +19,7 @@
         android:background="#fff">
 
         <RadioButton
+            android:id="@+id/club_mine"
             android:layout_marginTop="0dp"
             android:layout_height="40dp"
             android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
             />
 
         <RadioButton
-
+            android:id="@+id/club_hot"
             android:layout_marginTop="0dp"
             android:layout_height="40dp"
             android:layout_width="wrap_content"
@@ -48,6 +49,9 @@
             />
 
     </RadioGroup>
+
+
+
 
 
 </RelativeLayout>
