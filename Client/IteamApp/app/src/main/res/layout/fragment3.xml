@@ -16,17 +16,19 @@
             android:id="@+id/layout_club"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/white"
+            android:background="#FFBBBFC2"
+
             >
 
 
         <RadioGroup
+            android:layout_marginTop="-5dp"
             android:id="@+id/radio_all"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="5dp"
-            android:background="#fff">
+            android:background="#FFBBBFC2">
 
             <RadioButton
                 android:id="@+id/radio_all_hot"
@@ -34,7 +36,8 @@
                 android:layout_width="wrap_content"
                 style="@style/BottomTabStyle"
                 android:checked="true"
-                android:text="热门社团"
+                android:text="热门社团    "
+                android:background="@drawable/club_item_selector"
                 />
 
             <RadioButton
@@ -44,14 +47,16 @@
                 android:gravity="left"
                 android:text="信息科学与工程学院"
                 style="@style/BottomTabStyle"
+                android:background="@drawable/club_item_selector"
                />
 
             <RadioButton
                 android:id="@+id/radio_all_fazheng"
                 android:layout_height="70dp"
                 android:layout_width="wrap_content"
-                android:text="法政学院"
+                android:text="法政学院   "
                 style="@style/BottomTabStyle"
+                android:background="@drawable/club_item_selector"
                 />
         </RadioGroup>
 

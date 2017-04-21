@@ -18,6 +18,10 @@
         android:orientation="horizontal"
         android:paddingTop="5dp"
         android:background="#fff">
+        <iteamapp.iteamapp.adapter.MyRadioButton
+            >
+
+        </iteamapp.iteamapp.adapter.MyRadioButton>
 
         <RadioButton
             android:layout_height="match_parent"

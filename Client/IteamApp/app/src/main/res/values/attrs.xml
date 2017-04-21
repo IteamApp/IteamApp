@@ -4,4 +4,37 @@
         <attr name="border_width" format="dimension" />
         <attr name="border_color" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="DropDownMenu">
+        <!--下划线颜色-->
+        <attr name="underlineColor" format="color" />
+        <!--分割线颜色(菜单栏)-->
+        <attr name="dividerColor" format="color" />
+        <!--tab选中颜色-->
+        <attr name="textSelectedColor" format="color" />
+        <!--tab未选中颜色-->
+        <attr name="textUnselectedColor" format="color" />
+        <!--tab 背景颜色-->
+        <attr name="menuBackgroundColor" format="color" />
+        <!--遮罩颜色，一般是半透明-->
+        <attr name="maskColor" format="color" />
+        <!--字体大小-->
+        <attr name="menuTextSize" format="dimension" />
+        <!--tab选中状态图标-->
+        <attr name="menuSelectedIcon" format="reference" />
+        <!--tab未选中状态图标-->
+        <attr name="menuUnselectedIcon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SlideBottomPanel">
+        <attr name="sbp_background_layout" format="reference"/>
+        <attr name="sbp_title_height_no_display" format="dimension"/>
+        <attr name="sbp_panel_height" format="dimension"/>
+        <attr name="sbp_boundary" format="boolean"/>
+        <attr name="sbp_move_distance_trigger" format="dimension"/>
+        <attr name="sbp_animation_duration" format="integer"/>
+        <attr name="sbp_fade" format="boolean"/>
+        <attr name="sbp_hide_panel_title" format="boolean"/>
+    </declare-styleable>
+
 </resources>

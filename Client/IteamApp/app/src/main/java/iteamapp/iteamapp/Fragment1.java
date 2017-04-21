@@ -4,24 +4,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
-
-
 import java.util.ArrayList;
-
-import iteamapp.iteamapp.Tools.RecyclerViewDivider;
 import iteamapp.iteamapp.adapter.MyPageAdapter;
 
 
@@ -31,11 +22,8 @@ import iteamapp.iteamapp.adapter.MyPageAdapter;
 public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mRecyclerView;
-
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
     private View view;
-
     private MyPageAdapter adapter;
 
 
@@ -43,38 +31,24 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
         view = inflater.inflate(R.layout.fragment1, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-
         adapter = new MyPageAdapter(getContext());
-
         initdata();//初始化数据
         mRecyclerView.setAdapter(adapter);
-
-
-
-
-
         return view;
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.demo_swiperefreshlayout);
-
         mSwipeRefreshLayout.setColorSchemeResources(R.color.blue, R.color.black);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-
-
-
-
     }
 
     private void update(){

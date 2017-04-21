@@ -1,10 +1,12 @@
 package iteamapp.iteamapp;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import iteamapp.iteamapp.adapter.MyFragmentPagerAdapter;
@@ -16,7 +18,10 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup rgGroup;
     private List<Fragment> fragments;
     private ViewPager mViewPager;
-
+    private RadioButton rbhome;
+    private RadioButton rbmessage;
+    private RadioButton rbclub;
+    private RadioButton rbme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,27 @@ public class MainActivity extends AppCompatActivity {
 
         rgGroup = (RadioGroup) findViewById(R.id.rg_group);
         rgGroup.check(R.id.rb_home);
+        rbhome= (RadioButton) findViewById(R.id.rb_home);
+        rbmessage= (RadioButton) findViewById(R.id.rb_news);
+        rbclub= (RadioButton) findViewById(R.id.rb_service);
+        rbme= (RadioButton) findViewById(R.id.rb_gov);
+
+        Drawable drawable = getResources().getDrawable(R.drawable.btn_tab_home_selector);
+        drawable.setBounds(0, 0, 100, 120);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        rbhome.setCompoundDrawables(null, drawable, null, null);//只放上面
+
+        drawable = getResources().getDrawable(R.drawable.btn_tab_news_selector);
+        drawable.setBounds(0, 0, 100, 120);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        rbmessage.setCompoundDrawables(null, drawable, null, null);//只放上面
+
+        drawable = getResources().getDrawable(R.drawable.btn_tab_service_selector);
+        drawable.setBounds(0, 0, 100, 120);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        rbclub.setCompoundDrawables(null, drawable, null, null);//只放上面
+
+        drawable = getResources().getDrawable(R.drawable.btn_tab_gov_selector);
+        drawable.setBounds(0, 0, 100, 120);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        rbme.setCompoundDrawables(null, drawable, null, null);//只放上面
+
         //当点击底部按钮时切换页面
         rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

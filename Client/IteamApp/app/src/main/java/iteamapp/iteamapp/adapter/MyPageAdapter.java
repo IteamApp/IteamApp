@@ -9,12 +9,18 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import iteamapp.iteamapp.ItemDetail;
 import iteamapp.iteamapp.R;
@@ -24,6 +30,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,24 +42,21 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final String TAG_PID = "pid";
 
     private Context context;
-
     public List<String> nameDatas;
     public List<String> infoDatas;
     public ArrayList<ImageView> imageList;
     public  List<String> idDatas;
-
-
     private static final int HEAD_VIEW = 0;//头布局
     private static final int BODY_VIEW = 2;//内容布局
     private static final int TAG_VIEW = 1;//内容布局
-
+    private CustomPopWindow mCustomPopWindow;
+    private RadioButton mButton3;
+    private RadioGroup rgGroup;
+    private int Flag=0;
 
     private MyAdapter mPagerAdapter = new MyAdapter();
-
-
     public MyPageAdapter(Context context){
         this.context = context;
-
     }
 
     //创建ViewHolder
@@ -85,7 +89,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     //绑定ViewHolder
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         //将数据填充到具体的view中
         if (holder instanceof MyHeadViewHolder) {
             ((MyHeadViewHolder) holder).mViewPager.setAdapter(mPagerAdapter);
@@ -94,21 +98,34 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((MyHeadViewHolder) holder).indicator.setSnap(true);
         }
         if (holder instanceof MyTabViewHolder) {
-            ((MyTabViewHolder) holder).rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            rgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                    if (i == R.id.club_mine) {
-                       mydata();
-                       notifyDataSetChanged();
+                    if(Flag==0) {
+                        if (i == R.id.club_mine) {
+                            mydata();
+                            notifyDataSetChanged();
+                        }
+                        if (i == R.id.club_hot) {
+                            hotdata();
+                            notifyDataSetChanged();
+                        }
+                        if (i == R.id.club_shaixuan) {
+                            Log.d("dcs", "shfk");
+                            View contentView = LayoutInflater.from(context).inflate(R.layout.pop_menu, null);
+                            //处理popWindow 显示内容
+                            handleLogic(contentView);
+                            //创建并显示popWindow
+                            mCustomPopWindow = new CustomPopWindow.PopupWindowBuilder(context)
+                                    .setView(contentView)
+                                    .create()
+                                    .showAsDropDown(mButton3, 0, 20);
 
+                        }
                     }
-
-                    if (i == R.id.club_hot) {
-                        hotdata();;
-                        notifyDataSetChanged();
-
+                    else {
+                        Flag=0;
                     }
-
                 }
             });
         }
@@ -117,36 +134,124 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((MyBodyViewHolder) holder).tvinfo.setText(infoDatas.get(position-2));
             ((MyBodyViewHolder) holder).tvid.setText(idDatas.get(position-2));
             ((MyBodyViewHolder) holder).image.setImageResource(R.mipmap.setting_press);
-
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 if (position > 1) {
-
                     String pid = idDatas.get(position - 2);
-
                     Intent in = new Intent(((Activity)context), ItemDetail.class);
-
                     in.putExtra(TAG_PID, pid);
-
                     context.startActivity(in);
-
                     ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }
             }
 
 
         });
+    }
 
 
+    private void handleLogic(View contentView){
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCustomPopWindow!=null){
+                    mCustomPopWindow.dissmiss();
+                }
+                String showContent = "";
+                switch (v.getId()){
+                    case R.id.menu1:
+                        showContent = "点击 Item菜单1";
+                        mydata1();
+                        notifyDataSetChanged();
+                        Flag=1;
+                        rgGroup.clearCheck();
+                        break;
+
+                    case R.id.menu2:
+                        showContent = "点击 Item菜单2";
+                        mydata2();
+                        notifyDataSetChanged();
+                        Flag=1;
+                        rgGroup.clearCheck();
+                        break;
+
+                    case R.id.menu3:
+                        showContent = "点击 Item菜单3";
+                        mydata3();
+                        notifyDataSetChanged();
+                        Flag=1;
+                        rgGroup.clearCheck();
+                        break;
+
+                    case R.id.menu4:
+                        showContent = "点击 Item菜单4";
+                        mydata4();
+                        notifyDataSetChanged();
+                        Flag=1;
+                        rgGroup.clearCheck();
+                        break;
+
+                    case R.id.menu5:
+                        showContent = "点击 Item菜单5" ;
+                        mydata5();
+                        notifyDataSetChanged();
+                        Flag=1;
+                        rgGroup.clearCheck();
+                        break;
+                }
+                Toast.makeText(context,showContent,Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        contentView.findViewById(R.id.menu1).setOnClickListener(listener);
+        contentView.findViewById(R.id.menu2).setOnClickListener(listener);
+        contentView.findViewById(R.id.menu3).setOnClickListener(listener);
+        contentView.findViewById(R.id.menu4).setOnClickListener(listener);
+        contentView.findViewById(R.id.menu5).setOnClickListener(listener);
     }
 
     private void mydata() {
 
         for (int i=0;i<10;i++) {
             nameDatas.set(i, "我的社团" + i + 1);
+        }
+    }
+
+    private void mydata1() {
+
+        for (int i=0;i<10;i++) {
+            nameDatas.set(i, "Item_one我的社团" + i + 1);
+        }
+    }
+
+    private void mydata2() {
+
+        for (int i=0;i<10;i++) {
+            nameDatas.set(i, "Item_two我的社团" + i + 1);
+        }
+    }
+
+    private void mydata3() {
+
+        for (int i=0;i<10;i++) {
+            nameDatas.set(i, "Item_Three我的社团" + i + 1);
+        }
+    }
+
+    private void mydata4() {
+
+        for (int i=0;i<10;i++) {
+            nameDatas.set(i, "Item_four我的社团" + i + 1);
+        }
+    }
+
+    private void mydata5() {
+
+        for (int i=0;i<10;i++) {
+            nameDatas.set(i, "Item_five我的社团" + i + 1);
         }
     }
 
@@ -185,14 +290,13 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     class MyTabViewHolder extends RecyclerView.ViewHolder {
-        RadioGroup rgGroup;
 
         public MyTabViewHolder(View itemView) {
             super(itemView);
             rgGroup = (RadioGroup) itemView.findViewById(R.id.club_group);
+            mButton3 = (RadioButton) itemView.findViewById(R.id.club_shaixuan);
         }
     }
-
     class MyBodyViewHolder extends RecyclerView.ViewHolder {
         TextView tv;
         TextView tvinfo;
@@ -209,11 +313,8 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-
-
     //viewpager的adapter
     class MyAdapter extends PagerAdapter {
-
         @Override
         public int getCount() {
             return imageList.size();
