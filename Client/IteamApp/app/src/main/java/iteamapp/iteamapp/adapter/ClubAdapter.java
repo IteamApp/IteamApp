@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import iteamapp.iteamapp.ClubDetail;
 import iteamapp.iteamapp.ItemDetail;
 import iteamapp.iteamapp.R;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -79,11 +80,11 @@ public  class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                /*String pid = idDatas.get(position);
-                Intent in = new Intent(((Activity) context), ItemDetail.class);
-                in.putExtra(TAG_PID, pid);
+
+                Intent in = new Intent(((Activity) context), ClubDetail.class);
+
                 context.startActivity(in);
-                ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);*/
+                ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
