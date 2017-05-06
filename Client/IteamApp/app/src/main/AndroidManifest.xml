@@ -38,11 +38,25 @@
             android:label="@string/app_name">
 
         </activity>
+<<<<<<< HEAD
 
         <activity android:name=".ClubDetail">
 
         </activity>
 
+=======
+        <activity android:name=".FreeTimeTable"
+            android:label="@string/app_name"
+            ></activity>
+        <activity
+            android:name=".ClubDetail"
+            android:label="My Application">
+        </activity>
+        <activity
+            android:name=".News"
+            android:label="My Application">
+        </activity>
+>>>>>>> origin/master
     </application>
 
     <!--  Internet Permissions -->

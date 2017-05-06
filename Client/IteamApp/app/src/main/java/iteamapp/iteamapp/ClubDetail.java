@@ -1,6 +1,7 @@
 package iteamapp.iteamapp;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,12 +32,18 @@ import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.userConfig;
 
 import static android.view.View.INVISIBLE;
+=======
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+>>>>>>> origin/master
 
 /**
  * Created by ce on 2017/4/27.
  */
 
 public class ClubDetail extends Activity {
+<<<<<<< HEAD
 
     IpConfig ip = new IpConfig();
     JSONParser jParser = new JSONParser();
@@ -52,11 +59,15 @@ public class ClubDetail extends Activity {
 
     private Button btn1;
 
+=======
+    private Button btn1;
+>>>>>>> origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_club_detial);
 
+<<<<<<< HEAD
         mBack = (ImageView) findViewById(R.id.menu_back);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,12 +89,16 @@ public class ClubDetail extends Activity {
         if(userConfig.userID.length()==7){
             btn1.setVisibility(INVISIBLE);
         }
+=======
+        btn1 = (Button)findViewById(R.id.btn1);
+>>>>>>> origin/master
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //绑定立即报名事件
             }
         });
+<<<<<<< HEAD
         initData();
 
     }
@@ -135,5 +150,8 @@ public class ClubDetail extends Activity {
             e.printStackTrace();
         }
         return bitmap;
+=======
+
+>>>>>>> origin/master
     }
 }

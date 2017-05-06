@@ -3,7 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<<<<<<< HEAD
     <include layout="@layout/top_club_detail"></include>
+=======
+    <include layout="@layout/tool_bar_top"></include>
+>>>>>>> origin/master
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,7 +28,11 @@
 
         <iteamapp.iteamapp.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
+<<<<<<< HEAD
             android:id="@+id/club_userImg"
+=======
+            android:id="@+id/userImg"
+>>>>>>> origin/master
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerHorizontal="true"
@@ -77,7 +85,10 @@
             />
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/club_faculty"
+=======
+>>>>>>> origin/master
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="信息科学与工程学院"
@@ -194,7 +205,10 @@
             >
 
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/club_biref"
+=======
+>>>>>>> origin/master
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介"
@@ -224,7 +238,11 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+<<<<<<< HEAD
             android:id="@+id/club_btn1"
+=======
+            android:id="@+id/btn1"
+>>>>>>> origin/master
             />
 
     </LinearLayout>

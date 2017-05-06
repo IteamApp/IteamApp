@@ -4,8 +4,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff">
+<<<<<<< HEAD
     <include layout="@layout/tool_bar_article_detail_top"></include>
 
+=======
+    <include layout="@layout/tool_bar_top"></include>
+>>>>>>> origin/master
     <ScrollView
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
@@ -23,19 +27,32 @@
             android:paddingTop="0dp">
 
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/new_userName"
+=======
+                android:id="@+id/userName"
+>>>>>>> origin/master
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="用户名"
                 android:textSize="16sp"
                 android:textColor="#333333"
+<<<<<<< HEAD
                 android:layout_alignTop="@+id/new_userIntro"
                 android:layout_toEndOf="@+id/new_userImg"
+=======
+                android:layout_alignTop="@+id/userIntro"
+                android:layout_toEndOf="@+id/userImg"
+>>>>>>> origin/master
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"/>
 
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/new_userIntro"
+=======
+                android:id="@+id/userIntro"
+>>>>>>> origin/master
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="昨天22:57"
@@ -45,6 +62,7 @@
                 android:textSize="12sp"
                 android:textColor="#808080"
                 android:layout_alignParentBottom="true"
+<<<<<<< HEAD
                 android:layout_toEndOf="@+id/new_userImg" />
 
             <TextView
@@ -55,6 +73,12 @@
 
             <iteamapp.iteamapp.circleimageview.CircleImageView
                 android:id="@+id/new_userImg"
+=======
+                android:layout_toEndOf="@+id/userImg" />
+
+            <iteamapp.iteamapp.circleimageview.CircleImageView
+                android:id="@+id/userImg"
+>>>>>>> origin/master
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:src="@mipmap/setting_press"
@@ -70,17 +94,26 @@
                 android:orientation="vertical"
                 android:layout_marginTop="20dp">
                 <TextView
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="这里是消息的正文部分这里是消息的正文部分这里是消息的正文部分这里是消息的正文部分这里是消息的正文部分这里是消息的\n正文部分这里是消息的正文部分：\n1. 这里是分条消息\n2. 这里是分条消息条消息条消息\n3. 这里是分条这里是分条消息\n4. 这里是分条消息条消息\n如此的都是消息的内容部分，内容部分长度没有限制，用于发布社团纳新、社团内部活动、大型活动、联谊等"
                     android:textSize="16sp"
                     android:textColor="#333333"
                     android:lineSpacingExtra="2dp"
+<<<<<<< HEAD
                     android:id="@+id/new_text1"
                     />
                 <ImageView
                     android:id="@+id/content_img"
+=======
+                    android:id="@+id/text1"
+                    />
+                <ImageView
+>>>>>>> origin/master
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:src="@drawable/d"
@@ -97,7 +130,11 @@
                     android:textSize="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+<<<<<<< HEAD
                     android:id="@+id/news_btn1"
+=======
+                    android:id="@+id/btn1"
+>>>>>>> origin/master
                     />
 
             </LinearLayout>

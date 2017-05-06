@@ -1,6 +1,7 @@
 package iteamapp.iteamapp;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,11 +34,20 @@ import iteamapp.iteamapp.Tools.userConfig;
 
 import static android.view.View.INVISIBLE;
 
+=======
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+
+>>>>>>> origin/master
 /**
  * Created by ce on 2017/4/29.
  */
 
 public class News extends Activity {
+<<<<<<< HEAD
 
     IpConfig ip = new IpConfig();
     JSONParser jParser = new JSONParser();
@@ -54,10 +64,16 @@ public class News extends Activity {
     private ImageView imgContent;
     private TextView tvid;
 
+=======
+    private Button btn1;
+    private TextView text1;
+    private ArrayAdapter<String> arr_adapter;
+>>>>>>> origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_news);
+<<<<<<< HEAD
         mBack = (ImageView) findViewById(R.id.new_menu_back);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +105,13 @@ public class News extends Activity {
             }
         });
 
+=======
+
+        btn1 = (Button)findViewById(R.id.btn1);
+        text1 = (TextView)findViewById(R.id.text1);
+        String[]arr_data = {"andriod1"};
+        arr_adapter = new ArrayAdapter<String>(this,R.layout.item_news,arr_data);
+>>>>>>> origin/master
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +119,7 @@ public class News extends Activity {
 
             }
         });
+<<<<<<< HEAD
         initData();
     }
 
@@ -156,5 +180,8 @@ public class News extends Activity {
             e.printStackTrace();
         }
         return bitmap;
+=======
+
+>>>>>>> origin/master
     }
 }
