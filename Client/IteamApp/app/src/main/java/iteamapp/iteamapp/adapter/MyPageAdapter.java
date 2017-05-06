@@ -21,10 +21,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
-=======
-import iteamapp.iteamapp.ItemDetail;
->>>>>>> origin/master
 import iteamapp.iteamapp.News;
 import iteamapp.iteamapp.R;
 import iteamapp.iteamapp.Tools.IpConfig;

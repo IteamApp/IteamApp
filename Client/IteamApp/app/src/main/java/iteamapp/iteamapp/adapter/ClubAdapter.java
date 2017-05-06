@@ -14,11 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import iteamapp.iteamapp.ClubDetail;
-<<<<<<< HEAD
 import iteamapp.iteamapp.News;
-=======
-import iteamapp.iteamapp.ItemDetail;
->>>>>>> origin/master
 import iteamapp.iteamapp.R;
 
 
@@ -84,18 +80,11 @@ public  class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             @Override
             public void onClick(View arg0) {
 
-<<<<<<< HEAD
                 String pid = idDatas.get(position);
                 Intent in = new Intent(((Activity)context), ClubDetail.class);
                 in.putExtra("team_id", pid);
                 context.startActivity(in);
                 ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-=======
-                Intent in = new Intent(((Activity) context), ClubDetail.class);
-
-                context.startActivity(in);
-                ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
->>>>>>> origin/master
             }
         });
 
