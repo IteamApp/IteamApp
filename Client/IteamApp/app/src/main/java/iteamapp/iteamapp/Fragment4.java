@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -16,6 +17,7 @@ import android.widget.TextView;
 public class Fragment4 extends Fragment {
 
     private Button txtFreeTime;
+    private LinearLayout topersonal;
 
     private View view;
 
@@ -78,6 +80,15 @@ public class Fragment4 extends Fragment {
 
                 getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
+            }
+        });
+
+        topersonal=(LinearLayout)view.findViewById(R.id.topersonal);
+        topersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getActivity(),personal.class);
+                startActivity(intent);
             }
         });
 

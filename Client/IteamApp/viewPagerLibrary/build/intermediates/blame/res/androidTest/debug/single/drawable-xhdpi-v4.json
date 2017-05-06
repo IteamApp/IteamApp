@@ -24,6 +24,10 @@
         "source": "C:\\Users\\dell-1\\Desktop\\new\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_selected_holo.9.png"
     },
     {
+        "merged": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
+        "source": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_selected_pressed_holo.9.png"
+    },
+    {
         "merged": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_unselected_holo.9.png",
         "source": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_unselected_holo.9.png"
     },
@@ -36,15 +40,35 @@
         "source": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_selected_focused_holo.9.png"
     },
     {
+        "merged": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_unselected_holo.9.png",
+        "source": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_unselected_holo.9.png"
+    },
+    {
         "merged": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_selected_holo.9.png",
         "source": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_selected_holo.9.png"
+    },
+    {
+        "merged": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
+        "source": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_unselected_focused_holo.9.png"
+    },
+    {
+        "merged": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_unselected_pressed_holo.9.png",
+        "source": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_unselected_pressed_holo.9.png"
     },
     {
         "merged": "C:\\Users\\dell-1\\Desktop\\new\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
         "source": "C:\\Users\\dell-1\\Desktop\\new\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_selected_pressed_holo.9.png"
     },
     {
+        "merged": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_selected_holo.9.png",
+        "source": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_selected_holo.9.png"
+    },
+    {
         "merged": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
         "source": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_unselected_focused_holo.9.png"
+    },
+    {
+        "merged": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\vpi__tab_selected_focused_holo.9.png",
+        "source": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\vpi__tab_selected_focused_holo.9.png"
     }
 ]

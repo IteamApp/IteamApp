@@ -82,6 +82,8 @@ public class ClubDetail extends Activity {
             @Override
             public void onClick(View view) {
                 //绑定立即报名事件
+                Intent i= new Intent(ClubDetail.this,enroll.class);
+                startActivity(i);
             }
         });
         initData();
