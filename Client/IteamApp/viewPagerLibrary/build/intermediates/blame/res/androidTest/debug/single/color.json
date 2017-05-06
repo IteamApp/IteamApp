@@ -14,5 +14,13 @@
     {
         "merged": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
         "source": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
+    },
+    {
+        "merged": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
+        "source": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
+    },
+    {
+        "merged": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
+        "source": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
     }
 ]
