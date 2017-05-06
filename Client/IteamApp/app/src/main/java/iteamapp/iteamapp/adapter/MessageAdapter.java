@@ -1,6 +1,8 @@
 package iteamapp.iteamapp.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,11 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import iteamapp.iteamapp.R;
-
-
 import java.util.ArrayList;
 import java.util.List;
+
+import iteamapp.iteamapp.Dialog;
+import iteamapp.iteamapp.R;
 
 /**
  * Created by zqx on 2017/2/20.
@@ -69,11 +71,11 @@ public  class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onClick(View arg0) {
                 ((MyBodyViewHolder) holder).tv.setBackground(context.getResources().getDrawable(R.drawable.grid_item_bg));
-                /*String pid = idDatas.get(position);
-                Intent in = new Intent(((Activity) context), ItemDetail.class);
-                in.putExtra(TAG_PID, pid);
+                //String pid = idDatas.get(position);
+                Intent in = new Intent(((Activity) context), Dialog.class);
+                //in.putExtra(TAG_PID, pid);
                 context.startActivity(in);
-                ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);*/
+                ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
