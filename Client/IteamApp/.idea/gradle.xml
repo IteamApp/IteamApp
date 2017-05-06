@@ -8,8 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/CourseTable" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/scheduleview" />
             <option value="$PROJECT_DIR$/viewPagerLibrary" />
           </set>
         </option>

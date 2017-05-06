@@ -31,11 +31,20 @@
             android:background="#FFBBBFC2">
 
             <RadioButton
-                android:id="@+id/radio_all_hot"
+                android:id="@+id/radio_all_all"
                 android:layout_height="70dp"
                 android:layout_width="wrap_content"
                 style="@style/BottomTabStyle"
                 android:checked="true"
+                android:text="所有社团    "
+                android:background="@drawable/club_item_selector"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_all_hot"
+                android:layout_height="70dp"
+                android:layout_width="wrap_content"
+                style="@style/BottomTabStyle"
                 android:text="热门社团    "
                 android:background="@drawable/club_item_selector"
                 />

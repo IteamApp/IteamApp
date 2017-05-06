@@ -22,7 +22,8 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textColor="@android:color/darker_gray"
-          android:text="Item 菜单1"
+          android:text="全部社团"
+          android:textSize="18dp"
           android:layout_marginLeft="10dp"
           />
   </LinearLayout>
@@ -43,7 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/darker_gray"
-            android:text="Item 菜单2"
+            android:text="信息学院"
+            android:textSize="18dp"
+
             android:layout_marginLeft="10dp"
             />
     </LinearLayout>
@@ -64,50 +67,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/darker_gray"
-            android:text="Item 菜单3"
+            android:text="法政学院"
+            android:textSize="18dp"
             android:layout_marginLeft="10dp"
             />
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/menu4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        >
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/ic_icon4"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
-            android:text="Item 菜单4"
-            android:layout_marginLeft="10dp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/menu5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        >
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/ic_icon5"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
-            android:text="Item 菜单5"
-            android:layout_marginLeft="10dp"
-            />
-    </LinearLayout>
+
 </LinearLayout>

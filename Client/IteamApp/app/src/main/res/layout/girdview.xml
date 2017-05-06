@@ -5,8 +5,6 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-
-
     <RadioGroup
         android:id="@+id/club_group"
         android:layout_weight="1"
@@ -27,6 +25,13 @@
             android:checked="true"
             android:background="@drawable/zhuye_myclub_selector"
             />
+        <View
+            android:layout_width="1dp"
+
+            android:layout_height="match_parent"
+            android:background="#66CCFF"
+            android:layout_gravity="center_horizontal"
+            />
 
         <RadioButton
             android:id="@+id/club_hot"
@@ -37,6 +42,13 @@
             android:textSize="20dp"
             style="@style/BottomTabStyle"
             android:background="@drawable/zhuye_hotclub_selector"
+            />
+        <View
+            android:layout_width="1dp"
+
+            android:layout_height="match_parent"
+            android:background="#66CCFF"
+            android:layout_gravity="center_horizontal"
             />
 
         <RadioButton
@@ -51,4 +63,5 @@
             />
 
 </RadioGroup>
+
 </LinearLayout>

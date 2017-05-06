@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:background="@color/tab_text_color"
     android:orientation="vertical">
-    <RelativeLayout
+
+    <TextView
+        android:id="@+id/top_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/new_menu_back"
+        android:text="                                       Iteam"
+        android:gravity="center"
+        style="@style/ToolBarTopTitleTextAppearance"/>
+
+    <View
+        android:layout_alignBottom="@+id/top_title"
+        android:layout_height="5px"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:background="#b4b0b0"
+        />
 
-        <TextView
-            android:id="@+id/top_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/menu_back"
-            android:layout_toLeftOf="@id/menu_more"
-            android:text="                                       Iteam"
-            android:gravity="center"
-            style="@style/ToolBarTopTitleTextAppearance"/>
-    </RelativeLayout>
-    <View style="@style/AppTheme.DeepLine"/>
-
-</LinearLayout>
+</RelativeLayout>

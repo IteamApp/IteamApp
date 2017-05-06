@@ -67,15 +67,19 @@
             android:id="@+id/recycle_more"
             android:textSize="18sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="110dp"
+            android:maxLines="5"
+            android:maxEms="150"
+            android:ellipsize="end"
+
             android:text="棒冰行动，公益传播设计夏令营棒冰行动，棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营,公益传播设计夏令营棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营" />
 
         <ImageView
-
+            android:id="@+id/img_article"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="center"
+            android:scaleType="fitXY"
             android:src="@drawable/a"
             />
     </LinearLayout>

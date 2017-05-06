@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/top_club_detail"></include>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/userInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#F3F4F5"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:paddingTop="0dp">
+
+        <iteamapp.iteamapp.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/club_userImg"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/setting_press"
+            app:border_width="1dp"
+            app:border_color="#ccc"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#333333"
+            />
+
+        <TextView
+            android:id="@+id/userIntro"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="在这里输入用户简介"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:textSize="16dp"
+            android:textColor="#808080"
+            />
+        </LinearLayout>
+
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/border"
+        android:layout_marginTop="10dp"
+        >
+
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/comment"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:id="@+id/club_faculty"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="信息科学与工程学院"
+            android:textSize="20dp"
+            android:textColor="#333333"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            >
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@mipmap/comment"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="1992年9月1日成立"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/textView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            >
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@mipmap/list"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="社团成员"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/textView2" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            >
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@mipmap/comment"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="社团简介"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/textView3" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/border"
+            >
+
+            <TextView
+                android:id="@+id/club_biref"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介"
+                android:textSize="18sp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="立即报名"
+            android:background="#12b7f5"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/club_btn1"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

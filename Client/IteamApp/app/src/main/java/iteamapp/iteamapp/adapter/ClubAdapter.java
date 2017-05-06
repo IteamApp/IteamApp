@@ -6,23 +6,23 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import iteamapp.iteamapp.ItemDetail;
+import iteamapp.iteamapp.ClubDetail;
+import iteamapp.iteamapp.News;
 import iteamapp.iteamapp.R;
-import com.viewpagerindicator.CirclePageIndicator;
 
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,14 +34,13 @@ public  class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private Context context;
     public List<String> nameDatas;
-    public ArrayList<ImageView> imageList;
+    public List<String> logoDatas;
+    public List<String> idDatas;
 
     private static final int HEAD_VIEW = 0;//头布局
     private static final int BODY_VIEW = 2;//内容布局
     private static final int TAG_VIEW = 1;//内容布局
 
-
-    private MyAdapter mPagerAdapter = new MyAdapter();
 
 
     public ClubAdapter(Context context){
@@ -72,18 +71,20 @@ public  class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         //将数据填充到具体的view中
         if (holder instanceof MyBodyViewHolder) {
             ((MyBodyViewHolder) holder).tv.setText(nameDatas.get(position));
-            ((MyBodyViewHolder) holder).image.setImageResource(R.mipmap.setting_press);
+            ((MyBodyViewHolder) holder).image.setImageBitmap(returnBitMap(logoDatas.get(position)));
+            ((MyBodyViewHolder) holder).tvid.setText(idDatas.get(position));
 
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                /*String pid = idDatas.get(position);
-                Intent in = new Intent(((Activity) context), ItemDetail.class);
-                in.putExtra(TAG_PID, pid);
+
+                String pid = idDatas.get(position);
+                Intent in = new Intent(((Activity)context), ClubDetail.class);
+                in.putExtra("team_id", pid);
                 context.startActivity(in);
-                ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);*/
+                ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
@@ -111,42 +112,36 @@ public  class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     class MyBodyViewHolder extends RecyclerView.ViewHolder {
         TextView tv;
         ImageView image;
+        TextView tvid;
 
         public MyBodyViewHolder(View itemView) {
             super(itemView);
             tv = (TextView) itemView.findViewById(R.id.txt_club_name);
+            tvid = (TextView) itemView.findViewById(R.id.all_club_id);
             image = (ImageView) itemView.findViewById(R.id.recycle_club_img);
 
         }
     }
 
-    //viewpager的adapter
-    class MyAdapter extends PagerAdapter {
-
-        @Override
-        public int getCount() {
-            return imageList.size();
+    public Bitmap returnBitMap(String url){
+        URL myFileUrl = null;
+        Bitmap bitmap = null;
+        try {
+            myFileUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
+        try {
+            HttpURLConnection conn = (HttpURLConnection) myFileUrl
+                    .openConnection();
+            conn.setDoInput(true);
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            container.addView(imageList.get(position));
-            return imageList.get(position);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return Integer.toString(position);
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-        }
+        return bitmap;
     }
 }

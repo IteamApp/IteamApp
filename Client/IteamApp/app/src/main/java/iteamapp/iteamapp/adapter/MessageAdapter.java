@@ -1,28 +1,17 @@
 package iteamapp.iteamapp.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import iteamapp.iteamapp.ItemDetail;
 import iteamapp.iteamapp.R;
-import com.viewpagerindicator.CirclePageIndicator;
 
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +57,7 @@ public  class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     //绑定ViewHolder
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         //将数据填充到具体的view中
         if (holder instanceof MyBodyViewHolder) {
             ((MyBodyViewHolder) holder).tv.setText(nameDatas.get(position));
@@ -79,6 +68,7 @@ public  class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                ((MyBodyViewHolder) holder).tv.setBackground(context.getResources().getDrawable(R.drawable.grid_item_bg));
                 /*String pid = idDatas.get(position);
                 Intent in = new Intent(((Activity) context), ItemDetail.class);
                 in.putExtra(TAG_PID, pid);

@@ -140,33 +140,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="45dp"
-        android:layout_width="match_parent"
-        android:background="#fff"
-        android:layout_marginTop="10dp"
-        >
-
-        <ImageView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:src="@mipmap/comment"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            />
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="发布推送"
-            android:textSize="20dp"
-            android:textColor="#333333"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            />
-    </LinearLayout>
-
-    <LinearLayout
         android:orientation="vertical"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -192,33 +165,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="社团纳新"
-                android:textSize="20dp"
-                android:textColor="#333333"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:background="#fff"
-            >
-
-            <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@mipmap/list"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="活动管理"
+                android:text="个人信息"
                 android:textSize="20dp"
                 android:textColor="#333333"
                 android:layout_gravity="center_vertical"
@@ -246,47 +193,23 @@
             <ImageView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:src="@mipmap/comment"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="成员管理"
-                android:textSize="20dp"
-                android:textColor="#333333"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:background="#fff"
-            >
-
-            <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
                 android:src="@mipmap/list"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 />
 
-            <TextView
+            <Button
+                android:layout_weight="1"
                 android:id="@+id/txtFreeTime"
                 android:clickable="true"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="空闲时间查询"
+                android:text="空闲时间表"
                 android:textSize="20dp"
                 android:textColor="#333333"
-                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="15dp"
+                android:background="#FFFFFF"
                 />
         </LinearLayout>
 

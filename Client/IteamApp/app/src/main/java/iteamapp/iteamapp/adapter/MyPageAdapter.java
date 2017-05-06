@@ -1,36 +1,46 @@
 package iteamapp.iteamapp.adapter;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import iteamapp.iteamapp.ItemDetail;
+import iteamapp.iteamapp.News;
 import iteamapp.iteamapp.R;
+import iteamapp.iteamapp.Tools.IpConfig;
+import iteamapp.iteamapp.Tools.JSONParser;
+
 import com.viewpagerindicator.CirclePageIndicator;
 
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -42,10 +52,14 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final String TAG_PID = "pid";
 
     private Context context;
+    private String userID;
     public List<String> nameDatas;
     public List<String> infoDatas;
     public ArrayList<ImageView> imageList;
     public  List<String> idDatas;
+    public  List<String> imgDatas;
+    public  List<String> logoDatas;
+    public  List<String> timeDatas;
     private static final int HEAD_VIEW = 0;//头布局
     private static final int BODY_VIEW = 2;//内容布局
     private static final int TAG_VIEW = 1;//内容布局
@@ -54,9 +68,18 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private RadioGroup rgGroup;
     private int Flag=0;
 
+    private ProgressDialog pDialog;
+
+    IpConfig ip = new IpConfig();
+    JSONParser jParser = new JSONParser();
+    private  String url = ip.ip+"android/zqx/getArticle.php";
+    JSONArray products = null;
+
+
     private MyAdapter mPagerAdapter = new MyAdapter();
-    public MyPageAdapter(Context context){
+    public MyPageAdapter(Context context,String userID){
         this.context = context;
+        this.userID=userID;
     }
 
     //创建ViewHolder
@@ -103,15 +126,14 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
                     if(Flag==0) {
                         if (i == R.id.club_mine) {
-                            mydata();
+                            initData(userID,"1");
                             notifyDataSetChanged();
                         }
                         if (i == R.id.club_hot) {
-                            hotdata();
+                            initData(userID,"2");
                             notifyDataSetChanged();
                         }
                         if (i == R.id.club_shaixuan) {
-                            Log.d("dcs", "shfk");
                             View contentView = LayoutInflater.from(context).inflate(R.layout.pop_menu, null);
                             //处理popWindow 显示内容
                             handleLogic(contentView);
@@ -131,9 +153,12 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         if (holder instanceof MyBodyViewHolder) {
             ((MyBodyViewHolder) holder).tv.setText(nameDatas.get(position-2));
-            ((MyBodyViewHolder) holder).tvinfo.setText(infoDatas.get(position-2));
+            ((MyBodyViewHolder) holder).tvinfo.setText(timeDatas.get(position-2));
+            ((MyBodyViewHolder) holder).tvmore.setText(infoDatas.get(position-2));
+            ((MyBodyViewHolder) holder).img_article.setImageBitmap(returnBitMap(imgDatas.get(position-2)));
+            ((MyBodyViewHolder) holder).imglogo.setImageBitmap(returnBitMap(logoDatas.get(position-2)));
             ((MyBodyViewHolder) holder).tvid.setText(idDatas.get(position-2));
-            ((MyBodyViewHolder) holder).image.setImageResource(R.mipmap.setting_press);
+
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +166,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             public void onClick(View arg0) {
                 if (position > 1) {
                     String pid = idDatas.get(position - 2);
-                    Intent in = new Intent(((Activity)context), ItemDetail.class);
+                    Intent in = new Intent(((Activity)context), News.class);
                     in.putExtra(TAG_PID, pid);
                     context.startActivity(in);
                     ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -150,6 +175,49 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
         });
+    }
+
+
+    private void initData(String usercode,String type){
+
+        idDatas.clear();
+        nameDatas .clear();
+        infoDatas = new ArrayList<String>();
+        logoDatas = new ArrayList<String>();
+        imgDatas = new ArrayList<String>();
+        timeDatas = new ArrayList<String>();
+
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("id", usercode));
+        params.add(new BasicNameValuePair("type", type));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+        // Check your log cat for JSON reponse
+        Log.d("All Products: ", json.toString());
+
+        try {
+            // products found
+            // Getting Array of Products
+            products = json.getJSONArray("article");
+
+            // looping through All Products
+            for (int i = 0; i < products.length(); i++) {
+                JSONObject c = products.getJSONObject(i);
+
+                // Storing each json item in variable
+                nameDatas.add(c.getString("team_name"));
+                infoDatas.add(c.getString("passage_content"));
+                timeDatas.add(c.getString("passage_time"));
+                imgDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"));
+                idDatas.add(c.getString("id"));
+                logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -163,40 +231,24 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 String showContent = "";
                 switch (v.getId()){
                     case R.id.menu1:
-                        showContent = "点击 Item菜单1";
-                        mydata1();
+                        showContent = "全部社团";
+                        mydata("");
                         notifyDataSetChanged();
                         Flag=1;
                         rgGroup.clearCheck();
                         break;
 
                     case R.id.menu2:
-                        showContent = "点击 Item菜单2";
-                        mydata2();
+                        showContent = "信息学院";
+                        mydata("2");
                         notifyDataSetChanged();
                         Flag=1;
                         rgGroup.clearCheck();
                         break;
 
                     case R.id.menu3:
-                        showContent = "点击 Item菜单3";
-                        mydata3();
-                        notifyDataSetChanged();
-                        Flag=1;
-                        rgGroup.clearCheck();
-                        break;
-
-                    case R.id.menu4:
-                        showContent = "点击 Item菜单4";
-                        mydata4();
-                        notifyDataSetChanged();
-                        Flag=1;
-                        rgGroup.clearCheck();
-                        break;
-
-                    case R.id.menu5:
-                        showContent = "点击 Item菜单5" ;
-                        mydata5();
+                        mydata("3");
+                        showContent = "法政学院";
                         notifyDataSetChanged();
                         Flag=1;
                         rgGroup.clearCheck();
@@ -209,57 +261,57 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         contentView.findViewById(R.id.menu1).setOnClickListener(listener);
         contentView.findViewById(R.id.menu2).setOnClickListener(listener);
         contentView.findViewById(R.id.menu3).setOnClickListener(listener);
-        contentView.findViewById(R.id.menu4).setOnClickListener(listener);
-        contentView.findViewById(R.id.menu5).setOnClickListener(listener);
     }
 
-    private void mydata() {
+    private void mydata(String faculty) {
+        IpConfig ip = new IpConfig();
+        JSONParser jParser = new JSONParser();
+        String url = ip.ip+"android/zqx/ArticleFaculty.php";
+        JSONArray products = null;
 
-        for (int i=0;i<10;i++) {
-            nameDatas.set(i, "我的社团" + i + 1);
+
+        idDatas.clear();
+        nameDatas .clear();
+        infoDatas = new ArrayList<String>();
+        logoDatas = new ArrayList<String>();
+        imgDatas = new ArrayList<String>();
+        timeDatas = new ArrayList<String>();
+
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("id", faculty));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+        // Check your log cat for JSON reponse
+        Log.d("All Products: ", json.toString());
+
+        try {
+            // products found
+            // Getting Array of Products
+            products = json.getJSONArray("article");
+
+            // looping through All Products
+            for (int i = 0; i < products.length(); i++) {
+                JSONObject c = products.getJSONObject(i);
+
+                // Storing each json item in variable
+                nameDatas.add(c.getString("team_name"));
+                infoDatas.add(c.getString("passage_content"));
+                timeDatas.add(c.getString("passage_time"));
+                imgDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"));
+                idDatas.add(c.getString("id"));
+                logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
     }
 
-    private void mydata1() {
 
-        for (int i=0;i<10;i++) {
-            nameDatas.set(i, "Item_one我的社团" + i + 1);
-        }
-    }
 
-    private void mydata2() {
-
-        for (int i=0;i<10;i++) {
-            nameDatas.set(i, "Item_two我的社团" + i + 1);
-        }
-    }
-
-    private void mydata3() {
-
-        for (int i=0;i<10;i++) {
-            nameDatas.set(i, "Item_Three我的社团" + i + 1);
-        }
-    }
-
-    private void mydata4() {
-
-        for (int i=0;i<10;i++) {
-            nameDatas.set(i, "Item_four我的社团" + i + 1);
-        }
-    }
-
-    private void mydata5() {
-
-        for (int i=0;i<10;i++) {
-            nameDatas.set(i, "Item_five我的社团" + i + 1);
-        }
-    }
-
-    private void hotdata() {
-        for (int i=0;i<10;i++) {
-            nameDatas.set(i, "热门社团" + i + 1);
-        }
-    }
 
     @Override
     public int getItemCount() {
@@ -301,14 +353,18 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView tv;
         TextView tvinfo;
         TextView tvid;
-        ImageView image;
+        ImageView img_article;
+        TextView tvmore;
+        ImageView imglogo;
 
         public MyBodyViewHolder(View itemView) {
             super(itemView);
             tv = (TextView) itemView.findViewById(R.id.recycle_tv);
             tvinfo = (TextView) itemView.findViewById(R.id.recycle_info);
             tvid = (TextView) itemView.findViewById(R.id.recycle_pid);
-            image = (ImageView) itemView.findViewById(R.id.recycle_img);
+            img_article = (ImageView) itemView.findViewById(R.id.img_article);
+            tvmore= (TextView) itemView.findViewById(R.id.recycle_more);
+            imglogo= (ImageView) itemView.findViewById(R.id.recycle_img);
 
         }
     }
@@ -340,5 +396,27 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
         }
+    }
+
+    public Bitmap returnBitMap(String url){
+        URL myFileUrl = null;
+        Bitmap bitmap = null;
+        try {
+            myFileUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            HttpURLConnection conn = (HttpURLConnection) myFileUrl
+                    .openConnection();
+            conn.setDoInput(true);
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 }

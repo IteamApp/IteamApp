@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <iteamapp.iteamapp.view.NoScrollViewPager
+        android:id="@+id/vp_main_club"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <RadioGroup
+        android:id="@+id/rg_group_club"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:background="#fff">
+
+
+        <RadioButton
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/rb_home_club"
+            style="@style/BottomTabStyle"
+            android:checked="true"
+            android:drawableBottom="@drawable/btn_tab_home_selector"/>
+
+        <RadioButton
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/rb_news_club"
+            style="@style/BottomTabStyle"
+            android:drawableBottom="@drawable/btn_tab_news_selector"/>
+
+        <RadioButton
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/rb_gov_club"
+            style="@style/BottomTabStyle"
+            android:drawableBottom="@drawable/btn_tab_gov_selector"/>
+    </RadioGroup>
+</LinearLayout>

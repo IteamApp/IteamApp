@@ -9,9 +9,9 @@
     </style>
 
     <style name="AppTheme.DeepLine" parent="@style/AppTheme">
-        <item name="android:background">#ffdddddd</item>
+        <item name="android:background">#9e9999</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">1.0px</item>
+        <item name="android:layout_height">2.0px</item>
     </style>
 
     <style name="ToolBarTopTitleTextAppearance" parent="TextAppearance.AppCompat">

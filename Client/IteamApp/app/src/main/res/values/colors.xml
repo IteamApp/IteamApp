@@ -12,7 +12,7 @@
     <color name="tab_text_color">#ffffff</color>
     <color name="tab_text_color_selected">#A0ffffff</color>
 
-    <color name="dodgerblue">#508aeb</color>
+    <color name="dodgerblue">#ffff</color>
     <color name="accent_blue">#ff4285f4</color>
 
     <color name="main_color">@color/dodgerblue</color>
