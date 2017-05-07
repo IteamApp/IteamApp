@@ -11,6 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+<<<<<<< HEAD
+import iteamapp.iteamapp.Dialog;
+import iteamapp.iteamapp.R;
+
+
+=======
+>>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +77,11 @@ public  class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+<<<<<<< HEAD
+                //((MyBodyViewHolder) holder).tv.setBackground(context.getResources().getDrawable(R.drawable.grid_item_bg));
+=======
                 ((MyBodyViewHolder) holder).tv.setBackground(context.getResources().getDrawable(R.drawable.grid_item_bg));
+>>>>>>> origin/master
                 //String pid = idDatas.get(position);
                 Intent in = new Intent(((Activity) context), Dialog.class);
                 //in.putExtra(TAG_PID, pid);

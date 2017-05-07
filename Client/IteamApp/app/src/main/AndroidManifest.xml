@@ -42,12 +42,27 @@
         <activity android:name=".ClubDetail">
 
         </activity>
+        <activity android:name=".personal">
+
+<<<<<<< HEAD
+        </activity>
 
         <activity android:name=".StarList"
             android:label="My Application"
             >
         </activity>
+        <activity android:name=".enroll"
+            android:label="@string/app_name">
 
+        </activity>
+
+=======
+        <activity android:name=".StarList"
+            android:label="My Application"
+            >
+        </activity>
+
+>>>>>>> origin/master
         <activity
             android:name=".Dialog"></activity>
     </application>

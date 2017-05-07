@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <include layout="@layout/tool_enroll_top"></include>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/border"
+        android:layout_marginTop="10dp">
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名"
+            android:textSize="20dp"
+            android:textColor="#333333"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"/>
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:maxLines="1"
+            android:hint="请输入姓名"
+            android:textSize="20dp"
+            android:textColor="#333333"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/enroll_name"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学号"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:hint="请输入学号 "
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/enroll_stunumber" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="专业"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:hint="请输入专业"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/enroll_major" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="#F3F4F5"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性别"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:hint="请输入性别"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/enroll_sex" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电话"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:hint="请输入电话号码"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/enroll_phonenumber"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_marginTop="10dp"
+            >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                >
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="自我介绍"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/textView3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/border"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请介绍一下你自己"
+                    android:textSize="18sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:id="@+id/enroll_intorduction"
+                    />
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="立即报名"
+                android:background="#12b7f5"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/enroll_btn1"
+                />
+
+        </LinearLayout>
+</LinearLayout>
+
+</LinearLayout>

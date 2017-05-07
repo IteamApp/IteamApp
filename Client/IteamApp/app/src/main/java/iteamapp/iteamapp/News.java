@@ -29,6 +29,7 @@ import java.util.List;
 
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
+import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.Tools.userConfig;
 
 import static android.view.View.INVISIBLE;
@@ -84,16 +85,22 @@ public class News extends Activity {
                 String pid = tvid.getText().toString();
                 Intent in = new Intent(News.this, ClubDetail.class);
                 in.putExtra("team_id", pid);
+                TeamConfig.TeamID=pid;
                 startActivity(in);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //绑定立即报名事件
+                Intent i= new Intent(News.this,enroll.class);
+                startActivity(i);
             }
         });
         initData();
@@ -123,6 +130,7 @@ public class News extends Activity {
                 // Storing each json item in variable
                 tvtime.setText(c.getString("passage_time"));
                 tvid.setText(c.getString("team_id"));
+                TeamConfig.TeamID=c.getString("team_id");
                 tvUsername.setText(c.getString("team_name"));
                 tvcontent.setText(c.getString("passage_content"));
                 Log.d("ds","fsdf");

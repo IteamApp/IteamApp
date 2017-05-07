@@ -25,6 +25,7 @@ import iteamapp.iteamapp.News;
 import iteamapp.iteamapp.R;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
+import iteamapp.iteamapp.Tools.TeamConfig;
 
 import com.viewpagerindicator.CirclePageIndicator;
 

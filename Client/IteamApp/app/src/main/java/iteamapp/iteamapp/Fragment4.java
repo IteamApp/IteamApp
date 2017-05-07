@@ -1,6 +1,8 @@
 package iteamapp.iteamapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +10,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import iteamapp.iteamapp.Tools.IpConfig;
+import iteamapp.iteamapp.Tools.JSONParser;
+import iteamapp.iteamapp.Tools.userConfig;
 
 /**
  * Created by HongJay on 2016/8/11.
@@ -16,8 +38,14 @@ import android.widget.TextView;
 public class Fragment4 extends Fragment {
 
     private Button txtFreeTime;
-
+    private LinearLayout topersonal;
     private View view;
+    private TextView star;  //关注
+    private TextView club;
+    private TextView signup;
+
+    private TextView username;
+    private ImageView userimg;
 
     private TextView star;  //关注
     private TextView club;
@@ -28,6 +56,8 @@ public class Fragment4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment4, container, false);
         txtFreeTime = (Button) view.findViewById(R.id.txtFreeTime);
+        username= (TextView) view.findViewById(R.id.userName);
+        userimg= (ImageView) view.findViewById(R.id.userImg);
         txtFreeTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,9 +110,68 @@ public class Fragment4 extends Fragment {
 
             }
         });
+<<<<<<< HEAD
+
+        topersonal=(LinearLayout)view.findViewById(R.id.topersonal);
+        topersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getActivity(),personal.class);
+                startActivity(intent);
+            }
+        });
+
+        InitData();
+=======
+>>>>>>> origin/master
 
         return view;
 
+    }
+
+    private void InitData(){
+        IpConfig ip = new IpConfig();
+        JSONParser jParser = new JSONParser();
+        String url = ip.ip+"android/zqx/getUserInfo.php";
+        JSONArray products = null;
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("id", userConfig.userID));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+        // Check your log cat for JSON reponse
+        Log.d("All Products: ", json.toString());
+
+        try {
+            username.setText(json.getString("user_name"));
+            userimg.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+json.getString("user_head")));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Bitmap returnBitMap(String url){
+        URL myFileUrl = null;
+        Bitmap bitmap = null;
+        try {
+            myFileUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            HttpURLConnection conn = (HttpURLConnection) myFileUrl
+                    .openConnection();
+            conn.setDoInput(true);
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
 
