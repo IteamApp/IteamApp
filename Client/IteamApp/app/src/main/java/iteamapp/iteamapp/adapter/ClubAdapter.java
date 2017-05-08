@@ -80,10 +80,6 @@ public  class ClubAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
                 String pid = idDatas.get(position);
                 Intent in = new Intent(((Activity)context), ClubDetail.class);
                 in.putExtra("team_id", pid);

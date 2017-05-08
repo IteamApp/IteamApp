@@ -91,10 +91,6 @@ public class News extends Activity {
             }
         });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

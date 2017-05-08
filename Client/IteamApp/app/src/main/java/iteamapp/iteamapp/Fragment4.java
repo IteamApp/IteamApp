@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,6 @@ public class Fragment4 extends Fragment {
 
     private TextView username;
     private ImageView userimg;
-
-    private TextView star;  //关注
-    private TextView club;
-    private TextView signup;
 
     @Nullable
     @Override
@@ -110,7 +107,6 @@ public class Fragment4 extends Fragment {
 
             }
         });
-<<<<<<< HEAD
 
         topersonal=(LinearLayout)view.findViewById(R.id.topersonal);
         topersonal.setOnClickListener(new View.OnClickListener() {
@@ -122,8 +118,6 @@ public class Fragment4 extends Fragment {
         });
 
         InitData();
-=======
->>>>>>> origin/master
 
         return view;
 
