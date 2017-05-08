@@ -105,6 +105,7 @@
                     android:layout_weight="1"
                     >
                     <TextView
+
                         android:text="12"
                         android:textSize="25dp"
                         android:textColor="#12b7f5"

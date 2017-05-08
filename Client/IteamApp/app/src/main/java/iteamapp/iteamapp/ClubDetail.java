@@ -28,6 +28,7 @@ import java.util.List;
 
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
+import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.Tools.userConfig;
 
 import static android.view.View.INVISIBLE;
@@ -98,7 +99,7 @@ public class ClubDetail extends Activity {
         StrictMode.setThreadPolicy(policy);
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("id", id));
+        params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(urlcontent, "GET", params);
         // Check your log cat for JSON reponse

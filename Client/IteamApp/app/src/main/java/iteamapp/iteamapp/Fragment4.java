@@ -45,6 +45,10 @@ public class Fragment4 extends Fragment {
     private TextView club;
     private TextView signup;
 
+    private TextView starNum;
+    private TextView teamNum;
+    private TextView signNum;
+
     private TextView username;
     private ImageView userimg;
 
@@ -55,9 +59,14 @@ public class Fragment4 extends Fragment {
         txtFreeTime = (Button) view.findViewById(R.id.txtFreeTime);
         username= (TextView) view.findViewById(R.id.userName);
         userimg= (ImageView) view.findViewById(R.id.userImg);
+        starNum= (TextView) view.findViewById(R.id.starNum);
+        signNum=(TextView) view.findViewById(R.id.signNum);
+        teamNum= (TextView) view.findViewById(R.id.teamNum);
+
         txtFreeTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 Intent in = new Intent(getActivity(),FreeTimeTable.class);
                 getActivity().startActivity(in);
@@ -72,6 +81,7 @@ public class Fragment4 extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getActivity(), StarList.class);
+                intent.putExtra("type","2");
 
                 getActivity().startActivity(intent);
 
@@ -86,6 +96,7 @@ public class Fragment4 extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getActivity(), StarList.class);
+                intent.putExtra("type","1");
 
                 getActivity().startActivity(intent);
 
@@ -100,6 +111,7 @@ public class Fragment4 extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getActivity(), StarList.class);
+                intent.putExtra("type","3");
 
                 getActivity().startActivity(intent);
 
@@ -118,6 +130,10 @@ public class Fragment4 extends Fragment {
         });
 
         InitData();
+
+        starNum.setText(InitTeam("2"));
+        teamNum.setText(InitTeam("1"));
+        signNum.setText(InitTeam("3"));
 
         return view;
 
@@ -145,6 +161,32 @@ public class Fragment4 extends Fragment {
         }
 
     }
+
+    private String InitTeam(String type){
+        IpConfig ip = new IpConfig();
+        JSONParser jParser = new JSONParser();
+        String url = ip.ip+"android/zqx/getMyTeam.php";
+        JSONArray products = null;
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("type",type));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+        // Check your log cat for JSON reponse
+        Log.d("All Products: ", json.toString());
+
+        try {
+            int count=json.getInt("count");
+            return count+"";
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
 
     public Bitmap returnBitMap(String url){
         URL myFileUrl = null;

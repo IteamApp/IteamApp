@@ -61,11 +61,17 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/recycle_info"
+                        android:id="@+id/msg_recycle_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="您好，感谢关注，这里是消息内容" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:id="@+id/tv_msg_id"/>
 
 
                 </LinearLayout>

@@ -56,7 +56,16 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Login().execute();
+                String username = tvUsername.getText().toString();
+                String password = tvPwd.getText().toString();
+
+                if(username.equals("")||password.equals("")){
+                    String showContent = "请输入用户名和密码";
+                    Toast.makeText(LoginActivity.this,showContent,Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    new Login().execute();
+                }
             }
         });
 
@@ -87,8 +96,6 @@ public class LoginActivity extends Activity {
             String username = tvUsername.getText().toString();
             String password = tvPwd.getText().toString();
 
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
@@ -112,7 +119,7 @@ public class LoginActivity extends Activity {
                     if (user.length() == 11) {
                         Intent in = new Intent(LoginActivity.this, MainActivity.class);
                         in.putExtra("username", user);
-                        userConfig.userID=user;
+                        userConfig.userID = user;
                         startActivity(in);
                         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
@@ -120,7 +127,7 @@ public class LoginActivity extends Activity {
                     if (user.length() == 7) {
                         Intent in = new Intent(LoginActivity.this, MainActivity_Club.class);
                         in.putExtra("username", user);
-                        userConfig.userID=user;
+                        userConfig.userID = user;
                         startActivity(in);
                         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
@@ -128,7 +135,7 @@ public class LoginActivity extends Activity {
                     pDialog.setMessage("用户名或密码错误");
 //                        Log.d("dsjk", "fail");
 //                    Toast.makeText(getApplicationContext(), "用户名或密码错误",
-//                            Toast.LENGTH_SHORT).show();
+//                           Toast.LENGTH_SHORT).show();
 
                 }
 

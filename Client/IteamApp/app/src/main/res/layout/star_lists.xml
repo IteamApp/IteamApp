@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/tool_bar_top"></include>
+    <include layout="@layout/top_msg"></include>
 
     <LinearLayout
         android:layout_width="match_parent"

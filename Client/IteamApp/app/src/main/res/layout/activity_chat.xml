@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".ChatActivity">
 
+    <include layout="@layout/top_msg"></include>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recylerView"
         android:layout_width="match_parent"
@@ -20,27 +22,6 @@
         android:orientation="horizontal"
         android:padding="4dp">
 
-        <EditText
-            android:id="@+id/et"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
-            android:layout_weight="5"
-            android:paddingLeft="4dp"
-            android:textSize="14sp"
-            android:background="@drawable/bg_et" />
 
-        <TextView
-            android:id="@+id/tvSend"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_send"
-            android:gravity="center"
-            android:padding="6dp"
-            android:text="发送"
-            android:textColor="#FFFFFF"
-            android:textSize="10sp" />
     </LinearLayout>
 </LinearLayout>
