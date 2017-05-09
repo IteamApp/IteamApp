@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/tool_bar_top"></include>
+
+    <LinearLayout
+        android:id="@+id/userInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <iteamapp.iteamapp.circleimageview.CircleImageView
+            android:id="@+id/userImg_club"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/setting_press"
+            app:border_width="1dp"
+            app:border_color="#ccc"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/userName_club"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="#333333"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:text="12"
+                    android:textSize="25dp"
+                    android:textColor="#12b7f5"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/teamNum_club"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:text="成员"
+                    android:textSize="18dp"
+                    android:textColor="#808080"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/team"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                >
+                <TextView
+
+                    android:text="12"
+                    android:textSize="25dp"
+                    android:textColor="#12b7f5"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/signNum_club"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:text="报名"
+                    android:textSize="18dp"
+                    android:textColor="#808080"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/sign"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:id="@+id/topersonal_club"
+            >
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@mipmap/comment"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="社团信息"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="#fff"
+            >
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@mipmap/list"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/txtFreeTime_club"
+                android:clickable="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="社团值班表"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:background="#FFFFFF"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

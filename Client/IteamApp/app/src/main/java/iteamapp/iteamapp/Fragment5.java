@@ -30,6 +30,7 @@ import java.util.List;
 
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
+import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.adapter.ManageIndexAdapter;
 import iteamapp.iteamapp.Tools.userConfig;
 
@@ -94,7 +95,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         adapter.imageList = new ArrayList<ImageView>();
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("user", userConfig.userID));
+        params.add(new BasicNameValuePair("user", TeamConfig.TeamID));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 
@@ -148,7 +149,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         adapter.timeDatas = new ArrayList<String>();
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("user", userConfig.userID));
+        params.add(new BasicNameValuePair("user", TeamConfig.TeamID));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 

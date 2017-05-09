@@ -38,7 +38,7 @@ import iteamapp.iteamapp.Tools.userConfig;
 /**
  * Created by HongJay on 2016/8/11.
  */
-public class Fragment4 extends Fragment {
+public class Fragment6 extends Fragment {
 
     private Button txtFreeTime;
     private LinearLayout topersonal;
@@ -47,7 +47,6 @@ public class Fragment4 extends Fragment {
     private TextView club;
     private TextView signup;
 
-    private TextView starNum;
     private TextView teamNum;
     private TextView signNum;
 
@@ -57,48 +56,32 @@ public class Fragment4 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment4, container, false);
-        txtFreeTime = (Button) view.findViewById(R.id.txtFreeTime);
-        username= (TextView) view.findViewById(R.id.userName);
-        userimg= (ImageView) view.findViewById(R.id.userImg);
-        starNum= (TextView) view.findViewById(R.id.starNum);
-        signNum=(TextView) view.findViewById(R.id.signNum);
-        teamNum= (TextView) view.findViewById(R.id.teamNum);
+        view = inflater.inflate(R.layout.fragment4_club, container, false);
+        txtFreeTime = (Button) view.findViewById(R.id.txtFreeTime_club);
+        username= (TextView) view.findViewById(R.id.userName_club);
+        userimg= (ImageView) view.findViewById(R.id.userImg_club);
+        signNum=(TextView) view.findViewById(R.id.signNum_club);
+        teamNum= (TextView) view.findViewById(R.id.teamNum_club);
 
         txtFreeTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                Intent in = new Intent(getActivity(),FreeTimeTable.class);
-                getActivity().startActivity(in);
-                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-
-            }
-        });
-        //点击关注 打开关注列表
-        star = (TextView) view.findViewById(R.id.starNum);
-        star.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), StarList.class);
-                intent.putExtra("type","2");
-
-                getActivity().startActivity(intent);
-
-                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//                Intent in = new Intent(getActivity(),FreeTimeTable.class);
+//                getActivity().startActivity(in);
+//                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
             }
         });
 
-        club = (TextView) view.findViewById(R.id.teamNum);
+        club = (TextView) view.findViewById(R.id.teamNum_club);
         club.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(getActivity(), StarList.class);
-                intent.putExtra("type","1");
+                intent.putExtra("type","4");
 
                 getActivity().startActivity(intent);
 
@@ -107,13 +90,13 @@ public class Fragment4 extends Fragment {
             }
         });
 
-        signup = (TextView) view.findViewById(R.id.signNum);
+        signup = (TextView) view.findViewById(R.id.signNum_club);
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(getActivity(), StarList.class);
-                intent.putExtra("type","3");
+                intent.putExtra("type","6");
 
                 getActivity().startActivity(intent);
 
@@ -122,41 +105,43 @@ public class Fragment4 extends Fragment {
             }
         });
 
-        topersonal=(LinearLayout)view.findViewById(R.id.topersonal);
+        topersonal=(LinearLayout)view.findViewById(R.id.topersonal_club);
         topersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getActivity(),personal.class);
-                startActivity(intent);
+//                Intent intent= new Intent(getActivity(),personal.class);
+//                startActivity(intent);
             }
         });
+        TeamConfig.TeamID="1";
+        InitData();
 
-        initData();
-
-        starNum.setText(InitTeam("2"));
-        teamNum.setText(InitTeam("1"));
-        signNum.setText(InitTeam("3"));
+        teamNum.setText(InitMember("4"));
+        signNum.setText(InitMember("6"));
 
         return view;
 
     }
 
-    private void initData(){
+    private void InitData(){
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
-        String url = ip.ip+"android/zqx/getUserInfo.php";
+        String url = ip.ip+"android/zqx/teamDetail.php";
         JSONArray products = null;
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
-
         // Check your log cat for JSON reponse
-        Log.d("All Products: ", json.toString());
+
 
         try {
-            username.setText(json.getString("user_name"));
-            userimg.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+json.getString("user_head")));
+            username.setText(json.getString("team_name"));
+            userimg.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+json.getString("team_logo")));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -164,15 +149,13 @@ public class Fragment4 extends Fragment {
 
     }
 
-
-
-    private String InitTeam(String type){
+    private String InitMember(String type){
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
-        String url = ip.ip+"android/zqx/getMyTeam.php";
+        String url = ip.ip+"android/zqx/getTeamMember.php";
         JSONArray products = null;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
         params.add(new BasicNameValuePair("type",type));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
@@ -190,6 +173,7 @@ public class Fragment4 extends Fragment {
         }
 
     }
+
 
     public Bitmap returnBitMap(String url){
         URL myFileUrl = null;
@@ -212,4 +196,6 @@ public class Fragment4 extends Fragment {
         }
         return bitmap;
     }
+
+
 }

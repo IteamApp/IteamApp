@@ -127,7 +127,8 @@ public class LoginActivity extends Activity {
                     if (user.length() == 7) {
                         Intent in = new Intent(LoginActivity.this, MainActivity_Club.class);
                         in.putExtra("username", user);
-                        userConfig.userID = user;
+                        String team_id = json.getString("team_id");
+                        userConfig.userID = team_id;
                         startActivity(in);
                         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }

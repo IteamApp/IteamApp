@@ -35,6 +35,7 @@ import java.util.List;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.RecyclerViewDivider;
+import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.Tools.userConfig;
 import iteamapp.iteamapp.adapter.StarAdapter;
 
@@ -80,6 +81,12 @@ public class StarList extends Activity {
         if(type.equals("3")){
             tvTitle.setText("报名社团");
         }
+        if(type.equals("4")){
+            tvTitle.setText("社团成员");
+        }
+        if(type.equals("6")){
+            tvTitle.setText("报名人员");
+        }
         new LoadAll(userConfig.userID,type).execute();
 
         recyclerView.addItemDecoration(new RecyclerViewDivider(this, LinearLayoutManager.HORIZONTAL));
@@ -90,39 +97,78 @@ public class StarList extends Activity {
         adapter.nameDatas = new ArrayList<String>();
         adapter.logoDatas = new ArrayList<String>();
 
-        IpConfig ip = new IpConfig();
-        JSONParser jParser = new JSONParser();
-        String url = ip.ip+"android/zqx/getMyTeam.php";
-        JSONArray products = null;
+        if(type.equals("1")||type.equals("2")||type.equals("3")) {
+
+            IpConfig ip = new IpConfig();
+            JSONParser jParser = new JSONParser();
+            String url = ip.ip + "android/zqx/getMyTeam.php";
+            JSONArray products = null;
 
 
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id", usercode));
+            params.add(new BasicNameValuePair("type", type));
+            // getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("id", usercode));
-        params.add(new BasicNameValuePair("type", type));
-        // getting JSON string from URL
-        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+            // Check your log cat for JSON reponse
+            Log.d("All Products: ", json.toString());
 
-        // Check your log cat for JSON reponse
-        Log.d("All Products: ", json.toString());
+            try {
+                // products found
+                // Getting Array of Products
+                products = json.getJSONArray("team");
 
-        try {
-            // products found
-            // Getting Array of Products
-            products = json.getJSONArray("team");
+                // looping through All Products
+                for (int i = 0; i < products.length(); i++) {
+                    JSONObject c = products.getJSONObject(i);
 
-            // looping through All Products
-            for (int i = 0; i < products.length(); i++) {
-                JSONObject c = products.getJSONObject(i);
+                    // Storing each json item in variable
+                    adapter.nameDatas.add(c.getString("team_name"));
+                    adapter.idDatas.add(c.getString("team_id"));
+                    adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("team_logo"));
+                }
 
-                // Storing each json item in variable
-                adapter.nameDatas.add(c.getString("team_name"));
-                adapter.idDatas.add(c.getString("team_id"));
-                adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+
+            IpConfig ip = new IpConfig();
+            JSONParser jParser = new JSONParser();
+            String url = ip.ip + "android/zqx/getTeamMember.php";
+            JSONArray products = null;
+
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
+            params.add(new BasicNameValuePair("type", type));
+            // getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+            // Check your log cat for JSON reponse
+            Log.d("All Products: ", json.toString());
+
+            try {
+                // products found
+                // Getting Array of Products
+                products = json.getJSONArray("member");
+
+                // looping through All Products
+                for (int i = 0; i < products.length(); i++) {
+                    JSONObject c = products.getJSONObject(i);
+
+                    // Storing each json item in variable
+                    adapter.nameDatas.add(c.getString("user_name"));
+                    adapter.idDatas.add(c.getString("user_stunum"));
+                    adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("user_head"));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 
