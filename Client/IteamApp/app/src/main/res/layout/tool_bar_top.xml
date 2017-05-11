@@ -9,15 +9,17 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/new_menu_back"
-        android:text="                                       Iteam"
+        android:text="                                          Iteam"
         android:gravity="center"
+        android:textColor="#12b7f5"
+        android:textSize="16sp"
         style="@style/ToolBarTopTitleTextAppearance"/>
 
     <View
         android:layout_alignBottom="@+id/top_title"
-        android:layout_height="5px"
+        android:layout_height="2px"
         android:layout_width="match_parent"
-        android:background="#b4b0b0"
+        android:background="#12b7f5"
         />
 
 </RelativeLayout>

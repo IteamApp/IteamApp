@@ -3,80 +3,83 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <iteamapp.iteamapp.circleimageview.CircleImageView
+
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/messge_img"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/setting_press"
+                app:border_width="1dp"
+                app:border_color="#ccc"
+                />
 
             <LinearLayout
+                android:id="@+id/recycle_line"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="80dp"
+                android:orientation="vertical">
 
-                <iteamapp.iteamapp.circleimageview.CircleImageView
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="right">
 
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/messge_img"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@mipmap/setting_press"
-                    app:border_width="1dp"
-                    app:border_color="#ccc"
-                    />
 
-                <LinearLayout
-                    android:id="@+id/recycle_line"
+                <TextView
+                    android:id="@+id/txt_message_name"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="用户名"
+                    android:textSize="16sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:paddingTop="10dp"
+                    android:text="3分钟前"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/msg_recycle_info"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="您好，感谢关注，这里是消息内容"
+                    android:textSize="14sp"/>
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="right">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/tv_msg_id"/>
 
-
-                    <TextView
-                        android:id="@+id/txt_message_name"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:gravity="left"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="用户名"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:gravity="right"
-                        android:text="3分钟前"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/msg_recycle_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="您好，感谢关注，这里是消息内容" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:id="@+id/tv_msg_id"/>
-
-
-                </LinearLayout>
 
             </LinearLayout>
 
+        </LinearLayout>
+
 </LinearLayout>
-    </LinearLayout>
+</LinearLayout>

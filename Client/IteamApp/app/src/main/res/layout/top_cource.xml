@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/cource_menu_back"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:paddingLeft="20dp"
@@ -21,18 +21,19 @@
 
         android:layout_gravity="center"
         android:gravity="center"
-        android:paddingLeft="110dp"
+        android:paddingLeft="120dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="无课表"
-        android:textSize="20sp"/>
+        android:textSize="16sp"
+        android:textColor="#12b7f5"/>
 
     <Button
         android:layout_alignParentRight="true"
         android:id="@+id/freetime_submit"
 
-        android:paddingLeft="110dp"
-        android:textSize="15dp"
+        android:paddingLeft="105dp"
+        android:textSize="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="提交"

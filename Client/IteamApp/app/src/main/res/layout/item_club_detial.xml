@@ -25,8 +25,8 @@
         <iteamapp.iteamapp.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/club_userImg"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:layout_centerHorizontal="true"
             android:src="@mipmap/setting_press"
             app:border_width="1dp"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="用户名"
             android:layout_gravity="center"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:layout_marginTop="5dp"
             android:textColor="#333333"
             />
@@ -69,9 +69,9 @@
 
 
         <ImageView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:src="@mipmap/comment"
+            android:layout_height="16dp"
+            android:layout_width="16dp"
+            android:src="@drawable/location"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             />
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="信息科学与工程学院"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="#333333"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
@@ -107,9 +107,9 @@
             >
 
             <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@mipmap/comment"
+                android:layout_height="16dp"
+                android:layout_width="16dp"
+                android:src="@drawable/clock"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 />
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="1992年9月1日成立"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:textColor="#333333"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
@@ -133,9 +133,9 @@
             >
 
             <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@mipmap/list"
+                android:layout_height="16dp"
+                android:layout_width="16dp"
+                android:src="@drawable/use_profile"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 />
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="社团成员"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:textColor="#333333"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
@@ -169,8 +169,8 @@
             >
 
             <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_width="16dp"
                 android:src="@mipmap/comment"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="社团简介"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:textColor="#333333"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
@@ -198,7 +198,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介这里是社团简介"
-                android:textSize="18sp"
+                android:textSize="14sp"
+                android:textColor="#333333"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
@@ -219,7 +220,7 @@
             android:text="立即报名"
             android:background="#12b7f5"
             android:textColor="#fff"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"

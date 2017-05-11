@@ -21,8 +21,8 @@
             <iteamapp.iteamapp.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/userImg"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/setting_press"
                 app:border_width="1dp"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="用户名"
                 android:layout_gravity="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="#333333"
                 />
 
@@ -55,15 +55,16 @@
                     <TextView
                         android:text="12"
                         android:textColor="#12b7f5"
-                        android:textSize="25dp"
+                        android:textSize="18dp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:id="@+id/starNum"
                         android:layout_gravity="center"
                         />
+
                     <TextView
                         android:text="关注"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textColor="#808080"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -80,7 +81,7 @@
                     >
                     <TextView
                         android:text="12"
-                        android:textSize="25dp"
+                        android:textSize="18dp"
                         android:textColor="#12b7f5"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -89,7 +90,7 @@
                         />
                     <TextView
                         android:text="社团"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textColor="#808080"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -107,7 +108,7 @@
                     <TextView
 
                         android:text="12"
-                        android:textSize="25dp"
+                        android:textSize="18dp"
                         android:textColor="#12b7f5"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -116,7 +117,7 @@
                         />
                     <TextView
                         android:text="报名"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textColor="#808080"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -147,8 +148,8 @@
             >
 
             <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_width="16dp"
                 android:src="@mipmap/comment"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
@@ -158,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="个人信息"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:textColor="#333333"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
@@ -183,8 +184,8 @@
             >
 
             <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_width="16dp"
                 android:src="@mipmap/list"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
@@ -197,7 +198,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="空闲时间表"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:textColor="#333333"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="15dp"

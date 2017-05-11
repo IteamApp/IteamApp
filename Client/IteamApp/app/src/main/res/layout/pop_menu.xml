@@ -14,8 +14,8 @@
       android:gravity="center"
       >
       <ImageView
-          android:layout_width="25dp"
-          android:layout_height="25dp"
+          android:layout_width="20dp"
+          android:layout_height="20dp"
           android:src="@mipmap/ic_icon1"
           />
       <TextView
@@ -23,7 +23,7 @@
           android:layout_height="wrap_content"
           android:textColor="@android:color/darker_gray"
           android:text="全部社团"
-          android:textSize="18dp"
+          android:textSize="16dp"
           android:layout_marginLeft="10dp"
           />
   </LinearLayout>
@@ -36,8 +36,8 @@
         android:layout_marginTop="10dp"
         >
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@mipmap/ic_icon2"
             />
         <TextView
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/darker_gray"
             android:text="信息学院"
-            android:textSize="18dp"
+            android:textSize="16dp"
 
             android:layout_marginLeft="10dp"
             />
@@ -59,8 +59,8 @@
         android:layout_marginTop="10dp"
         >
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@mipmap/icon_item3"
             />
         <TextView
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/darker_gray"
             android:text="法政学院"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_marginLeft="10dp"
             />
     </LinearLayout>

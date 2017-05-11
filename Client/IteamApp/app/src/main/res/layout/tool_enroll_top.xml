@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/enroll_menu_back"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:paddingLeft="20dp"
@@ -22,12 +22,13 @@
         android:layout_gravity="center"
         android:gravity="center"
 
-        android:paddingLeft="100dp"
+        android:paddingLeft="105dp"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="立即报名"
-        android:textSize="20sp"/>
+        android:textSize="16sp"
+        android:textColor="#12b7f5"/>
 
 
 

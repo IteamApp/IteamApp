@@ -8,12 +8,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
             >
                 <iteamapp.iteamapp.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/recycle_club_img"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
                     android:layout_centerHorizontal="true"
                     android:src="@mipmap/setting_press"
                     app:border_width="1dp"
@@ -26,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XX社团"
-                android:textSize="15sp"
+                android:textSize="14sp"
 
                 />
 
