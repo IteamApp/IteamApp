@@ -89,7 +89,11 @@ public class enroll extends Activity {
         String showContent = "报名成功";
         Toast.makeText(enroll.this,showContent,Toast.LENGTH_SHORT).show();
 
+        finish();
+
     }
+
+
 
 
 

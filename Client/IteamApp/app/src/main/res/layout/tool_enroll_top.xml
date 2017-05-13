@@ -29,9 +29,14 @@
         android:text="立即报名"
         android:textSize="16sp"
         android:textColor="#12b7f5"/>
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
 
 
 
     <View style="@style/AppTheme.DeepLine"/>
+
 
 </LinearLayout>

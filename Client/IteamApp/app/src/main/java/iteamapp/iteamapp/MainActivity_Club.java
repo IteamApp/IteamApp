@@ -48,17 +48,17 @@ public class MainActivity_Club extends AppCompatActivity {
         rbme= (RadioButton) findViewById(R.id.rb_gov_club);
 
         Drawable drawable = getResources().getDrawable(R.drawable.btn_tab_home_selector);
-        drawable.setBounds(0, 0, 100, 120);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        drawable.setBounds(0, 0, 50, 65);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         rbhome.setCompoundDrawables(null, drawable, null, null);//只放上面
 
         drawable = getResources().getDrawable(R.drawable.btn_tab_news_selector);
-        drawable.setBounds(0, 0, 100, 120);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        drawable.setBounds(0, 0, 50, 65);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         rbmessage.setCompoundDrawables(null, drawable, null, null);//只放上面
 
 
 
         drawable = getResources().getDrawable(R.drawable.btn_tab_gov_selector);
-        drawable.setBounds(0, 0, 100, 120);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+        drawable.setBounds(0, 0, 50, 65);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         rbme.setCompoundDrawables(null, drawable, null, null);//只放上面
 
         //当点击底部按钮时切换页面

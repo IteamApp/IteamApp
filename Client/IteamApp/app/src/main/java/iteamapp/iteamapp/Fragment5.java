@@ -1,6 +1,7 @@
 package iteamapp.iteamapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import org.apache.http.NameValuePair;
@@ -33,7 +35,7 @@ import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.adapter.ManageIndexAdapter;
 import iteamapp.iteamapp.Tools.userConfig;
-
+import testpic.PublishedActivity;
 /**
  * Created by zqx on 2017/4/29.
  */
@@ -43,7 +45,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private View view;
     private ManageIndexAdapter adapter;
-
+    private Button btnAdd;
     private ProgressDialog pDialog;
 
 
@@ -55,11 +57,24 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment1, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle);
+        view = inflater.inflate(R.layout.fragment1_club, container, false);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_club);
+        btnAdd= (Button) view.findViewById(R.id.club_add);
+        btnAdd.setVisibility(View.VISIBLE);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         adapter = new ManageIndexAdapter(getContext());
         new LoadAllArticle().execute();
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PublishedActivity.class);
+
+                getActivity().startActivity(intent);
+
+                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            }
+        });
 
         return view;
     }
@@ -70,7 +85,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         super.onActivityCreated(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.demo_swiperefreshlayout);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.demo_swiperefreshlayout_club);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.blue, R.color.black);
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
@@ -190,7 +205,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Loading products. Please wait...");
+            pDialog.setMessage("正在加载，请稍后....");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();

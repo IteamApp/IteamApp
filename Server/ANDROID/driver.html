@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<div>
+		注册
+		</br>
+		<input id="username" value="用户名">
+		<input id="stunum" value="学号">
+		<input id="sex" value="性别">
+		<input id="brief" value="简介">
+		<select id="faculty">
+			<option value="1">信院</option>
+		</select>
+		<input id="password" value="密码">
+		<button onclick="funcA()">Go</button>
+
+
+	</div>
+
+	<div>
+		登录
+		</br>
+		<input id="stunum2" value="学号">
+		<input id="password2" value="密码">
+		<button onclick="funcB()">Go</button>
+	</div>
+
+	<div>
+		获取消息列
+		</br>
+		<input id="usernum2" value="学号">
+		<input id="mode" value ="模式（仅支持get）">
+		<input id="targetid" value ="目标文章id">
+		<button onclick="funcC()">Go</button>
+
+	</div>
+	<div>
+		获取社团详情
+		</br>
+		<input id="mode2" value="模式">
+		<input id="addition" value="附加信息">
+		<button onclick="funcD()">Go</button>
+	</div>
+
+	<div>
+		获取院系列表
+		</br>
+		<button onclick="funcE()">Go</button>
+	</div>
+
+	<div>
+		获取文章列表
+		</br>
+		<input id="mode3" value="模式">
+		<input id="addition2" value="附加信息">
+		<button onclick="funcF()">Go</button>
+	</div>
+	<div>
+		获取标识列表
+		</br>
+		<input id="mode4" value="模式">
+		<button onclick="funcG()">Go</button>
+	</div>
+	<div>
+		关系调节
+		</br>
+		<input id="mode5" value="模式">
+		<input id="uid" value="学生学号">
+		<input id="tid" value="社团号">
+		<button onclick="funcH()">Go</button>
+	</div>
+	<div>
+		获取学生信息
+		</br>
+		<input id="mode6" value="模式">
+		<input id="addition3" value= "附加信息">
+		<button onclick="funcI()">Go</button>
+	</div>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	function funcA(){
+		var name = $("#username")[0].value;
+		var num = $("#stunum")[0].value;
+		var sex = $("#sex")[0].value;
+		var brief = $("#brief")[0].value;
+		var faculty = $("#faculty").find("option:selected")[0].value;
+		var password = $("#password")[0].value;
+		var b = {
+			'user_name':name,
+			'user_stunum':num,
+			'user_sex':sex,
+			'user_brief':brief,
+			'user_faculty':faculty,
+			'user_code':password
+		};
+		$.get("initializeuserinformation.php",b,function(DATA){console.log(DATA);});
+	}
+
+	function funcB(){
+		var num = $("#stunum2")[0].value;
+		var password = $("#password2")[0].value;
+		var b = {
+			'user_stunum':num,
+			'user_code':password
+		};
+		$.get("logincheck.php",b,function(data){console.log(data);});
+	}
+		
+	function funcC(){
+		var num = $("#usernum2")[0].value;
+		var mode = $("#mode")[0].value;
+		var target = $("#targetid")[0].value;
+		var b = {
+			'user_stunum':num,
+			'mode':mode,
+			'targetid':target
+		};
+		$.get("handlemessage.php",b,function(data){
+			console.log(JSON.parse(data));
+			console.log(data);
+		});
+
+	}
+
+	function funcD(){
+		var num = $('#addition')[0].value;
+		var mode = $("#mode2")[0].value;
+		if(mode=="detail"){
+
+			var b = {
+				'addition':num,
+				'mode':mode
+			};
+			$.get("getteam.php",b,function(data){
+				console.log(JSON.parse(data));
+				console.log(data);
+			});
+		}
+		else if(mode=="faculty"){
+			var mode = $("#mode2")[0].value;
+			var addition = $("#addition")[0].value;
+			var b = {
+				'mode':mode,
+				'addition':addition
+			};
+			$.get("getteam.php",b,function(data){
+				console.log(data);
+				console.log(JSON.parse(data));
+				
+			});
+
+
+		}
+		else if(mode=="my"){
+				var mode = $("#mode2")[0].value;
+			var addition = $("#addition")[0].value;
+			var b = {
+				'mode':mode,
+				'addition':addition
+			};
+			b = JSON.stringify(b);
+			$.get("getteam.php",b,function(data){
+				console.log(data);
+				console.log(JSON.parse(data));
+				
+			});
+		}
+		else if(mode=="follow"){
+
+		}
+		//var addition = $("#addition");
+	}
+	function funcE(){
+
+		$.get("getfacultylist.php",function(data){
+			console.log(data);
+			console.log(JSON.parse(data));
+		});
+
+	}
+
+	function funcF(){
+		var mode = $("#mode3")[0].value;
+		var addition =$("#addition2")[0].value;
+		var b={
+			'mode':mode,
+			'addition':addition
+		};
+		b = JSON.stringify(b);
+			$.get("getpassage.php",b,function(data){
+				console.log(data);
+				console.log(JSON.parse(data));
+			});
+	}
+	
+	function funcG(){
+		var mode = $("#mode4")[0].value;
+		var b={
+			'mode':mode
+		};
+		b = JSON.stringify(b);
+			$.get("gettaglist.php",b,function(data){
+				console.log(data);
+				console.log(JSON.parse(data));
+			});
+	}
+
+	function funcH(){
+		var mode = $("#mode5")[0].value;
+		var uid = $("#uid")[0].value;
+		var tid = $("#tid")[0].value;
+		var b = {
+			'mode':mode,
+			'user_id':uid,
+			'team_id':tid
+		};
+		b = JSON.stringify(b);
+		$.get("relationshipcontroler.php",b,function(data){
+			console.log(data);
+		})
+	}
+
+	function funcI(){
+		var mode = $("#mode6")[0].value;
+		var addition = $("#addition3")[0].value;
+		var b = {
+			'mode':mode,
+			'addition':addition
+		};
+		b=JSON.stringify(b);
+		$.get("getuser.php",b,function(data){
+			console.log(data);
+			console.log(JSON.parse(data));
+		})
+	}
+</script>
+</body>
+</html>

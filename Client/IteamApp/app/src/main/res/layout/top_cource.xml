@@ -24,7 +24,11 @@
         android:paddingLeft="120dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+        android:text="空闲时间表"
+=======
         android:text="无课表"
+>>>>>>> origin/master
         android:textSize="16sp"
         android:textColor="#12b7f5"/>
 
@@ -39,6 +43,7 @@
         android:text="提交"
         style="?android:attr/borderlessButtonStyle"
         android:textColor="@color/accent_blue"/>
+
 
 
 

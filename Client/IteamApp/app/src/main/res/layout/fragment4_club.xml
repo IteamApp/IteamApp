@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#fff"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <iteamapp.iteamapp.circleimageview.CircleImageView
             android:id="@+id/userImg_club"
@@ -26,6 +26,7 @@
             app:border_width="1dp"
             app:border_color="#ccc"
             android:layout_gravity="center"
+            android:paddingBottom="10dp"
             />
 
         <TextView
@@ -45,6 +46,7 @@
             >
 
             <LinearLayout
+                android:id="@+id/team_club"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -65,12 +67,13 @@
                     android:textColor="#808080"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:id="@+id/team"
+
                     android:layout_gravity="center"
                     />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/sign_club"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -92,7 +95,7 @@
                     android:textColor="#808080"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:id="@+id/sign"
+
                     android:layout_gravity="center"
                     />
 
@@ -135,6 +138,23 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:id="@+id/textView6" />
+<<<<<<< HEAD
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_height="16dp"
+                    android:layout_width="16dp"
+                    android:src="@drawable/news_cate_arr"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+=======
+>>>>>>> origin/master
         </LinearLayout>
 
     </LinearLayout>
@@ -148,6 +168,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/txtFreeTime_club"
             android:orientation="horizontal"
             android:layout_height="45dp"
             android:layout_width="match_parent"
@@ -162,19 +183,52 @@
                 android:layout_marginLeft="10dp"
                 />
 
-            <Button
-                android:layout_weight="1"
-                android:id="@+id/txtFreeTime_club"
-                android:clickable="true"
+            <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="社团值班表"
                 android:textSize="16dp"
                 android:textColor="#333333"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:background="#FFFFFF"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_height="16dp"
+                    android:layout_width="16dp"
+                    android:src="@drawable/news_cate_arr"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="退出登录"
+                android:background="#f51216"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/exit_club"
                 />
+
         </LinearLayout>
 
     </LinearLayout>

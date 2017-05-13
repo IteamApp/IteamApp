@@ -127,7 +127,7 @@ public class FreeTimeTable extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(FreeTimeTable.this);
-            pDialog.setMessage("Loading products. Please wait...");
+            pDialog.setMessage("正在加载，请稍后....");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();

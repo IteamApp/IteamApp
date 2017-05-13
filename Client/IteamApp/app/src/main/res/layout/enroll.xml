@@ -26,6 +26,7 @@
         <EditText
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:background="@null"
             android:maxLines="1"
             android:hint="请输入姓名"
             android:textSize="16dp"
@@ -65,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:maxLines="1"
+                android:background="@null"
                 android:hint="请输入学号 "
                 android:textSize="16dp"
                 android:textColor="#333333"
@@ -93,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:maxLines="1"
+                android:background="@null"
                 android:hint="请输入专业"
                 android:textSize="16dp"
                 android:textColor="#333333"
@@ -131,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:maxLines="1"
+                android:background="@null"
                 android:hint="请输入性别"
                 android:textSize="16dp"
                 android:textColor="#333333"
@@ -160,6 +164,10 @@
                 android:layout_width="wrap_content"
                 android:maxLines="1"
                 android:hint="请输入电话号码"
+<<<<<<< HEAD
+                android:background="@null"
+=======
+>>>>>>> origin/master
                 android:textSize="16dp"
                 android:textColor="#333333"
                 android:layout_gravity="center_vertical"
@@ -204,6 +212,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="请介绍一下你自己"
+<<<<<<< HEAD
+                    android:background="@null"
+=======
+>>>>>>> origin/master
                     android:textSize="16sp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"

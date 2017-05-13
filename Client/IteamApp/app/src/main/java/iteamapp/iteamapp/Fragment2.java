@@ -130,7 +130,7 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Loading products. Please wait...");
+            pDialog.setMessage("正在加载，请稍后....");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();

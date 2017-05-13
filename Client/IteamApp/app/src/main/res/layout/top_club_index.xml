@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/top_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/new_menu_back"
+        android:text="                                          Iteam"
+        android:gravity="center"
+        android:textColor="#12b7f5"
+        android:textSize="16sp"
+        style="@style/ToolBarTopTitleTextAppearance"/>
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/club_add"
+        android:paddingLeft="350dp"
+        android:textSize="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="添加"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/accent_blue"/>
+
+    <View
+        android:layout_alignBottom="@+id/top_title"
+        android:layout_height="2px"
+        android:layout_width="match_parent"
+        android:background="#12b7f5"
+        />
+
+</RelativeLayout>

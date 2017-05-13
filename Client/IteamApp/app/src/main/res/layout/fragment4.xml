@@ -8,6 +8,20 @@
 
 
     <include layout="@layout/tool_bar_top"></include>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/my_swiperefreshlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
 
     <LinearLayout
         android:id="@+id/userInfo"
@@ -15,8 +29,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#fff"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
             <iteamapp.iteamapp.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -37,6 +51,10 @@
                 android:text="用户名"
                 android:layout_gravity="center"
                 android:textSize="18dp"
+<<<<<<< HEAD
+                android:paddingBottom="10dp"
+=======
+>>>>>>> origin/master
                 android:textColor="#333333"
                 />
 
@@ -47,6 +65,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/star"
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -68,12 +87,13 @@
                         android:textColor="#808080"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:id="@+id/star"
+
                         android:layout_gravity="center"
                         />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/team"
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -94,12 +114,13 @@
                         android:textColor="#808080"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:id="@+id/team"
+
                         android:layout_gravity="center"
                         />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/sign"
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -121,13 +142,14 @@
                         android:textColor="#808080"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:id="@+id/sign"
+
                         android:layout_gravity="center"
                         />
 
                 </LinearLayout>
 
             </LinearLayout>
+
 
     </LinearLayout>
 
@@ -164,6 +186,20 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_height="16dp"
+                    android:layout_width="16dp"
+                    android:src="@drawable/news_cate_arr"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -177,6 +213,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/txtFreeTime"
             android:orientation="horizontal"
             android:layout_height="45dp"
             android:layout_width="match_parent"
@@ -191,22 +228,57 @@
                 android:layout_marginLeft="10dp"
                 />
 
-            <Button
-                android:layout_weight="1"
-                android:id="@+id/txtFreeTime"
-                android:clickable="true"
+            <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="空闲时间表"
                 android:textSize="16dp"
                 android:textColor="#333333"
-                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
-                android:background="#FFFFFF"
                 />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_height="16dp"
+                    android:layout_width="16dp"
+                    android:src="@drawable/news_cate_arr"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="退出登录"
+                android:background="#f51216"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/exit"
+                />
+
+        </LinearLayout>
+
+
     </LinearLayout>
+        </LinearLayout>
 
 
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

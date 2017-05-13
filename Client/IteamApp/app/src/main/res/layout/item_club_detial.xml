@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="#fff"
-            android:paddingTop="0dp">
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
 
         <iteamapp.iteamapp.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -49,7 +50,7 @@
             android:id="@+id/userIntro"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="在这里输入用户简介"
+            android:text="用自己的指挥、思想、热情创造未来"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"
@@ -109,6 +110,8 @@
             <ImageView
                 android:layout_height="16dp"
                 android:layout_width="16dp"
+<<<<<<< HEAD
+=======
                 android:src="@drawable/clock"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
@@ -135,6 +138,7 @@
             <ImageView
                 android:layout_height="16dp"
                 android:layout_width="16dp"
+>>>>>>> origin/master
                 android:src="@drawable/use_profile"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
@@ -149,6 +153,21 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:id="@+id/textView2" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_height="16dp"
+                    android:layout_width="16dp"
+                    android:src="@drawable/news_cate_arr"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
         </LinearLayout>
 
     </LinearLayout>

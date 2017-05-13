@@ -79,6 +79,25 @@ public class News extends Activity {
             btn1.setVisibility(INVISIBLE);
         }
 
+        Log.d("success",check()+"");
+
+
+        if(check()==false){
+            btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已报名");
+        }
+        else {
+            btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //绑定立即报名事件
+                    Intent i= new Intent(News.this,enroll.class);
+                    startActivity(i);
+                }
+            });
+        }
+
+
         imgClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,15 +110,27 @@ public class News extends Activity {
             }
         });
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //绑定立即报名事件
-                Intent i= new Intent(News.this,enroll.class);
-                startActivity(i);
-            }
-        });
+
         initData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(check()==false){
+            btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已报名");
+        }
+        else {
+            btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //绑定立即报名事件
+                    Intent i= new Intent(News.this,enroll.class);
+                    startActivity(i);
+                }
+            });
+        }
     }
 
     private void initData(){
@@ -129,7 +160,6 @@ public class News extends Activity {
                 TeamConfig.TeamID=c.getString("team_id");
                 tvUsername.setText(c.getString("team_name"));
                 tvcontent.setText(c.getString("passage_content"));
-                Log.d("ds","fsdf");
                 imgClub.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo")));
                 imgContent.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture")));
             }
@@ -137,6 +167,31 @@ public class News extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean check(){
+        IpConfig ip = new IpConfig();
+        JSONParser jParser = new JSONParser();
+        String url = ip.ip+"android/zqx/enroll.php";
+
+        JSONArray products = null;
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("team", TeamConfig.TeamID));
+        params.add(new BasicNameValuePair("brief", "1"));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+        try {
+            // products found
+            // Getting Array of Products
+            int success=json.getInt("success");
+            return success==1?true:false;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
 

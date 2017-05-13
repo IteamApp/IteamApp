@@ -1,12 +1,15 @@
 package iteamapp.iteamapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -38,14 +42,14 @@ import iteamapp.iteamapp.Tools.userConfig;
 /**
  * Created by HongJay on 2016/8/11.
  */
-public class Fragment4 extends Fragment {
+public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    private Button txtFreeTime;
+    private LinearLayout txtFreeTime;
     private LinearLayout topersonal;
     private View view;
-    private TextView star;  //关注
-    private TextView club;
-    private TextView signup;
+    private LinearLayout star;  //关注
+    private LinearLayout club;
+    private LinearLayout signup;
 
     private TextView starNum;
     private TextView teamNum;
@@ -53,17 +57,31 @@ public class Fragment4 extends Fragment {
 
     private TextView username;
     private ImageView userimg;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
+    private Button btnExit;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment4, container, false);
-        txtFreeTime = (Button) view.findViewById(R.id.txtFreeTime);
+        txtFreeTime = (LinearLayout) view.findViewById(R.id.txtFreeTime);
         username= (TextView) view.findViewById(R.id.userName);
         userimg= (ImageView) view.findViewById(R.id.userImg);
         starNum= (TextView) view.findViewById(R.id.starNum);
         signNum=(TextView) view.findViewById(R.id.signNum);
         teamNum= (TextView) view.findViewById(R.id.teamNum);
+        btnExit= (Button) view.findViewById(R.id.exit);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String showContent = "退出成功";
+                Toast.makeText(getContext(),showContent,Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(((Activity)getActivity()), LoginActivity.class);
+                getContext().startActivity(in);
+                ((Activity)getActivity()).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            }
+        });
 
         txtFreeTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +95,7 @@ public class Fragment4 extends Fragment {
             }
         });
         //点击关注 打开关注列表
-        star = (TextView) view.findViewById(R.id.starNum);
+        star = (LinearLayout) view.findViewById(R.id.star);
         star.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -92,7 +110,7 @@ public class Fragment4 extends Fragment {
             }
         });
 
-        club = (TextView) view.findViewById(R.id.teamNum);
+        club = (LinearLayout) view.findViewById(R.id.team);
         club.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -107,7 +125,7 @@ public class Fragment4 extends Fragment {
             }
         });
 
-        signup = (TextView) view.findViewById(R.id.signNum);
+        signup = (LinearLayout) view.findViewById(R.id.sign);
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -140,6 +158,34 @@ public class Fragment4 extends Fragment {
         return view;
 
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.my_swiperefreshlayout);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.blue, R.color.black);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+    }
+
+
+    @Override
+    public void onRefresh() {
+
+        // 刷新时模拟数据的变化
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+                //initdata();
+                starNum.setText(InitTeam("2"));
+                teamNum.setText(InitTeam("1"));
+                signNum.setText(InitTeam("3"));
+            }
+        }, 1000);
+
+    }
+
+
 
     private void initData(){
         IpConfig ip = new IpConfig();

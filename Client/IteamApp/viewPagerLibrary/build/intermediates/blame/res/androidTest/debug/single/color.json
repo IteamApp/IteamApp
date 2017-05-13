@@ -1,13 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\dell-1\\Desktop\\new\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
-        "source": "C:\\Users\\dell-1\\Desktop\\new\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
-    },
-    {
-        "merged": "C:\\Users\\dell-1\\Desktop\\new\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
-        "source": "C:\\Users\\dell-1\\Desktop\\new\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
-    },
-    {
         "merged": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
         "source": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
     },
@@ -16,18 +8,14 @@
         "source": "C:\\Users\\father\\Desktop\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
     },
     {
-        "merged": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
-        "source": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
+        "merged": "C:\\Users\\zqx\\Desktop\\app\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
+        "source": "C:\\Users\\zqx\\Desktop\\app\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
     },
     {
-        "merged": "C:\\Users\\zqx\\Desktop\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
-        "source": "C:\\Users\\zqx\\Desktop\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
-    },
-    {
-        "merged": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
-        "source": "D:\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
-    },
-    {
+<<<<<<< HEAD
+        "merged": "C:\\Users\\zqx\\Desktop\\app\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
+        "source": "C:\\Users\\zqx\\Desktop\\app\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
+=======
         "merged": "C:\\Users\\zqx\\Desktop\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
         "source": "C:\\Users\\zqx\\Desktop\\IteamApp-master\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
     },
@@ -38,5 +26,6 @@
     {
         "merged": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
         "source": "D:\\Iteam\\IteamApp\\Client\\IteamApp\\viewPagerLibrary\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
+>>>>>>> origin/master
     }
 ]

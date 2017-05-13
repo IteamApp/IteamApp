@@ -1,5 +1,6 @@
 package iteamapp.iteamapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -40,28 +42,41 @@ import iteamapp.iteamapp.Tools.userConfig;
  */
 public class Fragment6 extends Fragment {
 
-    private Button txtFreeTime;
+    private LinearLayout txtFreeTime;
     private LinearLayout topersonal;
     private View view;
-    private TextView star;  //关注
-    private TextView club;
-    private TextView signup;
+    private LinearLayout star;  //关注
+    private LinearLayout club;
+    private LinearLayout signup;
 
     private TextView teamNum;
     private TextView signNum;
 
     private TextView username;
     private ImageView userimg;
+    private Button btnExit;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment4_club, container, false);
-        txtFreeTime = (Button) view.findViewById(R.id.txtFreeTime_club);
+        txtFreeTime = (LinearLayout) view.findViewById(R.id.txtFreeTime_club);
         username= (TextView) view.findViewById(R.id.userName_club);
         userimg= (ImageView) view.findViewById(R.id.userImg_club);
         signNum=(TextView) view.findViewById(R.id.signNum_club);
         teamNum= (TextView) view.findViewById(R.id.teamNum_club);
+
+        btnExit= (Button) view.findViewById(R.id.exit_club);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String showContent = "退出成功";
+                Toast.makeText(getContext(),showContent,Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(((Activity)getActivity()), LoginActivity.class);
+                getContext().startActivity(in);
+                ((Activity)getActivity()).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            }
+        });
 
         txtFreeTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +90,7 @@ public class Fragment6 extends Fragment {
             }
         });
 
-        club = (TextView) view.findViewById(R.id.teamNum_club);
+        club = (LinearLayout) view.findViewById(R.id.team_club);
         club.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -90,7 +105,7 @@ public class Fragment6 extends Fragment {
             }
         });
 
-        signup = (TextView) view.findViewById(R.id.signNum_club);
+        signup = (LinearLayout) view.findViewById(R.id.sign_club);
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

@@ -15,6 +15,7 @@
         android:textSize="16sp"
         style="@style/ToolBarTopTitleTextAppearance"/>
 
+
     <View
         android:layout_alignBottom="@+id/top_title"
         android:layout_height="2px"
