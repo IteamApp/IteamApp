@@ -35,7 +35,7 @@ import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.adapter.ManageIndexAdapter;
 import iteamapp.iteamapp.Tools.userConfig;
-import testpic.PublishedActivity;
+import iteamapp.iteamapp.androidrichtexteditor.RichTextActivity;
 /**
  * Created by zqx on 2017/4/29.
  */
@@ -68,7 +68,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PublishedActivity.class);
+                Intent intent = new Intent(getActivity(), RichTextActivity.class);
 
                 getActivity().startActivity(intent);
 

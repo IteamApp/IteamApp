@@ -1,1 +1,1 @@
-include ':app', ':viewPagerLibrary', 'CourseTable'
+include ':app', ':viewPagerLibrary'

@@ -6,6 +6,7 @@
     android:background="#fff">
     <include layout="@layout/tool_bar_article_detail_top"></include>
 
+
     <ScrollView
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
@@ -105,5 +106,6 @@
 
 
     </ScrollView>
+
 
 </LinearLayout>

@@ -5,12 +5,15 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:id="@+id/top_title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/new_menu_back"
-        android:text="                                          Iteam"
-        android:gravity="center"
+        android:text="Iteam"
+
         android:textColor="#12b7f5"
         android:textSize="16sp"
         style="@style/ToolBarTopTitleTextAppearance"/>
@@ -18,9 +21,8 @@
     <Button
         android:layout_alignParentRight="true"
         android:id="@+id/club_add"
-        android:paddingLeft="350dp"
         android:textSize="12dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="添加"
         style="?android:attr/borderlessButtonStyle"

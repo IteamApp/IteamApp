@@ -3,55 +3,47 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<<<<<<< HEAD
 
-=======
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
->>>>>>> origin/master
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
+
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingLeft="10dp">
-=======
             android:orientation="horizontal">
->>>>>>> origin/master
+
 
             <iteamapp.iteamapp.circleimageview.CircleImageView
 
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/messge_img"
-<<<<<<< HEAD
+
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-=======
-                android:layout_width="65dp"
-                android:layout_height="65dp"
->>>>>>> origin/master
+
+
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/setting_press"
                 app:border_width="1dp"
                 app:border_color="#ccc"
-<<<<<<< HEAD
+
                 android:paddingLeft="20dp"
-=======
->>>>>>> origin/master
+
                 />
+            《
 
             <LinearLayout
                 android:id="@+id/recycle_line"
                 android:layout_width="match_parent"
-<<<<<<< HEAD
+
                 android:layout_height="60dp"
-=======
-                android:layout_height="80dp"
->>>>>>> origin/master
+
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -68,11 +60,7 @@
                     android:gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
                     android:paddingLeft="5dp"
-=======
-                    android:padding="5dp"
->>>>>>> origin/master
                     android:text="用户名"
                     android:textSize="16sp"
                     android:textColor="#333333" />
@@ -81,11 +69,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
                     android:gravity="right"
-<<<<<<< HEAD
                     android:paddingTop="5dp"
-=======
-                    android:paddingTop="10dp"
->>>>>>> origin/master
                     android:text="3分钟前"
                     android:textSize="12sp"
                     android:layout_width="wrap_content"
@@ -97,11 +81,7 @@
                     android:id="@+id/msg_recycle_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
                     android:paddingLeft="5dp"
-=======
-                    android:padding="5dp"
->>>>>>> origin/master
                     android:text="您好，感谢关注，这里是消息内容"
                     android:textSize="14sp"/>
 
@@ -116,9 +96,6 @@
 
         </LinearLayout>
 
-<<<<<<< HEAD
-
-=======
 </LinearLayout>
->>>>>>> origin/master
+
 </LinearLayout>

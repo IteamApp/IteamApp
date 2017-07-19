@@ -33,7 +33,7 @@
             <RadioButton
                 android:id="@+id/radio_all_all"
                 android:layout_height="70dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 style="@style/BottomTabStyle"
                 android:checked="true"
                 android:text="所有社团    "
@@ -44,11 +44,7 @@
             <RadioButton
                 android:id="@+id/radio_all_hot"
                 android:layout_height="70dp"
-<<<<<<< HEAD
                 android:layout_width="match_parent"
-=======
-                android:layout_width="wrap_content"
->>>>>>> origin/master
                 android:textSize="14sp"
                 style="@style/BottomTabStyle"
                 android:text="热门社团    "
@@ -69,13 +65,9 @@
             <RadioButton
                 android:id="@+id/radio_all_fazheng"
                 android:layout_height="70dp"
-<<<<<<< HEAD
-                android:layout_width="match_parent"
-=======
                 android:layout_width="wrap_content"
->>>>>>> origin/master
                 android:textSize="14sp"
-                android:text="法政学院   "
+                android:text="法政学院    "
                 style="@style/BottomTabStyle"
                 android:background="@drawable/club_item_selector"
                 />

@@ -98,6 +98,25 @@ public class ClubDetail extends Activity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(check()==false){
+            btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已报名");
+        }
+        else {
+            btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //绑定立即报名事件
+                    Intent i= new Intent(ClubDetail.this,enroll.class);
+                    startActivity(i);
+                }
+            });
+        }
+    }
+
     private boolean check(){
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();

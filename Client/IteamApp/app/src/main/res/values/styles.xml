@@ -49,5 +49,9 @@
         <attr name="drawableBottom" format="reference"/>
     </declare-styleable>
 
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkboxs_style</item>
+    </style>
+
 
 </resources>

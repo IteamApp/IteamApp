@@ -110,35 +110,6 @@
             <ImageView
                 android:layout_height="16dp"
                 android:layout_width="16dp"
-<<<<<<< HEAD
-=======
-                android:src="@drawable/clock"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="1992年9月1日成立"
-                android:textSize="16dp"
-                android:textColor="#333333"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:id="@+id/textView" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:background="@drawable/border"
-            >
-
-            <ImageView
-                android:layout_height="16dp"
-                android:layout_width="16dp"
->>>>>>> origin/master
                 android:src="@drawable/use_profile"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"

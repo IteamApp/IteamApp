@@ -5,5 +5,5 @@ package iteamapp.iteamapp.Tools;
  */
 
 public class userConfig {
-    public static String userID="15020031000";
+    public static String userID="1234567";
 }

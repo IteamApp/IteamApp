@@ -51,10 +51,7 @@
                 android:text="用户名"
                 android:layout_gravity="center"
                 android:textSize="18dp"
-<<<<<<< HEAD
                 android:paddingBottom="10dp"
-=======
->>>>>>> origin/master
                 android:textColor="#333333"
                 />
 

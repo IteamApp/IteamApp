@@ -24,13 +24,8 @@
 
         <iteamapp.iteamapp.circleimageview.CircleImageView
             android:id="@+id/recycle_img"
-<<<<<<< HEAD
             android:layout_width="55dp"
             android:layout_height="55dp"
-=======
-            android:layout_width="65dp"
-            android:layout_height="65dp"
->>>>>>> origin/master
             android:layout_centerHorizontal="true"
             android:src="@mipmap/setting_press"
             card_view:border_width="1dp"
@@ -80,12 +75,8 @@
             android:maxEms="150"
             android:ellipsize="end"
             android:textColor="#333333"
-<<<<<<< HEAD
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-=======
-
->>>>>>> origin/master
             android:text="棒冰行动，公益传播设计夏令营棒冰行动，棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营,公益传播设计夏令营棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营" />
 
         <ImageView

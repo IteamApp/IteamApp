@@ -127,12 +127,10 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
                     if(Flag==0) {
                         if (i == R.id.club_mine) {
-                            initData(userID,"1");
-                            notifyDataSetChanged();
+                            new LoadAllArticle(userID,"1").execute();
                         }
                         if (i == R.id.club_hot) {
-                            initData(userID,"2");
-                            notifyDataSetChanged();
+                            new LoadAllArticle(userID,"2").execute();
                         }
                         if (i == R.id.club_shaixuan) {
                             View contentView = LayoutInflater.from(context).inflate(R.layout.pop_menu, null);
@@ -221,6 +219,93 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
+    /**
+     * Background Async Task to Load all product by making HTTP Request
+     * */
+    class LoadAllArticle extends AsyncTask<String, String, String> {
+
+        String usercode;
+        String type;
+
+        LoadAllArticle(String usercode,String type){
+            this.usercode=usercode;
+            this.type=type;
+        }
+
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage("正在加载，请稍后...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        /**
+         * getting All products from url
+         * */
+        protected String doInBackground(String... args) {
+            initData(usercode,type);
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        protected void onPostExecute(String file_url) {
+            notifyDataSetChanged();
+            // dismiss the dialog after getting all products
+            pDialog.dismiss();
+            // updating UI from Background Thread
+
+        }
+    }
+
+    class LoadAll extends AsyncTask<String, String, String> {
+
+        String faculty;
+
+        LoadAll(String faculty){
+            this.faculty=faculty;
+        }
+
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(context);
+            pDialog.setMessage("正在加载，请稍后...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        /**
+         * getting All products from url
+         * */
+        protected String doInBackground(String... args) {
+            mydata(faculty);
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        protected void onPostExecute(String file_url) {
+            notifyDataSetChanged();
+            // dismiss the dialog after getting all products
+            pDialog.dismiss();
+            // updating UI from Background Thread
+
+        }
+    }
+
 
     private void handleLogic(View contentView){
         View.OnClickListener listener = new View.OnClickListener() {
@@ -233,24 +318,20 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 switch (v.getId()){
                     case R.id.menu1:
                         showContent = "全部社团";
-                        mydata("");
-                        notifyDataSetChanged();
+                        new LoadAll("").execute();
                         Flag=1;
                         rgGroup.clearCheck();
                         break;
 
                     case R.id.menu2:
                         showContent = "信息学院";
-                        mydata("2");
-                        notifyDataSetChanged();
+                        new LoadAll("2").execute();
                         Flag=1;
                         rgGroup.clearCheck();
                         break;
 
                     case R.id.menu3:
-                        mydata("3");
-                        showContent = "法政学院";
-                        notifyDataSetChanged();
+                        new LoadAll("3").execute();
                         Flag=1;
                         rgGroup.clearCheck();
                         break;

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CourseTable/CourseTable.iml" filepath="$PROJECT_DIR$/CourseTable/CourseTable.iml" />
       <module fileurl="file://$PROJECT_DIR$/IteamApp.iml" filepath="$PROJECT_DIR$/IteamApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/viewPagerLibrary/viewPagerLibrary.iml" filepath="$PROJECT_DIR$/viewPagerLibrary/viewPagerLibrary.iml" />

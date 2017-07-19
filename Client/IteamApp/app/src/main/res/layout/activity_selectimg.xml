@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/line_rootView"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/theme_primary">
@@ -41,31 +42,103 @@
             android:textSize="16sp" /> />
 
     </RelativeLayout>
-    <View
-        android:layout_alignBottom="@+id/top_title"
-        android:layout_height="2px"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:background="#12b7f5"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    <iteamapp.iteamapp.androidrichtexteditor.InterceptLinearLayout
+        android:id="@+id/line_intercept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="300dp"
-        android:layout_margin="8dp"
-        android:gravity="left|top"
-        android:hint="这里填写文章内容..."
-        android:background="@null" >
-    </EditText>
+        <RelativeLayout
+            android:id="@+id/rela_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" >
 
-    <GridView 
-        android:id="@+id/noScrollgridview"
-        android:layout_width="290dp"
-        android:layout_height="350dp"
-        android:layout_marginLeft="5dp"
-        android:horizontalSpacing="3dp"        
-        android:numColumns="4"
-        android:scrollbars="none"
-        android:verticalSpacing="5dp" >
-    </GridView>
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="标题"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/textView28"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="请输入标题"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="#cccccc" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="图文详情"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <iteamapp.iteamapp.androidrichtexteditor.RichTextEditor
+                android:id="@+id/richText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView26"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+        </RelativeLayout>
+    </iteamapp.iteamapp.androidrichtexteditor.InterceptLinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/line_addImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f0f0f0"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/img_addPicture"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:padding="6dp"
+            android:src="@drawable/add_photo" />
+
+        <ImageView
+            android:id="@+id/img_takePicture"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/camera" />
+    </LinearLayout>
 
 </LinearLayout>

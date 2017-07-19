@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<merger version="3"><dataSet config="main"><source path="C:\Users\zqx\Desktop\app\IteamApp\Client\IteamApp\viewPagerLibrary\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\Users\zqx\Desktop\app\IteamApp\Client\IteamApp\viewPagerLibrary\src\debug\shaders"/></dataSet></merger>
-=======
-<merger version="3"><dataSet config="main"><source path="D:\Iteam\IteamApp\Client\IteamApp\viewPagerLibrary\src\main\shaders"/></dataSet><dataSet config="debug"><source path="D:\Iteam\IteamApp\Client\IteamApp\viewPagerLibrary\src\debug\shaders"/></dataSet></merger>
->>>>>>> origin/master
+<merger version="3"><dataSet config="main"><source path="C:\Users\zqx\Desktop\IteamApp\Client\IteamApp\viewPagerLibrary\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\Users\zqx\Desktop\IteamApp\Client\IteamApp\viewPagerLibrary\src\debug\shaders"/></dataSet></merger>

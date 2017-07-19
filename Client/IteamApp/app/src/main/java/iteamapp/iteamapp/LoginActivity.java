@@ -25,6 +25,7 @@ import java.util.List;
 
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
+import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.Tools.userConfig;
 
 
@@ -128,7 +129,7 @@ public class LoginActivity extends Activity {
                         Intent in = new Intent(LoginActivity.this, MainActivity_Club.class);
                         in.putExtra("username", user);
                         String team_id = json.getString("team_id");
-                        userConfig.userID = team_id;
+                        TeamConfig.TeamID = team_id;
                         startActivity(in);
                         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
