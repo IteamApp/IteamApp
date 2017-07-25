@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -45,11 +46,13 @@ public  class StarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ImageView image;
         TextView id;
 
+
         public ViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.star_name);
             image = (ImageView) itemView.findViewById(R.id.star_img);
             id = (TextView) itemView.findViewById(R.id.star_id);
+
 
         }
     }

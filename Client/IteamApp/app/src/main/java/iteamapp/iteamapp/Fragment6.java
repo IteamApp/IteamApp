@@ -83,9 +83,9 @@ public class Fragment6 extends Fragment {
             public void onClick(View v) {
 
 
-//                Intent in = new Intent(getActivity(),FreeTimeTable.class);
-//                getActivity().startActivity(in);
-//                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                Intent in = new Intent(getActivity(),FreeTimeTableClub.class);
+                getActivity().startActivity(in);
+                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
             }
         });

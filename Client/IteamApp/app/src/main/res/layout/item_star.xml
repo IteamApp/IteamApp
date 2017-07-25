@@ -5,6 +5,7 @@
 
 
     <LinearLayout
+        android:id="@+id/star_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -12,36 +13,63 @@
         <iteamapp.iteamapp.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/star_img"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:src="@mipmap/setting_press"
             app:border_width="1dp"
             app:border_color="#ccc"
             />
 
-        <LinearLayout
+
+        　<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="right">
+            android:gravity="center_vertical">
 
-            <TextView
+
+
+        <TextView
                 android:id="@+id/star_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="18dp"
+                android:layout_alignParentLeft="true"
+
+               android:padding="18dp"
                 android:text="用户名"
                 android:textColor="#333333"
                 android:textSize="16sp"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:id="@+id/star_id"/>
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/star_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+
+            android:padding="18dp"
+            android:text="已安排值班"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/star_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+
+            android:padding="18dp"
+            android:text="用户名"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:layout_alignParentTop="true" />
+
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 

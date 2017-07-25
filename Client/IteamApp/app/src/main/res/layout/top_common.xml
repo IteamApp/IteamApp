@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/theme_primary"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/common_menu_back"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:src="@mipmap/back"
+        />
+
+    <TextView
+        android:id="@+id/common_title"
+
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="空闲时间表"
+        android:textSize="16sp"
+        android:textColor="#12b7f5"/>
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/common_submit"
+        android:visibility="gone"
+
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="提交"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/accent_blue"/>
+
+
+
+
+    <View style="@style/AppTheme.DeepLine"/>
+
+</RelativeLayout>
