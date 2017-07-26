@@ -83,6 +83,16 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             }
         });
 
+        userimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(((Activity)getActivity()), SetLogo.class);
+                in.putExtra("type","1");
+                getContext().startActivity(in);
+                ((Activity)getActivity()).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            }
+        });
+
         txtFreeTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,14 +159,20 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             }
         });
 
+
+
+        return view;
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         initData();
 
         starNum.setText(InitTeam("2"));
         teamNum.setText(InitTeam("1"));
         signNum.setText(InitTeam("3"));
-
-        return view;
-
     }
 
     @Override
@@ -194,6 +210,7 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         JSONArray products = null;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("team_id", TeamConfig.TeamID));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 

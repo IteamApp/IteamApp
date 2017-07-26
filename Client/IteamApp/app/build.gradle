@@ -44,4 +44,5 @@ dependencies {
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile files('libs/universal-image-loader-1.9.3-with-sources.jar')
+    testCompile 'junit:junit:4.12'
 }

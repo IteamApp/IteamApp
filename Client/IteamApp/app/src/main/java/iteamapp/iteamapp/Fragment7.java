@@ -32,6 +32,8 @@ import iteamapp.iteamapp.Tools.RecyclerViewDivider;
 import iteamapp.iteamapp.Tools.userConfig;
 import iteamapp.iteamapp.adapter.ClubAdapter;
 import iteamapp.iteamapp.adapter.MessageAdapter;
+import iteamapp.iteamapp.runtimepermissions.PermissionsManager;
+import iteamapp.iteamapp.runtimepermissions.PermissionsResultAction;
 
 /**
  * Created by HongJay on 2016/8/11.
@@ -56,7 +58,8 @@ public class Fragment7 extends Fragment  {
         view = inflater.inflate(R.layout.fragment2, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_message);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-       // adapter = new MessageAdapter(getContext());
+
+        // / adapter = new MessageAdapter(getContext());
        // mRecyclerView.setAdapter(adapter);
         //new LoadAll(userConfig.userID,"2").execute();
         //mSwipeRefreshLayout.setRefreshing(false);
