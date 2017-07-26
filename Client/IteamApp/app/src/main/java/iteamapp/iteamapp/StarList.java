@@ -69,9 +69,10 @@ public class StarList extends Activity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycle_star);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new StarAdapter(StarList.this);
+
         Intent intent=getIntent();
         String type=intent.getStringExtra("type");
+        adapter = new StarAdapter(StarList.this,type);
         if(type.equals("1")){
             tvTitle.setText("我的社团");
         }
@@ -87,12 +88,20 @@ public class StarList extends Activity {
         if(type.equals("6")){
             tvTitle.setText("报名人员");
         }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent=getIntent();
+        String type=intent.getStringExtra("type");
         new LoadAll(userConfig.userID,type).execute();
 
         recyclerView.addItemDecoration(new RecyclerViewDivider(this, LinearLayoutManager.HORIZONTAL));
     }
 
-    private void initdata(String usercode,String type) {
+    private void initdata(String usercode, String type) {
         adapter.idDatas = new ArrayList<String>();
         adapter.nameDatas = new ArrayList<String>();
         adapter.logoDatas = new ArrayList<String>();
@@ -142,6 +151,7 @@ public class StarList extends Activity {
 
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
+            Log.d("team",TeamConfig.TeamID);
             params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
             params.add(new BasicNameValuePair("type", type));
             // getting JSON string from URL

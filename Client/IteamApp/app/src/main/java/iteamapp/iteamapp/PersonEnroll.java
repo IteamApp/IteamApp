@@ -29,7 +29,7 @@ import iteamapp.iteamapp.Tools.userConfig;
  * Created by father on 2017/5/6.
  */
 
-public class personal extends Activity {
+public class PersonEnroll extends Activity {
     private ImageView mBack;
 
     private TextView username;
@@ -37,8 +37,11 @@ public class personal extends Activity {
     private TextView sex;
     private TextView major;
     private TextView phone;
-    private LinearLayout layout_delete;
-    private Button delete;
+    private LinearLayout brief_layout;
+    private LinearLayout action_layout;
+    private TextView brief;
+    private Button accept;
+    private Button refuse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +52,25 @@ public class personal extends Activity {
         sex= (TextView) findViewById(R.id.person_sex);
         phone= (TextView) findViewById(R.id.person_phone);
         major= (TextView) findViewById(R.id.person_phone);
-        layout_delete= (LinearLayout) findViewById(R.id.layout_delete);
-        layout_delete.setVisibility(View.VISIBLE);
-        delete= (Button) findViewById(R.id.club_delete);
-        delete.setOnClickListener(new View.OnClickListener() {
+        brief= (TextView) findViewById(R.id.person_brief);
+        brief_layout= (LinearLayout) findViewById(R.id.brief_layout);
+        brief_layout.setVisibility(View.VISIBLE);
+        action_layout= (LinearLayout) findViewById(R.id.action_layout);
+        action_layout.setVisibility(View.VISIBLE);
+        accept= (Button) findViewById(R.id.accept_btn);
+        accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitData("3");
+                submitData("1");
+
+            }
+        });
+        refuse= (Button) findViewById(R.id.refuse_btn);
+        refuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitData("2");
+
             }
         });
         mBack = (ImageView) findViewById(R.id.person_menu_back);
@@ -85,7 +100,7 @@ public class personal extends Activity {
         Log.d("All Products: ", json.toString());
 
         String showContent = "操作成功";
-        Toast.makeText(personal.this, showContent, Toast.LENGTH_SHORT).show();
+        Toast.makeText(PersonEnroll.this, showContent, Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -99,6 +114,7 @@ public class personal extends Activity {
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("team_id", TeamConfig.TeamID));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 
@@ -111,6 +127,7 @@ public class personal extends Activity {
             major.setText(json.getString("user_major"));
             phone.setText(json.getString("phone"));
             usercode.setText(json.getString("user_stunum"));
+            brief.setText(json.getString("brief"));
 
 
         } catch (JSONException e) {

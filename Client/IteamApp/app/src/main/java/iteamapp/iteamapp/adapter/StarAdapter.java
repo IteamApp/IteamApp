@@ -22,8 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iteamapp.iteamapp.ClubDetail;
+import iteamapp.iteamapp.PersonEnroll;
 import iteamapp.iteamapp.R;
 import iteamapp.iteamapp.Tools.TeamConfig;
+import iteamapp.iteamapp.Tools.userConfig;
+import iteamapp.iteamapp.personal;
 
 /**
  * Created by Valentin on 2017/4/28.*/
@@ -32,13 +35,15 @@ import iteamapp.iteamapp.Tools.TeamConfig;
 
 public  class StarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
+    private String type;
 
     public List<String> nameDatas;
     public List<String> logoDatas;
     public List<String> idDatas;
 
-    public StarAdapter(Context context){
+    public StarAdapter(Context context,String type){
         this.context = context;
+        this.type=type;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -81,11 +86,27 @@ public  class StarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    String pid = idDatas.get(position);
-                    Intent in = new Intent(((Activity)context), ClubDetail.class);
-                    TeamConfig.TeamID=pid;
-                     context.startActivity(in);
-                    ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    if(type.equals("1")||type.equals("2")||type.equals("3")) {
+                        String pid = idDatas.get(position);
+                        Intent in = new Intent(((Activity) context), ClubDetail.class);
+                        TeamConfig.TeamID=pid;
+                        context.startActivity(in);
+                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    }
+                    else if (type.equals("4")){
+                        String pid = idDatas.get(position);
+                        Intent in = new Intent(((Activity) context), personal.class);
+                        userConfig.userID=pid;
+                        context.startActivity(in);
+                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    }
+                    else {
+                        String pid = idDatas.get(position);
+                        Intent in = new Intent(((Activity) context), PersonEnroll.class);
+                        userConfig.userID=pid;
+                        context.startActivity(in);
+                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    }
                 }
             });
 

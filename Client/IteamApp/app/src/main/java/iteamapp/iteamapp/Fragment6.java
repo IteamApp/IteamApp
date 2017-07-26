@@ -124,18 +124,24 @@ public class Fragment6 extends Fragment {
         topersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent= new Intent(getActivity(),personal.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), ClubDetail.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
-        TeamConfig.TeamID="1";
         InitData();
 
-        teamNum.setText(InitMember("4"));
-        signNum.setText(InitMember("6"));
+
 
         return view;
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        teamNum.setText(InitMember("4"));
+        signNum.setText(InitMember("6"));
     }
 
     private void InitData(){

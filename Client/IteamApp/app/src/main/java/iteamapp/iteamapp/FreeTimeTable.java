@@ -99,7 +99,7 @@ public class FreeTimeTable extends Activity {
 
         for(int i=0;i<6;i++) {
             for (int j = 0; j < 7; j++) {
-                if(contents[i][j].contains("有课")){
+                if(contents[i][j].equals("")){
                     info+=(j+1)+"."+(i+1)+";";
                 }
             }
@@ -163,7 +163,7 @@ public class FreeTimeTable extends Activity {
         contents = new String[6][7];
         for(int i=0;i<6;i++){
             for(int j=0;j<7;j++){
-                contents[i][j]="";
+                contents[i][j]="有课"+"\n";
             }
         }
 
@@ -186,9 +186,6 @@ public class FreeTimeTable extends Activity {
                 String time=c.getString("time");
                 String team_name=c.getString("team_name");
                 String tag=c.getString("tag");
-                if(team_name.equals("")){
-                    team_name="有课";
-                }
                 int x=Integer.parseInt(time.substring(0,1));
                 int y=Integer.parseInt(time.substring(2,3));
                 contents[y-1][x-1]=team_name+tag;
