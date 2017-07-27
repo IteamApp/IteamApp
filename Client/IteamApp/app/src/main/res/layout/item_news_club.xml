@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+    <include layout="@layout/top_cource"></include>
+
+
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff"
+                android:paddingTop="0dp">
+
+                <TextView
+                    android:id="@+id/new_userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:layout_alignTop="@+id/new_userIntro"
+                    android:layout_toEndOf="@+id/new_userImg"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/new_userIntro"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="昨天22:57"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:textColor="#808080"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/new_userImg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/team_id"/>
+
+                <iteamapp.iteamapp.circleimageview.CircleImageView
+                    android:id="@+id/new_userImg"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@mipmap/setting_press"
+                    app:border_width="1dp"
+                    app:border_color="#ccc"
+                    android:layout_gravity="center"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="这里是消息的正文部分这里是消息的正文部分这里是消息的正文部分这里是消息的正文部分这里是消息的正文部分这里是消息的\n正文部分这里是消息的正文部分：\n1. 这里是分条消息\n2. 这里是分条消息条消息条消息\n3. 这里是分条这里是分条消息\n4. 这里是分条消息条消息\n如此的都是消息的内容部分，内容部分长度没有限制，用于发布社团纳新、社团内部活动、大型活动、联谊等"
+                    android:textSize="14sp"
+                    android:textColor="#333333"
+                    android:lineSpacingExtra="2dp"
+                    android:id="@+id/new_text1"
+                    />
+                <ImageView
+                    android:id="@+id/content_img"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/d"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="20dp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iteamapp.iteamapp.News;
+import iteamapp.iteamapp.NewsClub;
 import iteamapp.iteamapp.R;
 
 /**
@@ -100,7 +101,7 @@ public class ManageIndexAdapter extends  RecyclerView.Adapter<RecyclerView.ViewH
             public void onClick(View arg0) {
                 if (position > 0) {
                     String pid = idDatas.get(position - 1);
-                    Intent in = new Intent(((Activity)context), News.class);
+                    Intent in = new Intent(((Activity)context), NewsClub.class);
                     in.putExtra(TAG_PID, pid);
                     context.startActivity(in);
                     ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

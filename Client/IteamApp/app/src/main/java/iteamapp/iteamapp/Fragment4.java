@@ -154,7 +154,7 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         topersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getActivity(),personal.class);
+                Intent intent= new Intent(getActivity(),personal_edit.class);
                 startActivity(intent);
             }
         });

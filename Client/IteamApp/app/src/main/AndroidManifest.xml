@@ -36,8 +36,6 @@
 
         <activity android:name=".MainActivity_Club">
 
-
-
         </activity>
 
         <activity android:name=".MainActivity"
@@ -47,7 +45,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
 
         </activity>
 
@@ -69,6 +66,10 @@
             android:label="@string/app_name"
             >
 
+        </activity>
+
+        <activity android:name=".personal_edit"
+            android:label="@string/app_name">
 
         </activity>
         <activity android:name=".News"
@@ -105,6 +106,11 @@
             android:label="@string/app_name"></activity>
 
         <activity android:name=".androidrichtexteditor.RichTextActivity"
+            android:label="@string/app_name">
+
+        </activity>
+
+        <activity android:name=".NewsClub"
             android:label="@string/app_name">
 
         </activity>

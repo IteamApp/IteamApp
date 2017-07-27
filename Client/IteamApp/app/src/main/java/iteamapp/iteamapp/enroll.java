@@ -107,6 +107,7 @@ public class enroll extends Activity {
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("team_id", "1"));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 

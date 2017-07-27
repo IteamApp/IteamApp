@@ -48,8 +48,8 @@ public class CustomDiaLog extends Dialog implements
 		this.setContentView(layout);
 
 		Log.i("oncreat", "success");
-		Button btn_takephoto = (Button) findViewById(R.id.btn_takephoto);
-		Button btn_picture = (Button) findViewById(R.id.btn_picture);
+		Button btn_takephoto = (Button) findViewById(R.id.btn_edit);
+		Button btn_picture = (Button) findViewById(R.id.btn_delete);
 		Button btn_cancel = (Button) findViewById(R.id.btn_cancel);
 
 		btn_takephoto.setOnClickListener(this);

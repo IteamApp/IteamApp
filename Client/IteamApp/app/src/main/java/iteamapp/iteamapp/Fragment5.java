@@ -47,6 +47,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
     private ManageIndexAdapter adapter;
     private Button btnAdd;
     private ProgressDialog pDialog;
+    private Boolean isFirst=true;
 
 
     IpConfig ip = new IpConfig();
@@ -65,11 +66,15 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         adapter = new ManageIndexAdapter(getContext());
         new LoadAllArticle().execute();
 
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("role","add");
                 Intent intent = new Intent(getActivity(), RichTextActivity.class);
 
+                intent.putExtras(bundle);
                 getActivity().startActivity(intent);
 
                 getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -79,6 +84,14 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!isFirst){
+            new LoadAllArticle().execute();
+        }
+        isFirst=false;
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -90,15 +103,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
-    private void update(){
-        for (int i=0;i<10;i++){
-            adapter.nameDatas.set(i,"up社团"+i);
-        }
-        for (int i=0;i<10;i++){
-            adapter.infoDatas.add("XX时间"+i+1);
-        }
 
-    }
 
     private  void initImage(){
 

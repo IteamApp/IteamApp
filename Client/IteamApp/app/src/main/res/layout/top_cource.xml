@@ -17,6 +17,7 @@
         />
 
     <TextView
+        android:id="@+id/free_title"
 
         android:layout_gravity="center"
         android:gravity="center"

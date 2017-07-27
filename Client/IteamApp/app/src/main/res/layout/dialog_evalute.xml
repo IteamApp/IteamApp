@@ -8,18 +8,18 @@
     
    
     <Button
-        android:id="@+id/btn_takephoto"
+        android:id="@+id/btn_edit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="#ffffff"
-        android:text="拍照" />
+        android:text="修改" />
 
     <Button
-        android:id="@+id/btn_picture"
+        android:id="@+id/btn_delete"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="从相册中选取" />
+        android:text="删除" />
 
     <Button
         android:id="@+id/btn_cancel"

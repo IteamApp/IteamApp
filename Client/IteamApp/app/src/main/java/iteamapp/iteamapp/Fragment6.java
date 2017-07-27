@@ -66,7 +66,7 @@ public class Fragment6 extends Fragment {
 //    private File mCameraImageFile;// 照相机拍照得到的图片
 //    private FileUtils mFileUtils;
 //    private String ROLE = "add";// 当前页面是新增还是查看详情 add/modify
-//    private CustomDiaLog dialog;
+
 
     private LinearLayout txtFreeTime;
     private LinearLayout topersonal;

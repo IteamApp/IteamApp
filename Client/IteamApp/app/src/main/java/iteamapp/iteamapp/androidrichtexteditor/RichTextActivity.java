@@ -7,8 +7,11 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -25,15 +28,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,8 +102,11 @@ public class RichTextActivity extends Activity implements OnClickListener {
 	}
 
 	private void init() {
-		if (getIntent() != null)
-			ROLE = getIntent().getStringExtra("role");
+		if (getIntent() != null) {
+			Bundle bundle = new Bundle();
+			bundle = this.getIntent().getExtras();
+			ROLE =bundle.getString("role");
+		}
 
 		mFileUtils = new FileUtils(context);
 
@@ -108,11 +121,77 @@ public class RichTextActivity extends Activity implements OnClickListener {
 		initRichEdit();
 		if ("modify".equals(ROLE)) {
 			tv_ok.setText("修改");
+			tv_ok.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					try {
+						Bundle bundle = new Bundle();
+						bundle = getIntent().getExtras();
+						String id =bundle.getString("id");
+
+
+						IpConfig ip = new IpConfig();
+						JSONParser jParser = new JSONParser();
+						String url = ip.ip+"android/zqx/updateArticle.php";
+
+						JSONArray products = null;
+						List<NameValuePair> params = new ArrayList<NameValuePair>();
+						params.add(new BasicNameValuePair("id", id));
+						params.add(new BasicNameValuePair("title", et_name.getText().toString()));
+						params.add(new BasicNameValuePair("content", richText.getRichEditData().get("text").toString()));
+						params.add(new BasicNameValuePair("picture", imageToBase64(richText.getRichEditData().get("imgUrls").toString())));
+						// getting JSON string from URL
+						JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+						String showContent = "修改成功！";
+						Toast.makeText(RichTextActivity.this,showContent,Toast.LENGTH_SHORT).show();
+
+						finish();
+
+//					Log.i(TAG, "---richtext-data:" + richText.getRichEditData());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+//				Toast.makeText(context, "信息已打印,请到控制台查看", Toast.LENGTH_LONG)
+//						.show();
+				}
+			});
 			line_intercept.setIntercept(true);
 			richText.setIntercept(true);
 			getData();
 		} else {
 			tv_ok.setText("提交");
+			tv_ok.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					try {
+
+						IpConfig ip = new IpConfig();
+						JSONParser jParser = new JSONParser();
+						String url = ip.ip+"android/zqx/AddArticle.php";
+
+						JSONArray products = null;
+						List<NameValuePair> params = new ArrayList<NameValuePair>();
+						params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
+						params.add(new BasicNameValuePair("title", et_name.getText().toString()));
+						params.add(new BasicNameValuePair("content", richText.getRichEditData().get("text").toString()));
+						params.add(new BasicNameValuePair("picture", imageToBase64(richText.getRichEditData().get("imgUrls").toString())));
+						// getting JSON string from URL
+						JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+						String showContent = "发布成功！";
+						Toast.makeText(RichTextActivity.this,showContent,Toast.LENGTH_SHORT).show();
+
+						finish();
+
+//					Log.i(TAG, "---richtext-data:" + richText.getRichEditData());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+//				Toast.makeText(context, "信息已打印,请到控制台查看", Toast.LENGTH_LONG)
+//						.show();
+				}
+			});
 		}
 		tv_back.setOnClickListener(new OnClickListener() {
 			@Override
@@ -120,37 +199,7 @@ public class RichTextActivity extends Activity implements OnClickListener {
 				finish();
 			}
 		});
-		tv_ok.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
 
-					IpConfig ip = new IpConfig();
-					JSONParser jParser = new JSONParser();
-					String url = ip.ip+"android/zqx/AddArticle.php";
-
-					JSONArray products = null;
-					List<NameValuePair> params = new ArrayList<NameValuePair>();
-					params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
-					params.add(new BasicNameValuePair("title", et_name.getText().toString()));
-					params.add(new BasicNameValuePair("content", richText.getRichEditData().get("text").toString()));
-					params.add(new BasicNameValuePair("picture", imageToBase64(richText.getRichEditData().get("imgUrls").toString())));
-					// getting JSON string from URL
-					JSONObject json = jParser.makeHttpRequest(url, "GET", params);
-
-					String showContent = "发布成功！";
-					Toast.makeText(RichTextActivity.this,showContent,Toast.LENGTH_SHORT).show();
-
-					finish();
-
-//					Log.i(TAG, "---richtext-data:" + richText.getRichEditData());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-//				Toast.makeText(context, "信息已打印,请到控制台查看", Toast.LENGTH_LONG)
-//						.show();
-			}
-		});
 	}
 
 	/**
@@ -233,16 +282,44 @@ public class RichTextActivity extends Activity implements OnClickListener {
 	}
 
 	private void getData() {
-		et_name.setText("模拟几条数据");
+		ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this));
 
-		richText.insertText("第一行");
-		richText.insertText("接下来是张图片-王宝强");
-		richText.insertImageByURL("http://baike.soso.com/p/20090711/20090711100323-24213954.jpg");
-		richText.insertText("下面是一副眼镜");
-		richText.insertImageByURL("http://img4.3lian.com/sucai/img6/230/29.jpg");
-		richText.insertImageByURL("http://pic9.nipic.com/20100812/3289547_144304019987_2.jpg");
-		richText.insertText("上面是一个树妖");
-		richText.insertText("最后一行");
+		Bundle bundle = new Bundle();
+		bundle = this.getIntent().getExtras();
+		String id =bundle.getString("id");
+
+
+		IpConfig ip = new IpConfig();
+		JSONParser jParser = new JSONParser();
+		String urlcontent = ip.ip+"android/zqx/articleDetail.php";
+		JSONArray products = null;
+
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("id", id));
+		// getting JSON string from URL
+		JSONObject json = jParser.makeHttpRequest(urlcontent, "GET", params);
+		// Check your log cat for JSON reponse
+		Log.d("All Products: ", json.toString());
+
+		try {
+			// products found
+			// Getting Array of Products
+			products = json.getJSONArray("article");
+			// looping through All Products
+			for (int i = 0; i < products.length(); i++) {
+				JSONObject c = products.getJSONObject(i);
+				// Storing each json item in variable
+				richText.insertText(c.getString("passage_content"));
+				et_name.setText(c.getString("passage_title"));
+				richText.insertImageByURL("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"));
+			}
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void openCamera() {
@@ -319,6 +396,32 @@ public class RichTextActivity extends Activity implements OnClickListener {
 			break;
 
 		}
+	}
+
+
+
+
+
+	public Bitmap returnBitMap(String url){
+		URL myFileUrl = null;
+		Bitmap bitmap = null;
+		try {
+			myFileUrl = new URL(url);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		try {
+			HttpURLConnection conn = (HttpURLConnection) myFileUrl
+					.openConnection();
+			conn.setDoInput(true);
+			conn.connect();
+			InputStream is = conn.getInputStream();
+			bitmap = BitmapFactory.decodeStream(is);
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bitmap;
 	}
 
 }

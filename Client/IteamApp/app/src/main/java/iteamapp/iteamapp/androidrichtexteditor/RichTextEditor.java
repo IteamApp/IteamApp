@@ -503,7 +503,8 @@ public class RichTextEditor extends InterceptLinearLayout {
 
 
 		data.put("text", editTextSB);
-		data.put("imgUrls", imgUrls.get(0));
+		if(!imgUrls.isEmpty())
+			data.put("imgUrls", imgUrls.get(0));
 
 		
 

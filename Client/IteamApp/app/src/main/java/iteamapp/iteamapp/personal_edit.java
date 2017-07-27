@@ -30,36 +30,37 @@ import iteamapp.iteamapp.Tools.userConfig;
  * Created by father on 2017/5/6.
  */
 
-public class personal extends Activity {
+public class personal_edit extends Activity {
     private ImageView mBack;
 
     private TextView username;
     private TextView usercode;
     private TextView sex;
-    private TextView major;
-    private TextView phone;
-    private LinearLayout layout_delete;
-    private Button delete;
+    private EditText major;
+    private EditText phone;
+    private Button edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personal);
+        setContentView(R.layout.person_edit);
         username= (TextView) findViewById(R.id.person_name);
         usercode= (TextView) findViewById(R.id.person_code);
         sex= (TextView) findViewById(R.id.person_sex);
-        phone= (TextView) findViewById(R.id.person_phone);
-        major= (TextView) findViewById(R.id.person_phone);
+        phone= (EditText) findViewById(R.id.person_phone);
+        major= (EditText) findViewById(R.id.person_major);
 
-        layout_delete= (LinearLayout) findViewById(R.id.layout_delete);
-        layout_delete.setVisibility(View.VISIBLE);
-        delete= (Button) findViewById(R.id.club_delete);
-        delete.setOnClickListener(new View.OnClickListener() {
+
+        edit= (Button) findViewById(R.id.person_edit);
+        edit.setVisibility(View.VISIBLE);
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitData("3");
+                editSubmit();
             }
         });
+
+
         mBack = (ImageView) findViewById(R.id.person_menu_back);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,25 +71,27 @@ public class personal extends Activity {
         InitData();
     }
 
-    private void submitData(String type){
+    private void editSubmit(){
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
-        String url = ip.ip+"android/zqx/acceptEnroll.php";
+        String url = ip.ip+"android/zqx/updateUserInfo.php";
         JSONArray products = null;
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", userConfig.userID));
-        params.add(new BasicNameValuePair("team_id", TeamConfig.TeamID));
-        params.add(new BasicNameValuePair("type", type));
+        params.add(new BasicNameValuePair("major", major.getText().toString()));
+        params.add(new BasicNameValuePair("phone", phone.getText().toString()));
+
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 
         // Check your log cat for JSON reponse
         Log.d("All Products: ", json.toString());
+        String showContent = "修改成功";
+        Toast.makeText(personal_edit.this, showContent, Toast.LENGTH_SHORT).show();
 
-        String showContent = "操作成功";
-        Toast.makeText(personal.this, showContent, Toast.LENGTH_SHORT).show();
-        finish();
+
+
     }
 
 
@@ -101,6 +104,7 @@ public class personal extends Activity {
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("team_id", userConfig.userID));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 
