@@ -127,6 +127,7 @@ public class SetLogo extends AppCompatActivity {
         }
         Bitmap bm =((BitmapDrawable) photo.getDrawable()).getBitmap();
         String b64=bitmapToBase64(bm);
+        Log.d("b64",b64);
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
         String url = ip.ip+"android/zqx/updateLogo.php";

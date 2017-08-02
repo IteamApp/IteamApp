@@ -142,7 +142,7 @@ public class Fragment6 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), StarList.class);
+                Intent intent = new Intent(getActivity(), StarListAction.class);
                 intent.putExtra("type","4");
 
                 getActivity().startActivity(intent);
@@ -157,7 +157,7 @@ public class Fragment6 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), StarList.class);
+                Intent intent = new Intent(getActivity(), StarListAction.class);
                 intent.putExtra("type","6");
 
                 getActivity().startActivity(intent);

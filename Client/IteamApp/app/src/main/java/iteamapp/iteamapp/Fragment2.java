@@ -47,7 +47,7 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
     IpConfig ip = new IpConfig();
     JSONParser jParser = new JSONParser();
-    private  String url = ip.ip+"android/zqx/getArticle.php";
+    private  String url = ip.ip+"android/zqx/getMsgTeam.php";
     JSONArray products = null;
 
     @Nullable
@@ -84,7 +84,6 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", usercode));
-        params.add(new BasicNameValuePair("type", type));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 
@@ -94,7 +93,7 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         try {
             // products found
             // Getting Array of Products
-            products = json.getJSONArray("article");
+            products = json.getJSONArray("team");
 
             // looping through All Products
             for (int i = 0; i < products.length(); i++) {
@@ -103,7 +102,7 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
                 // Storing each json item in variable
                 adapter.nameDatas.add(c.getString("team_name"));
                 adapter.infoDatas.add("您好，感谢关注，这里是社团消息");
-                adapter.idDatas.add(c.getString("id"));
+                adapter.idDatas.add(c.getString("team_id"));
                 adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
             }
 

@@ -21,8 +21,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import cn.jpush.android.api.JPushInterface;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
@@ -121,6 +124,9 @@ public class LoginActivity extends Activity {
                         Intent in = new Intent(LoginActivity.this, MainActivity.class);
                         in.putExtra("username", user);
                         userConfig.userID = user;
+                        Set<String> set = new HashSet<>();
+                        set.add(user);//名字任意，可多添加几个,能区别就好了
+                        JPushInterface.setTags(LoginActivity.this, set, null);//设置标签
                         startActivity(in);
                         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }

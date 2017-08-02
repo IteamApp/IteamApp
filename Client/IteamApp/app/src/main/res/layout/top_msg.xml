@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:background="@color/theme_primary"
     android:orientation="horizontal">
-
 
 
     <ImageView
@@ -22,17 +21,24 @@
 
         android:layout_gravity="center"
         android:gravity="center"
-
-        android:paddingLeft="105dp"
-
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="消息详情"
+        android:layout_height="match_parent"
+        android:text="空闲时间表"
         android:textSize="16sp"
         android:textColor="#12b7f5"/>
 
-
+    <Button
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:id="@+id/msg_action"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="操作"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/accent_blue"/>
 
     <View style="@style/AppTheme.DeepLine"/>
 
-</LinearLayout>
+</RelativeLayout>

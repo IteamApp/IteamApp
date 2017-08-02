@@ -14,12 +14,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,14 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iteamapp.iteamapp.ClubDetail;
-import iteamapp.iteamapp.FreeTimeTable;
+import iteamapp.iteamapp.PersonEnroll;
 import iteamapp.iteamapp.R;
-import iteamapp.iteamapp.Tools.IpConfig;
-import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.Tools.userConfig;
+import iteamapp.iteamapp.personal;
 
-import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 /**
@@ -45,36 +37,34 @@ import static android.view.View.VISIBLE;
 
 
 
-public  class PersonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public  class StarAdapterAction extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private  String time;
+    private String type;
 
     public List<String> nameDatas;
     public List<String> logoDatas;
-    public List<String> tagDatas;
     public List<String> idDatas;
+    public List<String> isSend;
 
-    public PersonAdapter(Context context, String time){
+    public StarAdapterAction(Context context,String type){
         this.context = context;
-        this.time=time;
+        this.type=type;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         ImageView image;
-        TextView tag;
         TextView id;
-        LinearLayout layout;
+        CheckBox check;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.star_name);
             image = (ImageView) itemView.findViewById(R.id.star_img);
-            tag = (TextView) itemView.findViewById(R.id.star_tag);
+            check= (CheckBox) itemView.findViewById(R.id.agree_provision_chk);
             id = (TextView) itemView.findViewById(R.id.star_id);
 
-            layout= (LinearLayout) itemView.findViewById(R.id.star_layout);
 
         }
     }
@@ -93,58 +83,47 @@ public  class PersonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     //绑定ViewHolder
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         //将数据填充到具体的view中
         if (holder instanceof ViewHolder) {
+            ((ViewHolder) holder).check.setVisibility(VISIBLE);
+            ((ViewHolder) holder).check.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(isSend.get(position).equals("0"))
+                        isSend.set(position,"1");
+                    else
+                        isSend.set(position,"0");
+                }
+            });
             ((ViewHolder) holder).name.setText(nameDatas.get(position));
             ((ViewHolder) holder).id.setText(idDatas.get(position));
-            String tag=tagDatas.get(position);
-//            ((ViewHolder) holder).tag.setText(tag);
-            if (tag.equals("2")){
-                ((ViewHolder) holder).tag.setVisibility(VISIBLE);
-                ((ViewHolder) holder).layout.setBackground(context.getResources().getDrawable(R.drawable.grid_item_bg));
-            }
-            else {
-                ((ViewHolder) holder).layout.setBackground(context.getResources().getDrawable(R.drawable.bg_none));
-            }
-
             ((ViewHolder) holder).image.setImageBitmap(returnBitMap(logoDatas.get(position)));
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    String tag = tagDatas.get(position);
-                    String id = idDatas.get(position);
-                    IpConfig ip = new IpConfig();
-                    JSONParser jParser = new JSONParser();
-                    String url = ip.ip+"android/zqx/updatePeopleTime.php";
-                    JSONArray products = null;
-
-
-                    List<NameValuePair> params = new ArrayList<NameValuePair>();
-                    params.add(new BasicNameValuePair("id", id));
-                    params.add(new BasicNameValuePair("tag", tag));
-                    params.add(new BasicNameValuePair("team_id", TeamConfig.TeamID));
-                    params.add(new BasicNameValuePair("time", time));
-                    // getting JSON string from URL
-                    JSONObject json = jParser.makeHttpRequest(url, "GET", params);
-
-                    Log.d("All Products: ", json.toString());
-                    if(tag.equals("2")) {
-                        String showContent = "成功取消值班";
-                        Toast.makeText(context, showContent, Toast.LENGTH_SHORT).show();
-                        ((ViewHolder) holder).tag.setVisibility(INVISIBLE);
-                        tagDatas.set(position,"1");
-                        ((ViewHolder) holder).layout.setBackground(context.getResources().getDrawable(R.drawable.bg_none));
+                    if(type.equals("1")||type.equals("2")||type.equals("3")) {
+                        String pid = idDatas.get(position);
+                        Intent in = new Intent(((Activity) context), ClubDetail.class);
+                        TeamConfig.TeamID=pid;
+                        context.startActivity(in);
+                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
-                    else{
-                        String showContent = "成功安排值班";
-                        Toast.makeText(context, showContent, Toast.LENGTH_SHORT).show();
-                        ((ViewHolder) holder).tag.setVisibility(VISIBLE);
-                        tagDatas.set(position,"2");
-                        ((ViewHolder) holder).layout.setBackground(context.getResources().getDrawable(R.drawable.grid_item_bg));
+                    else if (type.equals("4")){
+                        String pid = idDatas.get(position);
+                        Intent in = new Intent(((Activity) context), personal.class);
+                        userConfig.userID=pid;
+                        context.startActivity(in);
+                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
-
+                    else {
+                        String pid = idDatas.get(position);
+                        Intent in = new Intent(((Activity) context), PersonEnroll.class);
+                        userConfig.userID=pid;
+                        context.startActivity(in);
+                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    }
                 }
             });
 

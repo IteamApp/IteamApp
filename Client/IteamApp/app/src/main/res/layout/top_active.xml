@@ -8,6 +8,7 @@
 
 
     <ImageView
+        android:id="@+id/msg_back"
         android:layout_width="45dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -17,21 +18,22 @@
         />
 
     <TextView
-
+        android:id="@+id/title_msg"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="新动态"
+        android:text="发送通知"
         android:textSize="16sp"
         android:textColor="#12b7f5"/>
 
     <Button
+        android:id="@+id/btn_send"
         android:layout_height="45dp"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="发表"
+        android:text="发送"
         android:textColor="#12b7f5"
         android:layout_centerVertical="true"
         android:background="@null"/>

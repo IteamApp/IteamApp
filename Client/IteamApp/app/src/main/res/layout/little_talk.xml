@@ -14,37 +14,15 @@
         >
 
         <EditText
+            android:id="@+id/msg_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:background="#fff"
             android:ems="10"
             android:lines="10"
-            android:hint="说点什么吧..."
+            android:hint="推送内容..."
             android:gravity="top"/>
-
-        <TextView
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:text="添加照片"
-            android:background="@drawable/border"
-            android:gravity="center_vertical" />
-
-        <TextView
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:text="添加标签"
-            android:background="@drawable/border"
-            android:gravity="center_vertical"
-            />
-
-        <TextView
-            android:layout_height="45dp"
-            android:layout_width="match_parent"
-            android:background="@drawable/border"
-            android:text="地点"
-            android:gravity="center_vertical"
-            />
 
     </LinearLayout>
 
