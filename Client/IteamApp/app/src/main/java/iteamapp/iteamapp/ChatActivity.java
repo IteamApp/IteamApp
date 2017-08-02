@@ -32,10 +32,14 @@ public class ChatActivity extends Activity {
     private String content;
     private ImageView mBack;
 
+    private TextView title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        title= (TextView) findViewById(R.id.top_msg_title);
+        title.setText("消息详情");
         mBack = (ImageView) findViewById(R.id.msg_menu_back);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override

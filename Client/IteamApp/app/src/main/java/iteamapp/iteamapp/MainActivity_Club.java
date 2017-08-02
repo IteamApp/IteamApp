@@ -35,7 +35,7 @@ public class MainActivity_Club extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.vp_main_club);
         fragments=new ArrayList<Fragment>();
         fragments.add(new Fragment5());
-        fragments.add(new Fragment2());
+        fragments.add(new Fragment8());
         fragments.add(new Fragment6());
         myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),fragments);
         mViewPager.setAdapter(myFragmentPagerAdapter);

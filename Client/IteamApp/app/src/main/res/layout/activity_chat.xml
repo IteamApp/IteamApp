@@ -16,11 +16,27 @@
         android:layout_weight="1" />
 
     <LinearLayout
+        android:id="@+id/layout_tuisong"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="#EEEEEE"
         android:orientation="horizontal"
         android:padding="4dp">
+
+        <EditText
+            android:layout_weight="1"
+            android:id="@+id/et_tuisong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入推送内容"/>
+
+        <Button
+            android:layout_weight="0.1"
+            android:id="@+id/club_send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="发送"/>
 
 
     </LinearLayout>
