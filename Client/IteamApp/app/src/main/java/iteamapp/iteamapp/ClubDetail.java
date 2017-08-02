@@ -23,7 +23,10 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import iteamapp.iteamapp.Tools.IpConfig;
@@ -75,6 +78,12 @@ public class ClubDetail extends Activity {
 
         btn1 = (Button)findViewById(R.id.club_btn1);
 
+        try {
+            checkTime();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         if(check()==false){
             btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
             btn1.setText("已报名");
@@ -98,9 +107,69 @@ public class ClubDetail extends Activity {
 
     }
 
+
+    private Boolean checkTime() throws JSONException {
+        IpConfig ip = new IpConfig();
+        JSONParser jParser = new JSONParser();
+        String url = ip.ip + "android/zqx/getTime.php";
+
+        JSONArray products = null;
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("team_id", TeamConfig.TeamID));
+        params.add(new BasicNameValuePair("start", ""));
+        params.add(new BasicNameValuePair("end", ""));
+        params.add(new BasicNameValuePair("type", "2"));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateNowStr = sdf.format(d);
+
+        Log.d("da",dateNowStr);
+
+        String satrtStr=json.getString("start");
+        String endtStr=json.getString("end");
+
+        if(compare_date(endtStr,dateNowStr)==1 && compare_date(dateNowStr,satrtStr)==1) {
+            btn1.setVisibility(View.VISIBLE);
+            return true;
+        }
+        else {
+            btn1.setVisibility(INVISIBLE);
+            return false;
+        }
+
+    }
+
+    public static int compare_date(String DATE1, String DATE2) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date dt1 = df.parse(DATE1);
+            Date dt2 = df.parse(DATE2);
+            if (dt1.getTime() >= dt2.getTime()) {
+                return 1;
+            } else if (dt1.getTime() < dt2.getTime()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return 0;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+
+
+        try {
+            checkTime();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         if(check()==false){
             btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
             btn1.setText("已报名");

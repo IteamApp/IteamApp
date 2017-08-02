@@ -71,7 +71,7 @@ public class Fragment6 extends Fragment {
     private LinearLayout txtFreeTime;
     private LinearLayout topersonal;
     private View view;
-    private LinearLayout star;  //关注
+    private LinearLayout time;  //关注
     private LinearLayout club;
     private LinearLayout signup;
 
@@ -177,6 +177,15 @@ public class Fragment6 extends Fragment {
             }
         });
 
+        time= (LinearLayout) view.findViewById(R.id.enroll_club);
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SetTime.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            }
+        });
 
 
         return view;
