@@ -72,7 +72,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("role","add");
-                Intent intent = new Intent(getActivity(), RichTextActivity.class);
+                Intent intent = new Intent(getActivity(), SendArticle.class);
 
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);

@@ -126,6 +126,11 @@ public class SetLogo extends AppCompatActivity {
             userId=TeamConfig.TeamID;
         }
         Bitmap bm =((BitmapDrawable) photo.getDrawable()).getBitmap();
+        //压缩图片
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+
+
         String b64=bitmapToBase64(bm);
         Log.d("b64",b64);
         IpConfig ip = new IpConfig();
@@ -139,7 +144,7 @@ public class SetLogo extends AppCompatActivity {
         params.add(new BasicNameValuePair("picture",b64));
 
         // getting JSON string from URL
-        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+        JSONObject json = jParser.makeHttpRequest(url, "POST", params);
 
         String showContent = "上传成功！";
         Toast.makeText(SetLogo.this,showContent,Toast.LENGTH_SHORT).show();

@@ -127,7 +127,7 @@ public class NewsClub extends Activity {
                         bundle.putString("id", id);
                         bundle.putString("role","modify");
 
-                        Intent intent = new Intent(NewsClub.this, RichTextActivity.class);
+                        Intent intent = new Intent(NewsClub.this, SendArticle.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
                         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

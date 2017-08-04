@@ -8,12 +8,7 @@
 
 
     <include layout="@layout/top_common"></include>
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/my_swiperefreshlayout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scrollbars="vertical"
-        >
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,6 +97,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
             android:orientation="vertical"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -168,6 +164,4 @@
             </LinearLayout>
         </LinearLayout>
 
-
-    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
