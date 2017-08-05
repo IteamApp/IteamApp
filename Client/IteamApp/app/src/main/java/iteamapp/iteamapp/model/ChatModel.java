@@ -9,6 +9,7 @@ public class ChatModel implements Serializable {
     private String icon="";
     private String content="";
     private String type="";
+    private String time="";
 
     public String getIcon() {
         return icon;
@@ -32,5 +33,13 @@ public class ChatModel implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

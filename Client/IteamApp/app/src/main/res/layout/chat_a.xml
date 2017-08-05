@@ -4,8 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="10dp">
+
+    <TextView
+        android:id="@+id/chat_time"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2017-8-02 23:22"/>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <iteamapp.iteamapp.circleimageview.CircleImageView
         android:id="@+id/ic_user"
@@ -20,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_tv"
         android:gravity="center"
         android:paddingBottom="6dp"
@@ -28,6 +42,9 @@
         android:paddingTop="6dp"
         android:text="111"
         android:textColor="#FFFFFF" />
+</LinearLayout>
+
+
 
 
 </LinearLayout>

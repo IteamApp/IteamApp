@@ -151,7 +151,6 @@ public class StarList extends Activity {
 
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            Log.d("team",TeamConfig.TeamID);
             params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
             params.add(new BasicNameValuePair("type", type));
             // getting JSON string from URL

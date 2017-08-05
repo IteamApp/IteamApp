@@ -171,7 +171,7 @@ public class Fragment6 extends Fragment {
         topersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ClubDetail.class);
+                Intent intent = new Intent(getActivity(), club_edit.class);
                 getActivity().startActivity(intent);
                 getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
@@ -196,6 +196,7 @@ public class Fragment6 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
         teamNum.setText(InitMember("4"));
         signNum.setText(InitMember("6"));
         InitData();

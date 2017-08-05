@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
@@ -53,6 +54,7 @@ public class ClubDetail extends Activity {
     private TextView tvfaculty;
     private ImageView imgClub;
     private TextView tvbrief;
+    private LinearLayout member;
 
     private Button btn1;
 
@@ -73,7 +75,21 @@ public class ClubDetail extends Activity {
         tvUsername = (TextView)findViewById(R.id.userName);
         tvbrief = (TextView)findViewById(R.id.club_biref);
         imgClub= (ImageView) findViewById(R.id.club_userImg);
+        member= (LinearLayout) findViewById(R.id.layout_member);
+        member.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = getIntent();
+//                String id = intent.getStringExtra("team_id");
+//                TeamConfig.TeamID = id;
+//                Log.d("jkdshjdshhds",id+"");
+                Intent intent = new Intent(ClubDetail.this, StarList.class);
+                intent.putExtra("type", "4");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
+            }
+        });
 
 
         btn1 = (Button)findViewById(R.id.club_btn1);
@@ -84,9 +100,14 @@ public class ClubDetail extends Activity {
             e.printStackTrace();
         }
 
-        if(check()==false){
+        int flag=check();
+        if(flag==0){
             btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
             btn1.setText("已报名");
+        }
+        else if(flag==2){
+            btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已加入该社团");
         }
         else {
             btn1.setOnClickListener(new View.OnClickListener() {
@@ -170,9 +191,14 @@ public class ClubDetail extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(check()==false){
+        int flag=check();
+        if(flag==0){
             btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
             btn1.setText("已报名");
+        }
+        else if(flag==2){
+            btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已加入该社团");
         }
         else {
             btn1.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +212,7 @@ public class ClubDetail extends Activity {
         }
     }
 
-    private boolean check(){
+    private int check(){
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
         String url = ip.ip+"android/zqx/enroll.php";
@@ -202,11 +228,11 @@ public class ClubDetail extends Activity {
             // products found
             // Getting Array of Products
             int success=json.getInt("success");
-            return success==1?true:false;
+            return success;
 
         } catch (JSONException e) {
             e.printStackTrace();
-            return false;
+            return 0;
         }
 
     }

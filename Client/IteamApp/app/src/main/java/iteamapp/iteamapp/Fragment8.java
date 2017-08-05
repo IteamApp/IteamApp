@@ -46,6 +46,7 @@ public class Fragment8 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     private View view;
     private MessageAdapterClub adapter;
     private ProgressDialog pDialog;
+    private Boolean isFirst=true;
 
     IpConfig ip = new IpConfig();
     JSONParser jParser = new JSONParser();
@@ -103,7 +104,7 @@ public class Fragment8 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
                 // Storing each json item in variable
                 adapter.nameDatas.add(c.getString("user_name"));
-                adapter.infoDatas.add("您好，感谢关注，这里是社团消息");
+                adapter.infoDatas.add(c.getString("message"));
                 adapter.idDatas.add(c.getString("userid"));
                 adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("user_head"));
             }
@@ -148,6 +149,7 @@ public class Fragment8 extends Fragment implements SwipeRefreshLayout.OnRefreshL
          * **/
         protected void onPostExecute(String file_url) {
             mRecyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
             // dismiss the dialog after getting all products
             pDialog.dismiss();
             // updating UI from Background Thread
@@ -155,7 +157,15 @@ public class Fragment8 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         }
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!isFirst){
+            new LoadAll(TeamConfig.TeamID).execute();
+        }
+        isFirst=false;
+        //adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onRefresh() {
@@ -165,7 +175,7 @@ public class Fragment8 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
-                //initdata();
+                initdata(TeamConfig.TeamID);
                 adapter.notifyDataSetChanged();
             }
         }, 1000);

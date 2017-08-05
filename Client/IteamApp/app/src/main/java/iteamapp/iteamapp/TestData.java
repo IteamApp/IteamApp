@@ -52,6 +52,7 @@ public class TestData {
                 JSONObject c = products.getJSONObject(i);
                 // Storing each json item in variable
                 model.setContent(c.getString("message_title"));
+                model.setTime(c.getString("message_time"));
                 model.setIcon("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
                 models.add(new ItemModel(ItemModel.CHAT_A, model));
             }

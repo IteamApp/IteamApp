@@ -91,6 +91,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
             new LoadAllArticle().execute();
         }
         isFirst=false;
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -128,11 +129,14 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
             products = json.getJSONArray("article");
 
 
-            for(int i=0;i<products.length();i++){
+            for(int i=0;i<3;){
                 JSONObject c = products.getJSONObject(i);
                 ImageView image = new ImageView(getActivity());
-                image.setBackground(loadImageFromNetwork("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture")));
-                adapter.imageList.add(image);
+                if(!c.getString("passage_picture").equals("")) {
+                    image.setBackground(loadImageFromNetwork("http://123.206.61.96:8088/android/zqx/" + c.getString("passage_picture")));
+                    adapter.imageList.add(image);
+                    i++;
+                }
             }
 
         } catch (JSONException e) {
@@ -230,6 +234,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
          * **/
         protected void onPostExecute(String file_url) {
             mRecyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
             // dismiss the dialog after getting all products
             pDialog.dismiss();
             // updating UI from Background Thread

@@ -34,8 +34,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -49,6 +51,7 @@ import java.util.List;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
+import iteamapp.iteamapp.Tools.ToastTool;
 import iteamapp.iteamapp.androidrichtexteditor.FileUtils;
 import iteamapp.iteamapp.androidrichtexteditor.RichTextActivity;
 import iteamapp.iteamapp.utils.CustomDiaLog;
@@ -125,10 +128,31 @@ public class SendArticle extends Activity {
             @Override
             public void onClick(View v) {
                 if(role.equals("add")){
-                    submitData();
+                    if(content.getText().toString().equals("")){
+                        ToastTool.show(SendArticle.this,"必须输入文字");
+                    }
+                    else{
+                        if(type.equals("1")){
+                            ToastTool.show(SendArticle.this,"必须选择图片");
+                        }
+                        else {
+                            submitData();
+                        }
+                    }
+
                 }
                 else {
-                updateData();
+                    if(content.getText().toString().equals("")){
+                        ToastTool.show(SendArticle.this,"必须输入文字");
+                    }
+                    else{
+                        if(type.equals("1")){
+                            ToastTool.show(SendArticle.this,"必须选择图片");
+                        }
+                        else {
+                            updateData();
+                        }
+                    }
                 }
             }
         });
@@ -148,6 +172,8 @@ public class SendArticle extends Activity {
             type="2";
             getData();
         }
+
+        mFileUtils = new FileUtils(this);
 
     }
 
@@ -176,16 +202,16 @@ public class SendArticle extends Activity {
            */
     private void crop(Uri uri) {
         // 裁剪图片意图
-        Intent intent = new Intent("com.android.camera.action.CROP");
+        Intent intent = new Intent();
         intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "true");
+        intent.putExtra("crop", "false");
         // 裁剪框的比例，1：1
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         // 裁剪后输出图片的尺寸大小
         intent.putExtra("outputX", 250);
         intent.putExtra("outputY", 250);
-
+//
         intent.putExtra("outputFormat", "JPEG");// 图片格式
         intent.putExtra("noFaceDetection", true);// 取消人脸识别
         intent.putExtra("return-data", true);
@@ -199,13 +225,23 @@ public class SendArticle extends Activity {
         if (requestCode == REQUEST_CODE_PICK_IMAGE) {
             // 从相册返回的数据
             if (data != null) {
-                // 得到图片的全路径
-                Uri uri = data.getData();
-                crop(uri);
+                Uri mImageCaptureUri = data.getData();
+                Bitmap photoBmp = null;
+                if (mImageCaptureUri != null) {
+                    try {
+                        photoBmp = getBitmapFormUri(SendArticle.this, mImageCaptureUri);
+                        addpic.setImageBitmap(photoBmp);
+                        type="2";
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
         else  if(requestCode == REQUEST_CODE_CAPTURE_CAMEIA) {
-            Uri uri = data.getData();
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");// 相片类型
+            startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);;
         }
         else if (requestCode == PHOTO_REQUEST_CUT) {
             // 从剪切图片返回的数据
@@ -228,7 +264,74 @@ public class SendArticle extends Activity {
 
     }
 
+    /**
+     * 通过uri获取图片并进行压缩
+     *
+     * @param uri
+     */
+    public static Bitmap getBitmapFormUri(Activity ac, Uri uri) throws FileNotFoundException, IOException {
+        InputStream input = ac.getContentResolver().openInputStream(uri);
+        BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
+        onlyBoundsOptions.inJustDecodeBounds = true;
+        onlyBoundsOptions.inDither = true;//optional
+        onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
+        BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+        input.close();
+        int originalWidth = onlyBoundsOptions.outWidth;
+        int originalHeight = onlyBoundsOptions.outHeight;
+        if ((originalWidth == -1) || (originalHeight == -1))
+            return null;
+        //图片分辨率以480x800为标准
+        float hh = 800f;//这里设置高度为800f
+        float ww = 480f;//这里设置宽度为480f
+        //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+        int be = 1;//be=1表示不缩放
+        if (originalWidth > originalHeight && originalWidth > ww) {//如果宽度大的话根据宽度固定大小缩放
+            be = (int) (originalWidth / ww);
+        } else if (originalWidth < originalHeight && originalHeight > hh) {//如果高度高的话根据宽度固定大小缩放
+            be = (int) (originalHeight / hh);
+        }
+        if (be <= 0)
+            be = 1;
+        //比例压缩
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inSampleSize = be;//设置缩放比例
+        bitmapOptions.inDither = true;//optional
+        bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
+        input = ac.getContentResolver().openInputStream(uri);
+        Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
+        input.close();
+
+        return compressImage(bitmap);//再进行质量压缩
+    }
+
+    /**
+     * 质量压缩方法
+     *
+     * @param image
+     * @return
+     */
+    public static Bitmap compressImage(Bitmap image) {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 100;
+        while (baos.toByteArray().length / 1024 > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
+            baos.reset();//重置baos即清空baos
+            //第一个参数 ：图片格式 ，第二个参数： 图片质量，100为最高，0为最差  ，第三个参数：保存压缩后的数据的流
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            options -= 10;//每次都减少10
+        }
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
+        return bitmap;
+    }
+
     private void updateData() {
+        Bundle bundle = new Bundle();
+        bundle = this.getIntent().getExtras();
+        String id =bundle.getString("id");
+
         String b64="";
 
         if(!type.equals("1")) {
@@ -248,12 +351,12 @@ public class SendArticle extends Activity {
 
         JSONArray products = null;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
+        params.add(new BasicNameValuePair("id",id));
         params.add(new BasicNameValuePair("title", ""));
         params.add(new BasicNameValuePair("content", content.getText().toString()));
         params.add(new BasicNameValuePair("picture", b64));
         // getting JSON string from URL
-        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+        JSONObject json = jParser.makeHttpRequest(url, "POST", params);
 
         String showContent = "修改成功！";
         Toast.makeText(SendArticle.this, showContent, Toast.LENGTH_SHORT).show();

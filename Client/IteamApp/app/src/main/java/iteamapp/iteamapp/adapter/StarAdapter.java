@@ -94,11 +94,11 @@ public  class StarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
                     else if (type.equals("4")){
-                        String pid = idDatas.get(position);
-                        Intent in = new Intent(((Activity) context), personal.class);
-                        userConfig.userID=pid;
-                        context.startActivity(in);
-                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//                        String pid = idDatas.get(position);
+//                        Intent in = new Intent(((Activity) context), personal.class);
+//                        userConfig.userID=pid;
+//                        context.startActivity(in);
+//                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
                     else {
                         String pid = idDatas.get(position);

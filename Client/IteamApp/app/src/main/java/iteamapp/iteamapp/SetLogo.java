@@ -1,5 +1,6 @@
 package iteamapp.iteamapp;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -46,7 +47,7 @@ import iteamapp.iteamapp.androidrichtexteditor.FileUtils;
 import iteamapp.iteamapp.androidrichtexteditor.RichTextActivity;
 
 
-public class SetLogo extends AppCompatActivity {
+public class SetLogo extends Activity {
 
     private static final int REQUEST_CODE_WRITE_CONTACTS =1 ;
     private final int REQUEST_CODE_CAPTURE_CAMEIA = 100;
@@ -103,7 +104,6 @@ public class SetLogo extends AppCompatActivity {
                 // 激活系统图库，选择一张图
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_GALLERY
                 startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
             }
         });
@@ -271,11 +271,16 @@ public class SetLogo extends AppCompatActivity {
             if (data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
+                Log.d("uri",uri+"");
                 crop(uri);
             }
         }
-        else  if(requestCode == REQUEST_CODE_CAPTURE_CAMEIA) {
-            Uri uri = data.getData();
+        else if (requestCode == REQUEST_CODE_CAPTURE_CAMEIA) {
+//            Log.d("ppppppp",mCameraImageFile.getAbsolutePath());
+//            photo.setImageBitmap(getSDCardImg(mCameraImageFile.getAbsolutePath()));
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
         }
         else if (requestCode == PHOTO_REQUEST_CUT) {
             // 从剪切图片返回的数据
@@ -293,6 +298,22 @@ public class SetLogo extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
 
+    }
+
+    /**
+     * 以最省内存的方式读取本地资源的图片 或者SDCard中的图片
+     * @param imagePath
+     * 图片在SDCard中的路径
+     * @return
+     */
+    public static Bitmap getSDCardImg(String imagePath)
+    {
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inPreferredConfig = Bitmap.Config.RGB_565;
+        opt.inPurgeable = true;
+        opt.inInputShareable = true;
+//获取资源图片
+        return BitmapFactory.decodeFile(imagePath, opt);
     }
 
     /**
@@ -329,6 +350,8 @@ public class SetLogo extends AppCompatActivity {
         }
         return result;
     }
+
+
 
 
 }

@@ -49,6 +49,8 @@ public class LoginActivity extends Activity {
     JSONArray products = null;
     Handler handler;
 
+    private Boolean isOk=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,8 +110,7 @@ public class LoginActivity extends Activity {
             // getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 
-            // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
+
 
             try {
                 // products found
@@ -140,10 +141,7 @@ public class LoginActivity extends Activity {
                         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
                 } else {
-                    pDialog.setMessage("用户名或密码错误");
-//                        Log.d("dsjk", "fail");
-//                    Toast.makeText(getApplicationContext(), "用户名或密码错误",
-//                           Toast.LENGTH_SHORT).show();
+                    isOk=true;
 
                 }
 
@@ -157,6 +155,10 @@ public class LoginActivity extends Activity {
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
+            if(isOk){
+                String showContent = "用户名或密码错误！";
+                Toast.makeText(LoginActivity.this,showContent,Toast.LENGTH_SHORT).show();
+            }
             // dismiss the dialog after getting all products
             pDialog.dismiss();
             // updating UI from Background Thread

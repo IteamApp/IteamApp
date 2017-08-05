@@ -77,11 +77,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BaseAdapter> {
     private class ChatAViewHolder extends BaseAdapter {
         private ImageView ic_user;
         private TextView tv;
+        private TextView time;
 
         public ChatAViewHolder(View view) {
             super(view);
             ic_user = (ImageView) itemView.findViewById(R.id.ic_user);
             tv = (TextView) itemView.findViewById(R.id.tv);
+            time= (TextView) itemView.findViewById(R.id.chat_time);
         }
 
         @Override
@@ -90,17 +92,20 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BaseAdapter> {
             ChatModel model = (ChatModel) object;
             Picasso.with(itemView.getContext()).load(model.getIcon()).placeholder(R.mipmap.ic_launcher).into(ic_user);
             tv.setText(model.getContent());
+            time.setText(model.getTime());
         }
     }
 
     private class ChatBViewHolder extends BaseAdapter {
         private ImageView ic_user;
         private TextView tv;
+        private TextView time;
 
         public ChatBViewHolder(View view) {
             super(view);
             ic_user = (ImageView) itemView.findViewById(R.id.ic_user);
             tv = (TextView) itemView.findViewById(R.id.tv);
+            time= (TextView) itemView.findViewById(R.id.chat_time);
 
         }
 
@@ -110,6 +115,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BaseAdapter> {
             ChatModel model = (ChatModel) object;
             Picasso.with(itemView.getContext()).load(model.getIcon()).placeholder(R.mipmap.ic_launcher).into(ic_user);
             tv.setText(model.getContent());
+            time.setText(model.getTime());
         }
     }
 }

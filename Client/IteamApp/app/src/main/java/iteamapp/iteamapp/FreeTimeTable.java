@@ -99,7 +99,7 @@ public class FreeTimeTable extends Activity {
 
         for(int i=0;i<6;i++) {
             for (int j = 0; j < 7; j++) {
-                if(contents[i][j].equals("")){
+                    if(contents[i][j].length()<=1){
                     info+=(j+1)+"."+(i+1)+";";
                 }
             }

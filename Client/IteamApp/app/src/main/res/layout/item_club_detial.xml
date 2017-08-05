@@ -46,17 +46,6 @@
             android:textColor="#333333"
             />
 
-        <TextView
-            android:id="@+id/userIntro"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="用自己的指挥、思想、热情创造未来"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center"
-            android:textSize="16dp"
-            android:textColor="#808080"
-            />
         </LinearLayout>
 
 
@@ -101,6 +90,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/layout_member"
             android:orientation="horizontal"
             android:layout_height="45dp"
             android:layout_width="match_parent"

@@ -169,35 +169,4 @@
 
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/service"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="联系客服"
-            android:textColor="#b0b8b2"
-            android:textSize="14dp" />
-        <View
-            android:layout_width="1dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="#eeeeee"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="关于我们"
-            android:textColor="#b0b8b2"
-            android:textSize="14dp" />
-    </LinearLayout>
-
 </RelativeLayout>

@@ -3,9 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:padding="10dp">
 
+    <TextView
+        android:id="@+id/chat_time"
+        android:paddingBottom="50dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2017-8-02 23:22"/>
+
+
     <iteamapp.iteamapp.circleimageview.CircleImageView
+        android:paddingTop="15dp"
         android:id="@+id/ic_user"
         app:border_color="#E0E0E0"
         app:border_width="2dp"
@@ -14,6 +27,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:src="@mipmap/ic_launcher" />
+
+
 
     <TextView
         android:id="@+id/tv"
@@ -30,6 +45,7 @@
         android:paddingTop="6dp"
         android:text="111"
         android:textColor="#FFFFFF" />
+
 
 
 </RelativeLayout>

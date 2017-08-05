@@ -101,7 +101,7 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
                 // Storing each json item in variable
                 adapter.nameDatas.add(c.getString("team_name"));
-                adapter.infoDatas.add("您好，感谢关注，这里是社团消息");
+                adapter.infoDatas.add(c.getString("message"));
                 adapter.idDatas.add(c.getString("team_id"));
                 adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
             }

@@ -90,9 +90,15 @@ public class News extends Activity {
         }
 
 
-        if(check()==false){
+        int flag=check();
+        Log.d("check",flag+"");
+        if(flag==0){
             btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
             btn1.setText("已报名");
+        }
+        else if(flag==2){
+            btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已加入该社团");
         }
         else {
             btn1.setOnClickListener(new View.OnClickListener() {
@@ -131,9 +137,14 @@ public class News extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(check()==false){
+        int flag=check();
+        if(flag==0){
             btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
             btn1.setText("已报名");
+        }
+        else if(flag==2){
+            btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已加入该社团");
         }
         else {
             btn1.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +194,7 @@ public class News extends Activity {
         }
     }
 
-    private boolean check(){
+    private int check(){
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
         String url = ip.ip+"android/zqx/enroll.php";
@@ -199,11 +210,11 @@ public class News extends Activity {
             // products found
             // Getting Array of Products
             int success=json.getInt("success");
-            return success==1?true:false;
+            return success;
 
         } catch (JSONException e) {
             e.printStackTrace();
-            return false;
+            return 0;
         }
 
     }

@@ -37,6 +37,7 @@ import java.util.List;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
+import iteamapp.iteamapp.Tools.ToastTool;
 import iteamapp.iteamapp.Tools.userConfig;
 
 /**
@@ -96,8 +97,6 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         txtFreeTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Intent in = new Intent(getActivity(),FreeTimeTable.class);
                 getActivity().startActivity(in);
                 getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -109,13 +108,15 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         star.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), StarList.class);
-                intent.putExtra("type","2");
-
-                getActivity().startActivity(intent);
-
-                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                if(!starNum.getText().toString().equals("0")) {
+                    Intent intent = new Intent(getActivity(), StarList.class);
+                    intent.putExtra("type", "2");
+                    getActivity().startActivity(intent);
+                    getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }
+                else{
+                    ToastTool.show(getActivity(),"您还没有关注社团，快去关注吧！");
+                }
 
             }
         });
@@ -124,14 +125,15 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         club.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), StarList.class);
-                intent.putExtra("type","1");
-
-                getActivity().startActivity(intent);
-
-                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-
+                if(!teamNum.getText().toString().equals("0")) {
+                    Intent intent = new Intent(getActivity(), StarList.class);
+                    intent.putExtra("type", "1");
+                    getActivity().startActivity(intent);
+                    getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }
+                else{
+                    ToastTool.show(getActivity(),"您还没有加入社团，快去报名吧！");
+                }
             }
         });
 
@@ -139,14 +141,15 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), StarList.class);
-                intent.putExtra("type","3");
-
-                getActivity().startActivity(intent);
-
-                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-
+                if(!signNum.getText().toString().equals("0")) {
+                    Intent intent = new Intent(getActivity(), StarList.class);
+                    intent.putExtra("type", "3");
+                    getActivity().startActivity(intent);
+                    getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }
+                else{
+                    ToastTool.show(getActivity(),"您还没有报名社团，快去报名吧！");
+                }
             }
         });
 

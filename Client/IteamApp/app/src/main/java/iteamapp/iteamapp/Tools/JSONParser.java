@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,6 +21,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import static org.apache.http.params.CoreProtocolPNames.HTTP_CONTENT_CHARSET;
 
 public class JSONParser {
 
@@ -42,11 +45,14 @@ public class JSONParser {
 
 			// check for request method
 			if(method == "POST"){
+
 				// request method is POST
 				// defaultHttpClient
 				DefaultHttpClient httpClient = new DefaultHttpClient();
 				HttpPost httpPost = new HttpPost(url);
-				httpPost.setEntity(new UrlEncodedFormEntity(params));
+				httpPost.getParams().setParameter(HTTP_CONTENT_CHARSET,"utf-8");
+				httpPost.setEntity(new UrlEncodedFormEntity(params,HTTP.UTF_8));
+
 
 				HttpResponse httpResponse = httpClient.execute(httpPost);
 				HttpEntity httpEntity = httpResponse.getEntity();
@@ -60,6 +66,7 @@ public class JSONParser {
 
 				Log.d("url",url);
 				HttpGet httpGet = new HttpGet(url);
+				httpGet.getParams().setParameter(HTTP_CONTENT_CHARSET,"utf-8");
 
 				HttpResponse httpResponse = httpClient.execute(httpGet);
 				HttpEntity httpEntity = httpResponse.getEntity();

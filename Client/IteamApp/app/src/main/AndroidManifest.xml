@@ -35,7 +35,8 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".MainActivity_Club">
+        <activity android:name=".MainActivity_Club"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,103 +45,131 @@
         </activity>
 
         <activity android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+
 
 
 
         </activity>
 
         <activity android:name=".FreeTimeTable"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity android:name=".ChatActivityClub"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity android:name=".StarListAction"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
         <activity android:name=".FreeTimePerson"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity android:name=".SetTime"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity android:name=".FreeTimeTableClub"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity android:name=".SendMessage"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity android:name=".LoginActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             >
+
+
         </activity>
 
         <activity android:name=".personal_edit"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
         <activity android:name=".News"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
-        <activity android:name=".ClubDetail">
+        <activity android:name=".ClubDetail"
+            android:screenOrientation="portrait" >
 
         </activity>
-        <activity android:name=".personal">
+        <activity android:name=".personal"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity android:name=".StarList"
             android:label="My Application"
+            android:screenOrientation="portrait"
             >
         </activity>
         <activity android:name=".enroll"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
         <activity android:name=".PersonEnroll"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
         <activity android:name=".SetLogo"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
 
         <activity android:name=".ChatActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" ></activity>
 
         <activity android:name=".androidrichtexteditor.RichTextActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity android:name=".SendArticle"
-            android:label="@string/app_name">
-
-
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
 
         </activity>
 
+        <activity android:name=".club_edit"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <activity android:name=".NewsClub"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 

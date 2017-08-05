@@ -38,6 +38,7 @@ import java.util.List;
 
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
+import iteamapp.iteamapp.Tools.userConfig;
 import iteamapp.iteamapp.adapter.MyPageAdapter;
 
 
@@ -53,12 +54,11 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     private View view;
     private MyPageAdapter adapter;
 
-    private String userID;
-
     IpConfig ip = new IpConfig();
     JSONParser jParser = new JSONParser();
     private  String url = ip.ip+"android/zqx/getArticle.php";
     JSONArray products = null;
+    private Boolean isFirst=true;
 
 
 
@@ -68,15 +68,23 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         view = inflater.inflate(R.layout.fragment1, container, false);
         //Intent intent=getActivity().getIntent();
        // userID=intent.getStringExtra("username");
-        userID="15020031000";
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        adapter = new MyPageAdapter(getContext(),userID);
+        adapter = new MyPageAdapter(getContext(), userConfig.userID);
 
-        new LoadAllArticle(userID,"1").execute();
+        new LoadAllArticle(userConfig.userID,"1").execute();
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!isFirst){
+            new LoadAllArticle(userConfig.userID,"1").execute();
+        }
+        isFirst=false;
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -113,11 +121,14 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             products = json.getJSONArray("article");
 
 
-            for(int i=0;i<products.length();i++){
+            for(int i=0;i<3;){
                 JSONObject c = products.getJSONObject(i);
                 ImageView image = new ImageView(getActivity());
-                image.setBackground(loadImageFromNetwork("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture")));
-                adapter.imageList.add(image);
+                if(!c.getString("passage_picture").equals("")) {
+                    image.setBackground(loadImageFromNetwork("http://123.206.61.96:8088/android/zqx/" + c.getString("passage_picture")));
+                    adapter.imageList.add(image);
+                    i++;
+                }
             }
 
         } catch (JSONException e) {
@@ -197,7 +208,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
-                //initdata();
+                initdata(userConfig.userID,"1");
                 adapter.notifyDataSetChanged();
 
             }
