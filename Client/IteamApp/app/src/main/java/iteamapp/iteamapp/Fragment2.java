@@ -165,7 +165,7 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
-                //initdata();
+                initdata(userConfig.userID,"2");
                 adapter.notifyDataSetChanged();
             }
         }, 1000);

@@ -157,15 +157,15 @@ public class Fragment8 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(!isFirst){
-            new LoadAll(TeamConfig.TeamID).execute();
-        }
-        isFirst=false;
-        //adapter.notifyDataSetChanged();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        if(!isFirst){
+//            new LoadAll(TeamConfig.TeamID).execute();
+//        }
+//        isFirst=false;
+//        //adapter.notifyDataSetChanged();
+//    }
 
     @Override
     public void onRefresh() {

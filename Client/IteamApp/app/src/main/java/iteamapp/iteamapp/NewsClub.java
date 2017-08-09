@@ -110,6 +110,7 @@ public class NewsClub extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        initData();
     }
 
     public void showDailog() {

@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,15 +85,15 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(!isFirst){
-            new LoadAllArticle().execute();
-        }
-        isFirst=false;
-        adapter.notifyDataSetChanged();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        if(!isFirst){
+//            new LoadAllArticle().execute();
+//        }
+//        isFirst=false;
+//        adapter.notifyDataSetChanged();
+//    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -149,9 +150,11 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
     {
         Drawable drawable = null;
         try {
+            InputStream is=new URL(imageUrl).openStream();
             // 可以在这里通过文件名来判断，是否本地有此图片
-            drawable = Drawable.createFromStream(
-                    new URL(imageUrl).openStream(), "image.jpg");
+            drawable = Drawable.createFromStream(is,"image.jpg");
+            is.close();
+
         } catch (IOException e) {
             Log.d("test", e.getMessage());
         }

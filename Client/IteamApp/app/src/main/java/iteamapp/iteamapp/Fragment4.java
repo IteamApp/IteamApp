@@ -168,15 +168,15 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initData();
-
-        starNum.setText(InitTeam("2"));
-        teamNum.setText(InitTeam("1"));
-        signNum.setText(InitTeam("3"));
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        initData();
+//
+//        starNum.setText(InitTeam("2"));
+//        teamNum.setText(InitTeam("1"));
+//        signNum.setText(InitTeam("3"));
+//    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

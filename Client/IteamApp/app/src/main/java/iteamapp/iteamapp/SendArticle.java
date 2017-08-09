@@ -2,6 +2,7 @@ package iteamapp.iteamapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -64,6 +66,7 @@ import static iteamapp.iteamapp.R.drawable.icon_addpic_focused;
  */
 
 public class SendArticle extends Activity {
+    private ProgressDialog progressDialog;
 
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
@@ -136,7 +139,13 @@ public class SendArticle extends Activity {
                             ToastTool.show(SendArticle.this,"必须选择图片");
                         }
                         else {
-                            submitData();
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    submitData();
+                                }
+                            }).start();
+
                         }
                     }
 
@@ -150,7 +159,10 @@ public class SendArticle extends Activity {
                             ToastTool.show(SendArticle.this,"必须选择图片");
                         }
                         else {
-                            updateData();
+
+                            new update().execute();
+
+
                         }
                     }
                 }
@@ -311,7 +323,7 @@ public class SendArticle extends Activity {
      * @param image
      * @return
      */
-    public static Bitmap compressImage(Bitmap image) {
+    public static Bitmap compressImage(Bitmap image) throws IOException {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
@@ -324,7 +336,94 @@ public class SendArticle extends Activity {
         }
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
+        isBm.close();
         return bitmap;
+    }
+
+    /**
+     * Background Async Task to Load all product by making HTTP Request
+     * */
+    class update extends AsyncTask<String, String, String> {
+
+
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(SendArticle.this);
+            progressDialog.setMessage("正在加载，请稍后...");
+            progressDialog.setIndeterminate(false);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        /**
+         * getting All products from url
+         * */
+        protected String doInBackground(String... args) {
+            updateData();
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        protected void onPostExecute(String file_url) {
+
+            progressDialog.dismiss();
+            String showContent = "修改成功！";
+            Toast.makeText(SendArticle.this, showContent, Toast.LENGTH_SHORT).show();
+
+            finish();
+
+            // updating UI from Background Thread
+
+        }
+    }
+
+    /**
+     * Background Async Task to Load all product by making HTTP Request
+     * */
+    class submit extends AsyncTask<String, String, String> {
+
+
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(SendArticle.this);
+            progressDialog.setMessage("正在操作，请稍后...");
+            progressDialog.setIndeterminate(false);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        /**
+         * getting All products from url
+         * */
+        protected String doInBackground(String... args) {
+            submitData();
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        protected void onPostExecute(String file_url) {
+
+            progressDialog.dismiss();
+            String showContent = "发布成功！";
+            Toast.makeText(SendArticle.this, showContent, Toast.LENGTH_SHORT).show();
+
+            finish();
+
+            // updating UI from Background Thread
+
+        }
     }
 
     private void updateData() {
@@ -358,10 +457,6 @@ public class SendArticle extends Activity {
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "POST", params);
 
-        String showContent = "修改成功！";
-        Toast.makeText(SendArticle.this, showContent, Toast.LENGTH_SHORT).show();
-
-        finish();
 
     }
 
@@ -510,10 +605,10 @@ public class SendArticle extends Activity {
             // getting JSON string from URL
             JSONObject json = jParser.makeHttpRequest(url, "POST", params);
 
-            String showContent = "发布成功！";
-            Toast.makeText(SendArticle.this,showContent,Toast.LENGTH_SHORT).show();
-
-            finish();
+//            String showContent = "发布成功！";
+//            Toast.makeText(SendArticle.this,showContent,Toast.LENGTH_SHORT).show();
+//
+//            finish();
     }
 
     public static String bitmapToBase64(Bitmap bitmap) {
@@ -566,6 +661,24 @@ public class SendArticle extends Activity {
             e.printStackTrace();
         }
         return bitmap;
+    }
+
+    // 显示加载框
+    private void showProgressDialog() {
+
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(SendArticle.this);
+            progressDialog.setMessage("正在加载...");
+            progressDialog.setCanceledOnTouchOutside(false);
+        }
+        progressDialog.show();
+    }
+
+    // 关闭加载框
+    private void closeProgressDialog() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 
 }

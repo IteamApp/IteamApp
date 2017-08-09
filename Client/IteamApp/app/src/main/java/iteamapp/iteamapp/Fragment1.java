@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -53,6 +54,8 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private View view;
     private MyPageAdapter adapter;
+    private TextView nopeople;
+    private Boolean no=false;
 
     IpConfig ip = new IpConfig();
     JSONParser jParser = new JSONParser();
@@ -68,6 +71,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         view = inflater.inflate(R.layout.fragment1, container, false);
         //Intent intent=getActivity().getIntent();
        // userID=intent.getStringExtra("username");
+        nopeople= (TextView) view.findViewById(R.id.no_people );
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         adapter = new MyPageAdapter(getContext(), userConfig.userID);
@@ -76,15 +80,15 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(!isFirst){
-            new LoadAllArticle(userConfig.userID,"1").execute();
-        }
-        isFirst=false;
-        adapter.notifyDataSetChanged();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        if(!isFirst){
+//            new LoadAllArticle(userConfig.userID,"1").execute();
+//        }
+//        isFirst=false;
+//        adapter.notifyDataSetChanged();
+//    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -164,17 +168,23 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             // Getting Array of Products
             products = json.getJSONArray("article");
 
-            // looping through All Products
-            for (int i = 0; i < products.length(); i++) {
-                JSONObject c = products.getJSONObject(i);
+            if(products.length()==0){
+                no=true;
+            }
+            else {
 
-                // Storing each json item in variable
-                adapter.nameDatas.add(c.getString("team_name"));
-                adapter.infoDatas.add(c.getString("passage_content"));
-                adapter.timeDatas.add(c.getString("passage_time"));
-                adapter.imgDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"));
-                adapter.idDatas.add(c.getString("id"));
-                adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
+                // looping through All Products
+                for (int i = 0; i < products.length(); i++) {
+                    JSONObject c = products.getJSONObject(i);
+
+                    // Storing each json item in variable
+                    adapter.nameDatas.add(c.getString("team_name"));
+                    adapter.infoDatas.add(c.getString("passage_content"));
+                    adapter.timeDatas.add(c.getString("passage_time"));
+                    adapter.imgDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("passage_picture"));
+                    adapter.idDatas.add(c.getString("id"));
+                    adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("team_logo"));
+                }
             }
 
         } catch (JSONException e) {
@@ -259,6 +269,8 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             mRecyclerView.setAdapter(adapter);
             // dismiss the dialog after getting all products
             pDialog.dismiss();
+            if(no==true)
+                nopeople.setVisibility(View.VISIBLE);
             // updating UI from Background Thread
 
         }

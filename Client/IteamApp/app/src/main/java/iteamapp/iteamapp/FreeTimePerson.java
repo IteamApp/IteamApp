@@ -51,6 +51,9 @@ public class FreeTimePerson extends Activity {
     private ImageView mBack;
     private TextView tvTitle;
     private ProgressDialog pDialog;
+    private TextView nopeople;
+
+    private Boolean no=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class FreeTimePerson extends Activity {
 
         mBack = (ImageView) findViewById(R.id.msg_menu_back);
         tvTitle= (TextView) findViewById(R.id.top_msg_title);
+        nopeople= (TextView) findViewById(R.id.no_people);
         tvTitle.setText("值班详情");
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,16 +111,21 @@ public class FreeTimePerson extends Activity {
             // products found
             // Getting Array of Products
             products = json.getJSONArray("people");
+            if(products.length()==0){
+                no=true;
+            }
+           else {
 
-            // looping through All Products
-            for (int i = 0; i < products.length(); i++) {
-                JSONObject c = products.getJSONObject(i);
+                // looping through All Products
+                for (int i = 0; i < products.length(); i++) {
+                    JSONObject c = products.getJSONObject(i);
 
-                // Storing each json item in variable
-                adapter.nameDatas.add(c.getString("username"));
-                adapter.tagDatas.add(c.getString("tag"));
-                adapter.idDatas.add(c.getString("user_stunum"));
-                adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("userlogo"));
+                    // Storing each json item in variable
+                    adapter.nameDatas.add(c.getString("username"));
+                    adapter.tagDatas.add(c.getString("tag"));
+                    adapter.idDatas.add(c.getString("user_stunum"));
+                    adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("userlogo"));
+                }
             }
 
         } catch (JSONException e) {
@@ -164,6 +173,8 @@ public class FreeTimePerson extends Activity {
             recyclerView.setAdapter(adapter);
             // dismiss the dialog after getting all products
             pDialog.dismiss();
+            if(no==true)
+                nopeople.setVisibility(View.VISIBLE);
             // updating UI from Background Thread
 
         }

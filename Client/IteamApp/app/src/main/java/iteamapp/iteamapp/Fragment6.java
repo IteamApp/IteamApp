@@ -8,11 +8,13 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -46,6 +48,7 @@ import java.util.List;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
+import iteamapp.iteamapp.Tools.ToastTool;
 import iteamapp.iteamapp.Tools.userConfig;
 import iteamapp.iteamapp.androidrichtexteditor.FileUtils;
 import iteamapp.iteamapp.runtimepermissions.PermissionsManager;
@@ -55,7 +58,7 @@ import iteamapp.iteamapp.utils.CustomDiaLog;
 /**
  * Created by HongJay on 2016/8/11.
  */
-public class Fragment6 extends Fragment {
+public class Fragment6 extends Fragment  implements SwipeRefreshLayout.OnRefreshListener{
 //    private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
 //    private static final int PHOTO_REQUEST_CUT = 3;// 结果
 //    private ImageView photo,photo2;
@@ -81,6 +84,7 @@ public class Fragment6 extends Fragment {
     private TextView username;
     private ImageView userimg;
     private Button btnExit;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Nullable
     @Override
@@ -141,14 +145,16 @@ public class Fragment6 extends Fragment {
         club.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                if(!teamNum.getText().equals("0")) {
 
-                Intent intent = new Intent(getActivity(), StarListAction.class);
-                intent.putExtra("type","4");
-
-                getActivity().startActivity(intent);
-
-                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-
+                    Intent intent = new Intent(getActivity(), StarListAction.class);
+                    intent.putExtra("type", "4");
+                    getActivity().startActivity(intent);
+                    getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }
+                else{
+                    ToastTool.show(getContext(),"还没有社团成员，快去宣传吧~");
+                }
             }
         });
 
@@ -156,14 +162,16 @@ public class Fragment6 extends Fragment {
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                if(!signNum.getText().equals("0")) {
 
-                Intent intent = new Intent(getActivity(), StarListAction.class);
-                intent.putExtra("type","6");
-
-                getActivity().startActivity(intent);
-
-                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-
+                    Intent intent = new Intent(getActivity(), StarListAction.class);
+                    intent.putExtra("type", "6");
+                    getActivity().startActivity(intent);
+                    getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }
+                else{
+                    ToastTool.show(getContext(),"还没有人报名，快去宣传吧~");
+                }
             }
         });
 
@@ -171,6 +179,7 @@ public class Fragment6 extends Fragment {
         topersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getActivity(), club_edit.class);
                 getActivity().startActivity(intent);
                 getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -186,21 +195,26 @@ public class Fragment6 extends Fragment {
                 getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
+        teamNum.setText(InitMember("4"));
+        signNum.setText(InitMember("6"));
+        InitData();
 
 
         return view;
 
     }
 
-
     @Override
-    public void onResume() {
-        super.onResume();
-
-        teamNum.setText(InitMember("4"));
-        signNum.setText(InitMember("6"));
-        InitData();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.my_swiperefreshlayout);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.blue, R.color.black);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
     }
+
+
+
+
 
     private void InitData(){
         IpConfig ip = new IpConfig();
@@ -347,5 +361,22 @@ public class Fragment6 extends Fragment {
 //        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 //        window.setAttributes(lp);
 //    }
+
+    @Override
+    public void onRefresh() {
+
+        // 刷新时模拟数据的变化
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+                //initdata();
+                teamNum.setText(InitMember("4"));
+                signNum.setText(InitMember("6"));
+                InitData();
+            }
+        }, 1000);
+
+    }
 
 }
