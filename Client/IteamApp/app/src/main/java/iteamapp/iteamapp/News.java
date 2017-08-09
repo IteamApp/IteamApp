@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -91,14 +92,26 @@ public class News extends Activity {
 
 
         int flag=check();
-        Log.d("check",flag+"");
         if(flag==0){
-            btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
-            btn1.setText("已报名");
+            //btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已报名,点击取消报名");
+            btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitData("5");
+                }
+            });
         }
         else if(flag==2){
-            btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
-            btn1.setText("已加入该社团");
+            //btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已加入该社团,点击退出社团");
+            btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitData("4");
+
+                }
+            });
         }
         else {
             btn1.setOnClickListener(new View.OnClickListener() {
@@ -139,12 +152,25 @@ public class News extends Activity {
         }
         int flag=check();
         if(flag==0){
-            btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
-            btn1.setText("已报名");
+            //btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已报名,点击取消报名");
+            btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitData("5");
+                }
+            });
         }
         else if(flag==2){
-            btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
-            btn1.setText("已加入该社团");
+           // btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+            btn1.setText("已加入该社团,点击退出社团");
+            btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitData("4");
+
+                }
+            });
         }
         else {
             btn1.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +182,27 @@ public class News extends Activity {
                 }
             });
         }
+    }
+
+    private void submitData(String type){
+        IpConfig ip = new IpConfig();
+        JSONParser jParser = new JSONParser();
+        String url = ip.ip+"android/zqx/acceptEnroll.php";
+        JSONArray products = null;
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("id", userConfig.userID));
+        params.add(new BasicNameValuePair("team_id", TeamConfig.TeamID));
+        params.add(new BasicNameValuePair("type", type));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+        // Check your log cat for JSON reponse
+        Log.d("All Products: ", json.toString());
+
+        String showContent = "操作成功";
+        Toast.makeText(News.this, showContent, Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private void initData(){

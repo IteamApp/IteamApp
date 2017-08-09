@@ -80,15 +80,6 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         return view;
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        if(!isFirst){
-//            new LoadAllArticle(userConfig.userID,"1").execute();
-//        }
-//        isFirst=false;
-//        adapter.notifyDataSetChanged();
-//    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -153,7 +144,6 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         adapter.timeDatas = new ArrayList<String>();
 
 
-
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", usercode));
         params.add(new BasicNameValuePair("type", type));
@@ -163,15 +153,23 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         // Check your log cat for JSON reponse
         Log.d("All Products: ", json.toString());
 
-        try {
-            // products found
-            // Getting Array of Products
-            products = json.getJSONArray("article");
 
-            if(products.length()==0){
-                no=true;
-            }
-            else {
+        try {
+
+            int success = json.getInt("success");
+            if (success == 0) {
+                no = true;
+                nopeople.setVisibility(View.VISIBLE);
+                String text="\n\n\n 还没有社团信息，快去逛逛吧~~~";
+                nopeople.setText(text);
+            } else {
+                nopeople.setVisibility(View.INVISIBLE);
+
+                // products found
+                // Getting Array of Products
+                products = json.getJSONArray("article");
+
+
 
                 // looping through All Products
                 for (int i = 0; i < products.length(); i++) {
@@ -269,8 +267,10 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             mRecyclerView.setAdapter(adapter);
             // dismiss the dialog after getting all products
             pDialog.dismiss();
-            if(no==true)
-                nopeople.setVisibility(View.VISIBLE);
+            if(no==true) {
+
+            }
+
             // updating UI from Background Thread
 
         }

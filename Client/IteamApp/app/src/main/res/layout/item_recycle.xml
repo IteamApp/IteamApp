@@ -15,6 +15,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@id/no_people"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="还没有加入社团，快去逛逛吧~~~"
+            android:gravity="center"
+            android:textSize="18sp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,11 +57,7 @@
                 android:textSize="16sp"
                 android:textColor="#333333"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/recycle_pid"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
+
 
             <TextView
                 android:id="@+id/recycle_info"
@@ -78,7 +83,11 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="棒冰行动，公益传播设计夏令营棒冰行动，棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营,公益传播设计夏令营棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营棒冰行动，公益传播设计夏令营" />
-
+        <TextView
+            android:id="@+id/recycle_pid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
         <ImageView
             android:id="@+id/img_article"
             android:layout_marginTop="5dp"

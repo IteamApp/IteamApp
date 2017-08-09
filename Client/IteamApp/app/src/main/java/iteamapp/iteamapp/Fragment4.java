@@ -162,6 +162,11 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             }
         });
 
+        initData();
+        starNum.setText(InitTeam("2"));
+        teamNum.setText(InitTeam("1"));
+        signNum.setText(InitTeam("3"));
+
 
 
         return view;
@@ -196,6 +201,7 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
                 //initdata();
+                initData();
                 starNum.setText(InitTeam("2"));
                 teamNum.setText(InitTeam("1"));
                 signNum.setText(InitTeam("3"));

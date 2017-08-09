@@ -68,6 +68,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private RadioButton mButton3;
     private RadioGroup rgGroup;
     private int Flag=0;
+    private Boolean no=false;
 
     private ProgressDialog pDialog;
 
@@ -151,29 +152,51 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             });
         }
         if (holder instanceof MyBodyViewHolder) {
-            ((MyBodyViewHolder) holder).tv.setText(nameDatas.get(position-2));
-            ((MyBodyViewHolder) holder).tvinfo.setText(timeDatas.get(position-2));
-            ((MyBodyViewHolder) holder).tvmore.setText(infoDatas.get(position-2));
-            ((MyBodyViewHolder) holder).img_article.setImageBitmap(returnBitMap(imgDatas.get(position-2)));
-            ((MyBodyViewHolder) holder).imglogo.setImageBitmap(returnBitMap(logoDatas.get(position-2)));
-            ((MyBodyViewHolder) holder).tvid.setText(idDatas.get(position-2));
+            if(no==true){
 
-        }
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                if (position > 1) {
-                    String pid = idDatas.get(position - 2);
-                    Intent in = new Intent(((Activity)context), News.class);
-                    in.putExtra(TAG_PID, pid);
-                    context.startActivity(in);
-                    ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                }
+                ((MyBodyViewHolder) holder).tvno.setText("还没有社团信息，快去逛逛吧~~~");
+                ((MyBodyViewHolder) holder).tvno.setVisibility(View.VISIBLE);
+                ((MyBodyViewHolder) holder).tv.setVisibility(View.INVISIBLE);
+                ((MyBodyViewHolder) holder).tvinfo.setVisibility(View.INVISIBLE);
+                ((MyBodyViewHolder) holder).tvmore.setVisibility(View.INVISIBLE);
+                ((MyBodyViewHolder) holder).img_article.setVisibility(View.INVISIBLE);
+                ((MyBodyViewHolder) holder).imglogo.setVisibility(View.INVISIBLE);
+                ((MyBodyViewHolder) holder).tvid.setVisibility(View.INVISIBLE);
+                no=false;
+            }
+            else {
+                ((MyBodyViewHolder) holder).tvno.setText("");
+                ((MyBodyViewHolder) holder).tvno.setVisibility(View.INVISIBLE);
+                ((MyBodyViewHolder) holder).tv.setVisibility(View.VISIBLE);
+                ((MyBodyViewHolder) holder).tvinfo.setVisibility(View.VISIBLE);
+                ((MyBodyViewHolder) holder).tvmore.setVisibility(View.VISIBLE);
+                ((MyBodyViewHolder) holder).img_article.setVisibility(View.VISIBLE);
+                ((MyBodyViewHolder) holder).imglogo.setVisibility(View.VISIBLE);
+                ((MyBodyViewHolder) holder).tvid.setVisibility(View.INVISIBLE);
+                ((MyBodyViewHolder) holder).tv.setText(nameDatas.get(position - 2));
+                ((MyBodyViewHolder) holder).tvinfo.setText(timeDatas.get(position - 2));
+                ((MyBodyViewHolder) holder).tvmore.setText(infoDatas.get(position - 2));
+                ((MyBodyViewHolder) holder).img_article.setImageBitmap(returnBitMap(imgDatas.get(position - 2)));
+                ((MyBodyViewHolder) holder).imglogo.setImageBitmap(returnBitMap(logoDatas.get(position - 2)));
+                ((MyBodyViewHolder) holder).tvid.setText(idDatas.get(position - 2));
             }
 
+        }
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    if (position > 1) {
+                        String pid = idDatas.get(position - 2);
+                        Intent in = new Intent(((Activity) context), News.class);
+                        in.putExtra(TAG_PID, pid);
+                        context.startActivity(in);
+                        ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    }
+                }
 
-        });
+
+            });
+
     }
 
 
@@ -197,23 +220,28 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         Log.d("All Products: ", json.toString());
 
         try {
-            // products found
-            // Getting Array of Products
-            products = json.getJSONArray("article");
+            int success = json.getInt("success");
+            if (success == 0) {
+                no = true;
+            } else {
+                no=false;
+                // products found
+                // Getting Array of Products
+                products = json.getJSONArray("article");
 
-            // looping through All Products
-            for (int i = 0; i < products.length(); i++) {
-                JSONObject c = products.getJSONObject(i);
+                // looping through All Products
+                for (int i = 0; i < products.length(); i++) {
+                    JSONObject c = products.getJSONObject(i);
 
-                // Storing each json item in variable
-                nameDatas.add(c.getString("team_name"));
-                infoDatas.add(c.getString("passage_content"));
-                timeDatas.add(c.getString("passage_time"));
-                imgDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"));
-                idDatas.add(c.getString("id"));
-                logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
+                    // Storing each json item in variable
+                    nameDatas.add(c.getString("team_name"));
+                    infoDatas.add(c.getString("passage_content"));
+                    timeDatas.add(c.getString("passage_time"));
+                    imgDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("passage_picture"));
+                    idDatas.add(c.getString("id"));
+                    logoDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("team_logo"));
+                }
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -397,7 +425,10 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return nameDatas.size() + 2;
+        if(no==true)
+            return 3;
+        else
+            return nameDatas.size() + 2;
     }
 
     //如果是第一项，则加载头布局
@@ -437,6 +468,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView tvid;
         ImageView img_article;
         TextView tvmore;
+        TextView tvno;
         ImageView imglogo;
 
         public MyBodyViewHolder(View itemView) {
@@ -446,6 +478,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             tvid = (TextView) itemView.findViewById(R.id.recycle_pid);
             img_article = (ImageView) itemView.findViewById(R.id.img_article);
             tvmore= (TextView) itemView.findViewById(R.id.recycle_more);
+            tvno= (TextView) itemView.findViewById(R.id.no_people);
             imglogo= (ImageView) itemView.findViewById(R.id.recycle_img);
 
         }
