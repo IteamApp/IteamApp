@@ -85,15 +85,15 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
         return view;
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        if(!isFirst){
-//            new LoadAllArticle().execute();
-//        }
-//        isFirst=false;
-//        adapter.notifyDataSetChanged();
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!isFirst){
+            new LoadAllArticle().execute();
+        }
+        isFirst=false;
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -254,6 +254,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
                 initdata();
+                initImage();
                 adapter.notifyDataSetChanged();
 
             }

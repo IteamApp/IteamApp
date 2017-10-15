@@ -189,6 +189,26 @@
         </LinearLayout>
 
     </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="点击关注"
+                android:background="#12b7f5"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/club_star"
+                />
+
+        </LinearLayout>
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"

@@ -85,6 +85,7 @@ public class Fragment6 extends Fragment  implements SwipeRefreshLayout.OnRefresh
     private ImageView userimg;
     private Button btnExit;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private Boolean isFirst=true;
 
     @Nullable
     @Override
@@ -212,9 +213,16 @@ public class Fragment6 extends Fragment  implements SwipeRefreshLayout.OnRefresh
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
-
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(!isFirst) {
+            teamNum.setText(InitMember("4"));
+            signNum.setText(InitMember("6"));
+            InitData();
+        }
+        isFirst=false;
+    }
 
     private void InitData(){
         IpConfig ip = new IpConfig();

@@ -58,6 +58,7 @@ public class ClubDetail extends Activity {
     private LinearLayout member;
 
     private Button btn1;
+    private Button btn_star;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +81,6 @@ public class ClubDetail extends Activity {
         member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = getIntent();
-//                String id = intent.getStringExtra("team_id");
-//                TeamConfig.TeamID = id;
-//                Log.d("jkdshjdshhds",id+"");
                 Intent intent = new Intent(ClubDetail.this, StarList.class);
                 intent.putExtra("type", "4");
                 startActivity(intent);
@@ -94,48 +91,19 @@ public class ClubDetail extends Activity {
 
 
         btn1 = (Button)findViewById(R.id.club_btn1);
+        btn_star= (Button) findViewById(R.id.club_star);
 
         try {
             checkTime();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        int flag=check();
-        if(flag==0){
-            //btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
-            btn1.setText("已报名,点击取消报名");
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    submitData("5");
-                }
-            });
-        }
-        else if(flag==2){
-           // btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
-            btn1.setText("已加入该社团,点击退出社团");
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    submitData("4");
-
-                }
-            });
-        }
-        else {
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //绑定立即报名事件
-                    Intent i= new Intent(ClubDetail.this,enroll.class);
-                    startActivity(i);
-                }
-            });
-        }
-
         if(userConfig.userID.length()==7){
             btn1.setVisibility(INVISIBLE);
+            btn_star.setVisibility(INVISIBLE);
+        }
+        else {
+            check();
         }
 
         initData();
@@ -205,38 +173,14 @@ public class ClubDetail extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        int flag=check();
-        if(flag==0){
-            //btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
-            btn1.setText("已报名,点击取消报名");
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    submitData("5");
-                }
-            });
+        if(userConfig.userID.length()==7){
+            btn1.setVisibility(INVISIBLE);
+            btn_star.setVisibility(INVISIBLE);
         }
-        else if(flag==2){
-           // btn1.setBackground(ClubDetail.this.getResources().getDrawable(R.drawable.bg_18));
-            btn1.setText("已加入该社团,点击退出社团");
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    submitData("4");
+        else{
+            check();
+        }
 
-                }
-            });
-        }
-        else {
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //绑定立即报名事件
-                    Intent i= new Intent(ClubDetail.this,enroll.class);
-                    startActivity(i);
-                }
-            });
-        }
     }
 
     private void submitData(String type){
@@ -275,6 +219,61 @@ public class ClubDetail extends Activity {
         try {
             // products found
             // Getting Array of Products
+            int enroll=json.getInt("enroll");
+            int my=json.getInt("my");
+            int star=json.getInt("star");
+
+            if(enroll>0){
+                //btn1.setBackground(News.this.getResources().getDrawable(R.drawable.bg_18));
+                btn1.setText("已报名,点击取消报名");
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        submitData("5");
+                    }
+                });
+            }
+            else{
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //绑定立即报名事件
+                        Intent i= new Intent(ClubDetail.this,enroll.class);
+                        startActivity(i);
+                    }
+                });
+            }
+            if(my>0){
+                btn1.setText("已加入该社团,点击退出社团");
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        submitData("4");
+
+                    }
+                });
+            }
+            if(star>0){
+                btn_star.setText("已关注,点击取消关注");
+                btn_star.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        submitData("6");
+
+                    }
+                });
+            }
+            else{
+                btn_star.setText("点击关注");
+                btn_star.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        submitData("7");
+
+                    }
+                });
+            }
+
             int success=json.getInt("success");
             return success;
 

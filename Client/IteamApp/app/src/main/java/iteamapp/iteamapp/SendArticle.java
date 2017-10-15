@@ -89,6 +89,7 @@ public class SendArticle extends Activity {
 
     private String type="1";
 
+    private ProgressDialog pDialog;
 
 
     @Override
@@ -139,12 +140,13 @@ public class SendArticle extends Activity {
                             ToastTool.show(SendArticle.this,"必须选择图片");
                         }
                         else {
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    submitData();
-                                }
-                            }).start();
+//                            new Thread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    submitData();
+//                                }
+//                            }).start();
+                            new submit().execute();
 
                         }
                     }
@@ -577,11 +579,11 @@ public class SendArticle extends Activity {
         }
     }
 
-     private  void submitData(){
+     private  void submitData() {
 
-         String b64="";
+         String b64 = "";
 
-         if(!type.equals("1")) {
+         if (!type.equals("1")) {
 
 
              Bitmap bm = ((BitmapDrawable) addpic.getDrawable()).getBitmap();
@@ -592,24 +594,23 @@ public class SendArticle extends Activity {
          }
 
 
-            IpConfig ip = new IpConfig();
-            JSONParser jParser = new JSONParser();
-            String url = ip.ip+"android/zqx/AddArticle.php";
+         IpConfig ip = new IpConfig();
+         JSONParser jParser = new JSONParser();
+         String url = ip.ip + "android/zqx/AddArticle.php";
 
-            JSONArray products = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
-            params.add(new BasicNameValuePair("title", ""));
-            params.add(new BasicNameValuePair("content", content.getText().toString()));
-            params.add(new BasicNameValuePair("picture", b64));
-            // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(url, "POST", params);
+         JSONArray products = null;
+         List<NameValuePair> params = new ArrayList<NameValuePair>();
+         params.add(new BasicNameValuePair("id", TeamConfig.TeamID));
+         params.add(new BasicNameValuePair("title", ""));
+         params.add(new BasicNameValuePair("content", content.getText().toString()));
+         params.add(new BasicNameValuePair("picture", b64));
+         System.out.println(b64);
+         // getting JSON string from URL
+         JSONObject json = jParser.makeHttpRequest(url, "POST", params);
+         System.out.println("hhhhh");
 
-//            String showContent = "发布成功！";
-//            Toast.makeText(SendArticle.this,showContent,Toast.LENGTH_SHORT).show();
-//
-//            finish();
-    }
+
+     }
 
     public static String bitmapToBase64(Bitmap bitmap) {
 

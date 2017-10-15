@@ -132,9 +132,6 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
     }
 
-
-
-
     private void initdata(String usercode,String type) {
         adapter.idDatas = new ArrayList<String>();
         adapter.nameDatas = new ArrayList<String>();
@@ -217,6 +214,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
                 initdata(userConfig.userID,"1");
+                initImage(userConfig.userID,"1");
                 adapter.notifyDataSetChanged();
 
             }
