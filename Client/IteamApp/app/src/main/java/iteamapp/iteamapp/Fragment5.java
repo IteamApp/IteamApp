@@ -34,15 +34,18 @@ import java.util.List;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
+import iteamapp.iteamapp.Tools.isChange;
 import iteamapp.iteamapp.adapter.ManageIndexAdapter;
 import iteamapp.iteamapp.Tools.userConfig;
 import iteamapp.iteamapp.androidrichtexteditor.RichTextActivity;
+import iteamapp.iteamapp.view.AutoLoadRecyclerView;
+
 /**
  * Created by zqx on 2017/4/29.
  */
 
 public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
-    private RecyclerView mRecyclerView;
+    private AutoLoadRecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private View view;
     private ManageIndexAdapter adapter;
@@ -60,7 +63,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment1_club, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_club);
+        mRecyclerView = (AutoLoadRecyclerView) view.findViewById(R.id.recycle_club);
         btnAdd= (Button) view.findViewById(R.id.club_add);
         btnAdd.setVisibility(View.VISIBLE);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
@@ -88,11 +91,13 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
     @Override
     public void onResume() {
         super.onResume();
-        if(!isFirst){
+        if(isChange.ischange) {
             new LoadAllArticle().execute();
+            isFirst = false;
+            adapter.notifyDataSetChanged();
+            isChange.ischange=false;
         }
-        isFirst=false;
-        adapter.notifyDataSetChanged();
+
     }
 
     @Override
@@ -254,7 +259,7 @@ public class Fragment5  extends Fragment implements SwipeRefreshLayout.OnRefresh
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
                 initdata();
-                initImage();
+               // initImage();
                 adapter.notifyDataSetChanged();
 
             }

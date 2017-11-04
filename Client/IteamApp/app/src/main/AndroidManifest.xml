@@ -38,6 +38,7 @@
         <activity android:name=".MainActivity_Club"
             android:screenOrientation="portrait" >
 
+
         </activity>
 
         <activity android:name=".MainActivity"

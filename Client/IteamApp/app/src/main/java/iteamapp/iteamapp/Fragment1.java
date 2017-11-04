@@ -23,6 +23,8 @@ import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -39,8 +41,10 @@ import java.util.List;
 
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
+import iteamapp.iteamapp.Tools.newsType;
 import iteamapp.iteamapp.Tools.userConfig;
 import iteamapp.iteamapp.adapter.MyPageAdapter;
+import iteamapp.iteamapp.view.AutoLoadRecyclerView;
 
 
 /**
@@ -50,7 +54,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
     private ProgressDialog pDialog;
 
-    private RecyclerView mRecyclerView;
+    private AutoLoadRecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private View view;
     private MyPageAdapter adapter;
@@ -72,7 +76,8 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         //Intent intent=getActivity().getIntent();
        // userID=intent.getStringExtra("username");
         nopeople= (TextView) view.findViewById(R.id.no_people );
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle);
+        mRecyclerView = (AutoLoadRecyclerView) view.findViewById(R.id.recycle);
+       // mRecyclerView.setOnPauseListenerParams(ImageLoader.getInstance(), false, true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         adapter = new MyPageAdapter(getContext(), userConfig.userID);
 
@@ -84,8 +89,9 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.demo_swiperefreshlayout);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.blue, R.color.black);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -213,8 +219,16 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
-                initdata(userConfig.userID,"1");
-                initImage(userConfig.userID,"1");
+                switch (newsType.type){
+                    case 1:initdata(userConfig.userID,"1");break;
+                    case 2:initdata(userConfig.userID,"2");break;
+                    case 3:mydata("");break;
+                    case 4:mydata("2");break;
+                    case 5:mydata("3");break;
+                    default:break;
+                }
+                //initdata(userConfig.userID,"1");
+               // initImage(userConfig.userID,"1");
                 adapter.notifyDataSetChanged();
 
             }
@@ -294,5 +308,52 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             e.printStackTrace();
         }
         return bitmap;
+    }
+
+    private void mydata(String faculty) {
+        IpConfig ip = new IpConfig();
+        JSONParser jParser = new JSONParser();
+        String url = ip.ip+"android/zqx/ArticleFaculty.php";
+        JSONArray products = null;
+
+
+        adapter.idDatas.clear();
+        adapter.nameDatas .clear();
+        adapter.infoDatas = new ArrayList<String>();
+        adapter.logoDatas = new ArrayList<String>();
+        adapter.imgDatas = new ArrayList<String>();
+        adapter.timeDatas = new ArrayList<String>();
+
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("id", faculty));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+        // Check your log cat for JSON reponse
+        Log.d("All Products: ", json.toString());
+
+        try {
+            // products found
+            // Getting Array of Products
+            products = json.getJSONArray("article");
+
+            // looping through All Products
+            for (int i = 0; i < products.length(); i++) {
+                JSONObject c = products.getJSONObject(i);
+
+                // Storing each json item in variable
+                adapter.nameDatas.add(c.getString("team_name"));
+                adapter.infoDatas.add(c.getString("passage_content"));
+                adapter.timeDatas.add(c.getString("passage_time"));
+                adapter.imgDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"));
+                adapter.idDatas.add(c.getString("id"));
+                adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }

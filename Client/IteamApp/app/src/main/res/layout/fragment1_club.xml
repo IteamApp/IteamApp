@@ -26,13 +26,13 @@
 
 
 
-        <android.support.v7.widget.RecyclerView
+        <iteamapp.iteamapp.view.AutoLoadRecyclerView
             android:id="@+id/recycle_club"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true">
-        </android.support.v7.widget.RecyclerView>
+        </iteamapp.iteamapp.view.AutoLoadRecyclerView>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

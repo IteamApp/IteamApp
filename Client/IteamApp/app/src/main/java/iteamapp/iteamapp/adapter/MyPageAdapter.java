@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,7 +28,11 @@ import iteamapp.iteamapp.R;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
+import iteamapp.iteamapp.Tools.newsType;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.viewpagerindicator.CirclePageIndicator;
 
 
@@ -71,18 +77,39 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Boolean no=false;
 
     private ProgressDialog pDialog;
-
+    private ImageLoader imageLoader;
     IpConfig ip = new IpConfig();
     JSONParser jParser = new JSONParser();
     private  String url = ip.ip+"android/zqx/getArticle.php";
     JSONArray products = null;
-
+    private DisplayImageOptions displayImageOptions;
 
     private MyAdapter mPagerAdapter = new MyAdapter();
     public MyPageAdapter(Context context,String userID){
         this.context = context;
         this.userID=userID;
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(context));
+        displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
     }
+
+//    //动画加载
+//    private void setAnimation(View viewToAnimate, int position) {
+//        if (position > lastPosition) {
+//            Animation animation = AnimationUtils.loadAnimation(viewToAnimate.getContext(), R
+//                    .anim.item_bottom_in);
+//            viewToAnimate.startAnimation(animation);
+//            lastPosition = position;
+//        }
+//    }
+//
+//    @Override
+//    public void onViewDetachedFromWindow(ViewHolder holder) {
+//        super.onViewDetachedFromWindow(holder);
+//
+//        holder.card.clearAnimation();
+//
+//    }
 
     //创建ViewHolder
     @Override
@@ -128,9 +155,11 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
                     if(Flag==0) {
                         if (i == R.id.club_mine) {
+                            newsType.type=1;
                             new LoadAllArticle(userID,"1").execute();
                         }
                         if (i == R.id.club_hot) {
+                            newsType.type=2;
                             new LoadAllArticle(userID,"2").execute();
                         }
                         if (i == R.id.club_shaixuan) {
@@ -142,7 +171,6 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     .setView(contentView)
                                     .create()
                                     .showAsDropDown(mButton3, 0, 20);
-
                         }
                     }
                     else {
@@ -176,8 +204,11 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ((MyBodyViewHolder) holder).tv.setText(nameDatas.get(position - 2));
                 ((MyBodyViewHolder) holder).tvinfo.setText(timeDatas.get(position - 2));
                 ((MyBodyViewHolder) holder).tvmore.setText(infoDatas.get(position - 2));
-                ((MyBodyViewHolder) holder).img_article.setImageBitmap(returnBitMap(imgDatas.get(position - 2)));
-                ((MyBodyViewHolder) holder).imglogo.setImageBitmap(returnBitMap(logoDatas.get(position - 2)));
+                imageLoader.displayImage(imgDatas.get(position - 2),((MyBodyViewHolder) holder).img_article, displayImageOptions);
+               // imageLoader.displayImage(imgDatas.get(position - 2), ((MyBodyViewHolder) holder).img_article, AppAplication.mOptions);
+               //((MyBodyViewHolder) holder).img_article.setImageBitmap(returnBitMap(imgDatas.get(position - 2)));
+                //((MyBodyViewHolder) holder).imglogo.setImageBitmap(returnBitMap(logoDatas.get(position - 2)));
+                imageLoader.displayImage(logoDatas.get(position - 2),((MyBodyViewHolder) holder).imglogo, displayImageOptions);
                 ((MyBodyViewHolder) holder).tvid.setText(idDatas.get(position - 2));
             }
 
@@ -346,6 +377,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 switch (v.getId()){
                     case R.id.menu1:
                         showContent = "全部社团";
+                        newsType.type=3;
                         new LoadAll("").execute();
                         Flag=1;
                         rgGroup.clearCheck();
@@ -353,12 +385,15 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     case R.id.menu2:
                         showContent = "信息学院";
+                        newsType.type=4;
                         new LoadAll("2").execute();
                         Flag=1;
                         rgGroup.clearCheck();
                         break;
 
                     case R.id.menu3:
+                        showContent = "法政学院";
+                        newsType.type=5;
                         new LoadAll("3").execute();
                         Flag=1;
                         rgGroup.clearCheck();
@@ -419,8 +454,6 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
     }
-
-
 
 
     @Override

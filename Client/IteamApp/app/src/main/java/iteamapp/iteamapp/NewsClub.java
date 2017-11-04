@@ -19,6 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -36,6 +40,7 @@ import java.util.List;
 import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
+import iteamapp.iteamapp.Tools.isChange;
 import iteamapp.iteamapp.Tools.userConfig;
 import iteamapp.iteamapp.androidrichtexteditor.RichTextActivity;
 import iteamapp.iteamapp.utils.CustomDiaLog;
@@ -66,12 +71,16 @@ public class NewsClub extends Activity {
     private String id="";
     private CustomDiaLog dialog;
 
-    private ProgressDialog pDialog;
+
+    private ImageLoader imageLoader;
+    private DisplayImageOptions displayImageOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(this));
+        displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
         setContentView(R.layout.item_news_club);
         mBack = (ImageView) findViewById(R.id.cource_menu_back);
         mBack.setOnClickListener(new View.OnClickListener() {
@@ -179,6 +188,7 @@ public class NewsClub extends Activity {
         Log.d("All Products: ", json.toString());
         String showContent = "删除成功！";
         Toast.makeText(NewsClub.this,showContent,Toast.LENGTH_SHORT).show();
+        isChange.ischange=true;
         finish();
     }
 
@@ -208,44 +218,14 @@ public class NewsClub extends Activity {
                 TeamConfig.TeamID=c.getString("team_id");
                 tvUsername.setText(c.getString("team_name"));
                 tvcontent.setText(c.getString("passage_content"));
-                imgClub.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo")));
-                imgContent.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture")));
+                imageLoader.displayImage("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"),imgClub, displayImageOptions);
+                imageLoader.displayImage("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"),imgContent, displayImageOptions);
+//                imgClub.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo")));
+//                imgContent.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture")));
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-    }
-
-    class LoadAllArticle extends AsyncTask<String, String, String> {
-
-
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(NewsClub.this);
-            pDialog.setMessage("正在加载，请稍后....");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        /**
-         * getting All products from url
-         * */
-        protected String doInBackground(String... args) {
-            initData();
-            return null;
-        }
-
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
-        protected void onPostExecute(String file_url) {
-            pDialog.dismiss();
         }
     }
 

@@ -14,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -35,6 +39,7 @@ import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.Tools.userConfig;
+import iteamapp.iteamapp.adapter.MyPageAdapter;
 
 import static android.view.View.INVISIBLE;
 
@@ -59,11 +64,15 @@ public class News extends Activity {
     private ImageView imgClub;
     private ImageView imgContent;
     private TextView tvid;
-
+    private ImageLoader imageLoader;
+    private DisplayImageOptions displayImageOptions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_news);
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(this));
+        displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
         mBack = (ImageView) findViewById(R.id.new_menu_back);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,8 +183,8 @@ public class News extends Activity {
                 TeamConfig.TeamID=c.getString("team_id");
                 tvUsername.setText(c.getString("team_name"));
                 tvcontent.setText(c.getString("passage_content"));
-                imgClub.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo")));
-                imgContent.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture")));
+                imageLoader.displayImage("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"),imgClub, displayImageOptions);
+                imageLoader.displayImage("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"),imgContent, displayImageOptions);
             }
 
         } catch (JSONException e) {

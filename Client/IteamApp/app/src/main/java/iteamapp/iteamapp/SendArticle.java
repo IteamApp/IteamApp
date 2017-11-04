@@ -54,6 +54,7 @@ import iteamapp.iteamapp.Tools.IpConfig;
 import iteamapp.iteamapp.Tools.JSONParser;
 import iteamapp.iteamapp.Tools.TeamConfig;
 import iteamapp.iteamapp.Tools.ToastTool;
+import iteamapp.iteamapp.Tools.isChange;
 import iteamapp.iteamapp.androidrichtexteditor.FileUtils;
 import iteamapp.iteamapp.androidrichtexteditor.RichTextActivity;
 import iteamapp.iteamapp.utils.CustomDiaLog;
@@ -199,6 +200,7 @@ public class SendArticle extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         addpic.setImageResource(icon_addpic_focused);
+                        isChange.ischange=true;
                         type="1";
                     }
                 })
@@ -376,6 +378,7 @@ public class SendArticle extends Activity {
 
             progressDialog.dismiss();
             String showContent = "修改成功！";
+            isChange.ischange=true;
             Toast.makeText(SendArticle.this, showContent, Toast.LENGTH_SHORT).show();
 
             finish();
@@ -419,6 +422,7 @@ public class SendArticle extends Activity {
 
             progressDialog.dismiss();
             String showContent = "发布成功！";
+            isChange.ischange=true;
             Toast.makeText(SendArticle.this, showContent, Toast.LENGTH_SHORT).show();
 
             finish();

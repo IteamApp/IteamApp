@@ -14,6 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.io.IOException;
@@ -47,11 +51,15 @@ public class ManageIndexAdapter extends  RecyclerView.Adapter<RecyclerView.ViewH
     private static final int HEAD_VIEW = 0;//头布局
     private static final int BODY_VIEW = 2;//内容布局
     private static final int TAG_VIEW = 1;//内容布局
-
+    private ImageLoader imageLoader;
+    private DisplayImageOptions displayImageOptions;
 
     private ManageIndexAdapter.MyAdapter mPagerAdapter = new ManageIndexAdapter.MyAdapter();
     public ManageIndexAdapter(Context context){
         this.context = context;
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(context));
+        displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
 
     }
 
@@ -91,8 +99,10 @@ public class ManageIndexAdapter extends  RecyclerView.Adapter<RecyclerView.ViewH
             ((ManageIndexAdapter.MyBodyViewHolder) holder).tv.setText(nameDatas.get(position-1));
             ((ManageIndexAdapter.MyBodyViewHolder) holder).tvinfo.setText(timeDatas.get(position-1));
             ((ManageIndexAdapter.MyBodyViewHolder) holder).tvmore.setText(infoDatas.get(position-1));
-            ((ManageIndexAdapter.MyBodyViewHolder) holder).img_article.setImageBitmap(returnBitMap(imgDatas.get(position-1)));
-            ((ManageIndexAdapter.MyBodyViewHolder) holder).imglogo.setImageBitmap(returnBitMap(logoDatas.get(position-1)));
+            imageLoader.displayImage(imgDatas.get(position - 1),((ManageIndexAdapter.MyBodyViewHolder) holder).img_article, displayImageOptions);
+            imageLoader.displayImage(logoDatas.get(position - 1),((ManageIndexAdapter.MyBodyViewHolder) holder).imglogo, displayImageOptions);
+//            ((ManageIndexAdapter.MyBodyViewHolder) holder).img_article.setImageBitmap(returnBitMap(imgDatas.get(position-1)));
+//            ((ManageIndexAdapter.MyBodyViewHolder) holder).imglogo.setImageBitmap(returnBitMap(logoDatas.get(position-1)));
             ((ManageIndexAdapter.MyBodyViewHolder) holder).tvid.setText(idDatas.get(position-1));
         }
 
