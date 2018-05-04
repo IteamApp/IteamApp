@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -74,6 +75,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private RadioButton mButton3;
     private RadioGroup rgGroup;
     private int Flag=0;
+    private CardView cardView;
     private Boolean no=false;
 
     private ProgressDialog pDialog;
@@ -183,6 +185,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if(no==true){
 
                 ((MyBodyViewHolder) holder).tvno.setText("还没有社团信息，快去逛逛吧~~~");
+                cardView.setVisibility(View.INVISIBLE);
                 ((MyBodyViewHolder) holder).tvno.setVisibility(View.VISIBLE);
                 ((MyBodyViewHolder) holder).tv.setVisibility(View.INVISIBLE);
                 ((MyBodyViewHolder) holder).tvinfo.setVisibility(View.INVISIBLE);
@@ -194,6 +197,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
             else {
                 ((MyBodyViewHolder) holder).tvno.setText("");
+                cardView.setVisibility(View.VISIBLE);
                 ((MyBodyViewHolder) holder).tvno.setVisibility(View.INVISIBLE);
                 ((MyBodyViewHolder) holder).tv.setVisibility(View.VISIBLE);
                 ((MyBodyViewHolder) holder).tvinfo.setVisibility(View.VISIBLE);
@@ -506,6 +510,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public MyBodyViewHolder(View itemView) {
             super(itemView);
+            cardView= (CardView) itemView.findViewById(R.id.cardView);
             tv = (TextView) itemView.findViewById(R.id.recycle_tv);
             tvinfo = (TextView) itemView.findViewById(R.id.recycle_info);
             tvid = (TextView) itemView.findViewById(R.id.recycle_pid);

@@ -1,29 +1,22 @@
 package iteamapp.iteamapp;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -59,14 +52,13 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     private View view;
     private MyPageAdapter adapter;
     private TextView nopeople;
-    private Boolean no=false;
+    private Boolean no = false;
 
     IpConfig ip = new IpConfig();
     JSONParser jParser = new JSONParser();
-    private  String url = ip.ip+"android/zqx/getArticle.php";
+    private String url = ip.ip + "android/zqx/getArticle.php";
     JSONArray products = null;
-    private Boolean isFirst=true;
-
+    private Boolean isFirst = true;
 
 
     @Nullable
@@ -74,14 +66,14 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment1, container, false);
         //Intent intent=getActivity().getIntent();
-       // userID=intent.getStringExtra("username");
-        nopeople= (TextView) view.findViewById(R.id.no_people );
+        // userID=intent.getStringExtra("username");
+        nopeople = (TextView) view.findViewById(R.id.no_people);
         mRecyclerView = (AutoLoadRecyclerView) view.findViewById(R.id.recycle);
-       // mRecyclerView.setOnPauseListenerParams(ImageLoader.getInstance(), false, true);
+        // mRecyclerView.setOnPauseListenerParams(ImageLoader.getInstance(), false, true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         adapter = new MyPageAdapter(getContext(), userConfig.userID);
 
-        new LoadAllArticle(userConfig.userID,"1").execute();
+        new LoadAllArticle(userConfig.userID, "1").execute();
         return view;
     }
 
@@ -98,11 +90,11 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     }
 
 
-    private  void initImage(String usercode,String type){
+    private void initImage(String usercode, String type) {
 
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
-        String url = ip.ip+"android/zqx/Article.php";
+        String url = ip.ip + "android/zqx/Article.php";
         JSONArray products = null;
 
         adapter.imageList = new ArrayList<ImageView>();
@@ -122,10 +114,10 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             products = json.getJSONArray("article");
 
 
-            for(int i=0;i<3;){
+            for (int i = 0; i < 3; ) {
                 JSONObject c = products.getJSONObject(i);
                 ImageView image = new ImageView(getActivity());
-                if(!c.getString("passage_picture").equals("")) {
+                if (!c.getString("passage_picture").equals("")) {
                     image.setBackground(loadImageFromNetwork("http://123.206.61.96:8088/android/zqx/" + c.getString("passage_picture")));
                     adapter.imageList.add(image);
                     i++;
@@ -138,7 +130,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
     }
 
-    private void initdata(String usercode,String type) {
+    private void initdata(String usercode, String type) {
         adapter.idDatas = new ArrayList<String>();
         adapter.nameDatas = new ArrayList<String>();
         adapter.infoDatas = new ArrayList<String>();
@@ -163,7 +155,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             if (success == 0) {
                 no = true;
                 nopeople.setVisibility(View.VISIBLE);
-                String text="\n\n\n 还没有社团信息，快去逛逛吧~~~";
+                String text = "\n\n\n 还没有社团信息，快去逛逛吧~~~";
                 nopeople.setText(text);
             } else {
                 nopeople.setVisibility(View.INVISIBLE);
@@ -171,7 +163,6 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
                 // products found
                 // Getting Array of Products
                 products = json.getJSONArray("article");
-
 
 
                 // looping through All Products
@@ -193,8 +184,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         }
     }
 
-    private Drawable loadImageFromNetwork(String imageUrl)
-    {
+    private Drawable loadImageFromNetwork(String imageUrl) {
         Drawable drawable = null;
         try {
             // 可以在这里通过文件名来判断，是否本地有此图片
@@ -208,7 +198,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         } else {
             Log.d("test", "not null drawable");
         }
-        return drawable ;
+        return drawable;
     }
 
     @Override
@@ -219,16 +209,27 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
-                switch (newsType.type){
-                    case 1:initdata(userConfig.userID,"1");break;
-                    case 2:initdata(userConfig.userID,"2");break;
-                    case 3:mydata("");break;
-                    case 4:mydata("2");break;
-                    case 5:mydata("3");break;
-                    default:break;
+                switch (newsType.type) {
+                    case 1:
+                        initdata(userConfig.userID, "1");
+                        break;
+                    case 2:
+                        initdata(userConfig.userID, "2");
+                        break;
+                    case 3:
+                        mydata("");
+                        break;
+                    case 4:
+                        mydata("2");
+                        break;
+                    case 5:
+                        mydata("3");
+                        break;
+                    default:
+                        break;
                 }
                 //initdata(userConfig.userID,"1");
-               // initImage(userConfig.userID,"1");
+                // initImage(userConfig.userID,"1");
                 adapter.notifyDataSetChanged();
 
             }
@@ -239,20 +240,20 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
     /**
      * Background Async Task to Load all product by making HTTP Request
-     * */
+     */
     class LoadAllArticle extends AsyncTask<String, String, String> {
 
         String usercode;
         String type;
 
-        LoadAllArticle(String usercode,String type){
-            this.usercode=usercode;
-            this.type=type;
+        LoadAllArticle(String usercode, String type) {
+            this.usercode = usercode;
+            this.type = type;
         }
 
         /**
          * Before starting background thread Show Progress Dialog
-         * */
+         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -265,21 +266,21 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
         /**
          * getting All products from url
-         * */
+         */
         protected String doInBackground(String... args) {
-            initdata(usercode,type);
-            initImage(usercode,type);
+            initdata(usercode, type);
+            initImage(usercode, type);
             return null;
         }
 
         /**
          * After completing background task Dismiss the progress dialog
-         * **/
+         **/
         protected void onPostExecute(String file_url) {
             mRecyclerView.setAdapter(adapter);
             // dismiss the dialog after getting all products
             pDialog.dismiss();
-            if(no==true) {
+            if (no == true) {
 
             }
 
@@ -288,7 +289,7 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         }
     }
 
-    public Bitmap returnBitMap(String url){
+    public Bitmap returnBitMap(String url) {
         URL myFileUrl = null;
         Bitmap bitmap = null;
         try {
@@ -313,12 +314,12 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     private void mydata(String faculty) {
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
-        String url = ip.ip+"android/zqx/ArticleFaculty.php";
+        String url = ip.ip + "android/zqx/ArticleFaculty.php";
         JSONArray products = null;
 
 
         adapter.idDatas.clear();
-        adapter.nameDatas .clear();
+        adapter.nameDatas.clear();
         adapter.infoDatas = new ArrayList<String>();
         adapter.logoDatas = new ArrayList<String>();
         adapter.imgDatas = new ArrayList<String>();
@@ -346,9 +347,9 @@ public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshL
                 adapter.nameDatas.add(c.getString("team_name"));
                 adapter.infoDatas.add(c.getString("passage_content"));
                 adapter.timeDatas.add(c.getString("passage_time"));
-                adapter.imgDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("passage_picture"));
+                adapter.imgDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("passage_picture"));
                 adapter.idDatas.add(c.getString("id"));
-                adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/"+c.getString("team_logo"));
+                adapter.logoDatas.add("http://123.206.61.96:8088/android/zqx/" + c.getString("team_logo"));
             }
 
         } catch (JSONException e) {

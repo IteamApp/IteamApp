@@ -18,13 +18,9 @@
         android:orientation="horizontal"
         android:paddingTop="5dp"
         android:background="#fff">
-        <iteamapp.iteamapp.adapter.MyRadioButton
-            >
-
-        </iteamapp.iteamapp.adapter.MyRadioButton>
 
         <RadioButton
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/rb_home"
             style="@style/BottomTabStyle"
@@ -32,21 +28,21 @@
             android:drawableBottom="@drawable/btn_tab_home_selector"/>
 
         <RadioButton
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/rb_news"
             style="@style/BottomTabStyle"
             android:drawableBottom="@drawable/btn_tab_news_selector"/>
 
         <RadioButton
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/rb_service"
             style="@style/BottomTabStyle"
             android:drawableBottom="@drawable/btn_tab_service_selector"/>
 
         <RadioButton
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/rb_gov"
             style="@style/BottomTabStyle"

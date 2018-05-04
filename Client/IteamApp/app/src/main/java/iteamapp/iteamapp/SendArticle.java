@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
@@ -68,7 +70,8 @@ import static iteamapp.iteamapp.R.drawable.icon_addpic_focused;
 
 public class SendArticle extends Activity {
     private ProgressDialog progressDialog;
-
+    private Uri imageUri;
+    private Activity activity;
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
     private ImageView photo,photo2;
@@ -190,6 +193,8 @@ public class SendArticle extends Activity {
 
         mFileUtils = new FileUtils(this);
 
+        activity=this;
+
     }
 
     public void onBackPressed() {
@@ -218,22 +223,23 @@ public class SendArticle extends Activity {
            */
     private void crop(Uri uri) {
         // 裁剪图片意图
-        Intent intent = new Intent();
+        Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "false");
+        intent.putExtra("crop", "true");
         // 裁剪框的比例，1：1
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         // 裁剪后输出图片的尺寸大小
         intent.putExtra("outputX", 250);
         intent.putExtra("outputY", 250);
-//
+
         intent.putExtra("outputFormat", "JPEG");// 图片格式
         intent.putExtra("noFaceDetection", true);// 取消人脸识别
         intent.putExtra("return-data", true);
         // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -255,15 +261,11 @@ public class SendArticle extends Activity {
             }
         }
         else  if(requestCode == REQUEST_CODE_CAPTURE_CAMEIA) {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");// 相片类型
-            startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);;
+           crop(imageUri);
         }
         else if (requestCode == PHOTO_REQUEST_CUT) {
             // 从剪切图片返回的数据
             if (data != null) {
-//                addpic.setVisibility(View.INVISIBLE);
-//                showpic.setVisibility(View.VISIBLE);
                 Bitmap bitmap = data.getParcelableExtra("data");
                 addpic.setImageBitmap(bitmap);
                 type="2";
@@ -476,7 +478,7 @@ public class SendArticle extends Activity {
                 switch (view.getId()) {
                     case R.id.btn_takephoto:
 
-                        openCamera();
+                        openCamera(activity);
                         dialog.dismiss();
                         break;
                     case R.id.btn_picture:
@@ -508,17 +510,47 @@ public class SendArticle extends Activity {
         window.setAttributes(lp);
     }
 
-    private void openCamera() {
-        try {
-            File PHOTO_DIR = new File(mFileUtils.getStorageDirectory());
-            if (!PHOTO_DIR.exists())
-                PHOTO_DIR.mkdirs();// 创建照片的存储目录
-
-            mCameraImageFile = new File(PHOTO_DIR, getPhotoFileName());// 给新照的照片文件命名
-            final Intent intent = getTakePickIntent(mCameraImageFile);
-            startActivityForResult(intent, REQUEST_CODE_CAPTURE_CAMEIA);
-        } catch (ActivityNotFoundException e) {
+    public void openCamera(Activity activity) {
+        //獲取系統版本
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        // 激活相机
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // 判断存储卡是否可以用，可用进行存储
+        if (hasSdcard()) {
+            SimpleDateFormat timeStampFormat = new SimpleDateFormat(
+                    "yyyy_MM_dd_HH_mm_ss");
+            String filename = timeStampFormat.format(new Date());
+            tempFile = new File(Environment.getExternalStorageDirectory(),
+                    filename + ".jpg");
+            if (currentapiVersion < 24) {
+                // 从文件中创建uri
+                imageUri = Uri.fromFile(tempFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            } else {
+                //兼容android7.0 使用共享文件的形式
+                ContentValues contentValues = new ContentValues(1);
+                contentValues.put(MediaStore.Images.Media.DATA, tempFile.getAbsolutePath());
+                //检查是否有存储权限，以免崩溃
+//                if (ContextCompat.checkSelfPermission(this, Manifest.permission.class)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    //申请WRITE_EXTERNAL_STORAGE权限
+//                    Toast.makeText(this, "请开启存储权限", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+                imageUri = activity.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            }
         }
+        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CAREMA
+        activity.startActivityForResult(intent, REQUEST_CODE_CAPTURE_CAMEIA);
+    }
+
+    /*
+* 判断sdcard是否被挂载
+*/
+    public static boolean hasSdcard() {
+        return Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED);
     }
 
     private Intent getTakePickIntent(File f) {

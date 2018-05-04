@@ -113,7 +113,7 @@ public class Fragment6 extends Fragment  implements SwipeRefreshLayout.OnRefresh
                 Intent in = new Intent(((Activity)getActivity()), SetLogo.class);
                 in.putExtra("type","2");
                 getContext().startActivity(in);
-                ((Activity)getActivity()).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
             }
         });
