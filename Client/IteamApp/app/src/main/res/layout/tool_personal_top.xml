@@ -6,7 +6,6 @@
     android:orientation="horizontal">
 
 
-
     <ImageView
         android:id="@+id/person_menu_back"
         android:layout_width="45dp"
@@ -14,34 +13,33 @@
         android:layout_alignParentLeft="true"
         android:paddingLeft="20dp"
         android:paddingRight="10dp"
-        android:src="@mipmap/back"
-        />
+        android:src="@mipmap/back" />
 
     <TextView
 
+        android:id="@+id/top_person"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
         android:text="个人信息"
-        android:textSize="16sp"
-        android:textColor="#12b7f5"/>
+        android:textColor="#12b7f5"
+        android:textSize="16sp" />
 
     <Button
-        android:visibility="gone"
-        android:layout_alignParentRight="true"
         android:id="@+id/person_edit"
-
-        android:textSize="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="提交"
         style="?android:attr/borderlessButtonStyle"
-        android:textColor="@color/accent_blue"/>
+        android:layout_width="wrap_content"
+
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:text="提交"
+        android:textColor="@color/accent_blue"
+        android:textSize="12dp"
+        android:visibility="gone" />
 
 
-
-    <View style="@style/AppTheme.DeepLine"/>
+    <View style="@style/AppTheme.DeepLine" />
 
 </RelativeLayout>

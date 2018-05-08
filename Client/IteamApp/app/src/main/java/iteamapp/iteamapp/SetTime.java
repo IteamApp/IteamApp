@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,11 +63,15 @@ public class SetTime extends Activity {
         setContentView(R.layout.time_set);
         start = (Button) findViewById(R.id.btn_start);
         end = (Button) findViewById(R.id.btn_end);
-        submit= (Button) findViewById(R.id.btn_time_submit);
+        submit = (Button) findViewById(R.id.btn_time_submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitData();
+                try {
+                    submitData();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
         title = (TextView) findViewById(R.id.common_title);
@@ -178,13 +183,22 @@ public class SetTime extends Activity {
     }
 
 
-    private void submitData() {
+    private void submitData() throws ParseException {
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
         String url = ip.ip + "android/zqx/getTime.php";
 
-        String satrtStr=start.getText().toString();
-        String endStr=end.getText().toString();
+        String satrtStr = start.getText().toString();
+        String endStr = end.getText().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.applyPattern("yyyy-MM-ss");
+        Date start = sdf.parse(satrtStr);
+        Date end = sdf.parse(endStr);
+        if (start.after(end)) {
+            Toast.makeText(SetTime.this, "开始时间不可在结束时间之前", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         JSONArray products = null;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -200,7 +214,6 @@ public class SetTime extends Activity {
         Toast.makeText(SetTime.this, showContent, Toast.LENGTH_SHORT).show();
 
     }
-
 
 
     /**

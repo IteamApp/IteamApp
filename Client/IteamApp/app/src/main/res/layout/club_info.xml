@@ -72,10 +72,10 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_height="45dp"
+            android:layout_height="100dp"
             android:layout_width="match_parent"
             android:background="@drawable/border"
-            >
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,14 +87,13 @@
                 android:layout_marginLeft="15dp"/>
 
             <EditText
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="计算机科学与技术2015"
+                android:layout_height="100dp"
+                android:text="计算机科学与技术2015计算机科学与技术2015计算机科学与技术2015计算机科学与技术2015计算机科学与技术2015"
                 android:textSize="16dp"
                 android:textColor="#333333"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:id="@+id/person_major" />
+                android:id="@+id/person_major"
+                android:layout_weight="0.20"
+                android:layout_width="300dp" />
         </LinearLayout>
 
     </LinearLayout>

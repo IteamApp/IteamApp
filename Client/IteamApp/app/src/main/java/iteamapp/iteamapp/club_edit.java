@@ -36,6 +36,7 @@ public class club_edit extends Activity {
 
     private EditText username;
     private TextView usercode;
+    private TextView top_name;
     private EditText major;
     private Button edit;
 
@@ -46,7 +47,9 @@ public class club_edit extends Activity {
         username= (EditText) findViewById(R.id.person_name);
         usercode= (TextView) findViewById(R.id.person_code);
         major= (EditText) findViewById(R.id.person_major);
+        top_name= (TextView) findViewById(R.id.top_person);
 
+        top_name.setText("社团信息");
 
         edit= (Button) findViewById(R.id.person_edit);
         edit.setVisibility(View.VISIBLE);

@@ -252,6 +252,47 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layout_change_pwd_club"
+            android:orientation="horizontal"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="#fff"
+            >
+
+            <ImageView
+                android:layout_height="16dp"
+                android:layout_width="16dp"
+                android:src="@mipmap/list"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="修改密码"
+                android:textSize="16dp"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_height="16dp"
+                    android:layout_width="16dp"
+                    android:src="@drawable/news_cate_arr"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

@@ -51,6 +51,7 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     private LinearLayout star;  //关注
     private LinearLayout club;
     private LinearLayout signup;
+    private LinearLayout changePwd;
 
     private TextView starNum;
     private TextView teamNum;
@@ -67,37 +68,37 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment4, container, false);
         txtFreeTime = (LinearLayout) view.findViewById(R.id.txtFreeTime);
-        username= (TextView) view.findViewById(R.id.userName);
-        userimg= (ImageView) view.findViewById(R.id.userImg);
-        starNum= (TextView) view.findViewById(R.id.starNum);
-        signNum=(TextView) view.findViewById(R.id.signNum);
-        teamNum= (TextView) view.findViewById(R.id.teamNum);
-        btnExit= (Button) view.findViewById(R.id.exit);
+        username = (TextView) view.findViewById(R.id.userName);
+        userimg = (ImageView) view.findViewById(R.id.userImg);
+        starNum = (TextView) view.findViewById(R.id.starNum);
+        signNum = (TextView) view.findViewById(R.id.signNum);
+        teamNum = (TextView) view.findViewById(R.id.teamNum);
+        btnExit = (Button) view.findViewById(R.id.exit);
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String showContent = "退出成功";
-                Toast.makeText(getContext(),showContent,Toast.LENGTH_SHORT).show();
-                Intent in = new Intent(((Activity)getActivity()), LoginActivity.class);
+                Toast.makeText(getContext(), showContent, Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(((Activity) getActivity()), LoginActivity.class);
                 getContext().startActivity(in);
-                ((Activity)getActivity()).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                ((Activity) getActivity()).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
         userimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(((Activity)getActivity()), SetLogo.class);
-                in.putExtra("type","1");
+                Intent in = new Intent(((Activity) getActivity()), SetLogo.class);
+                in.putExtra("type", "1");
                 getContext().startActivity(in);
-                ((Activity)getActivity()).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                ((Activity) getActivity()).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 
         txtFreeTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(),FreeTimeTable.class);
+                Intent in = new Intent(getActivity(), FreeTimeTable.class);
                 getActivity().startActivity(in);
                 getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
@@ -105,59 +106,65 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         });
         //点击关注 打开关注列表
         star = (LinearLayout) view.findViewById(R.id.star);
-        star.setOnClickListener(new View.OnClickListener(){
+        star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!starNum.getText().toString().equals("0")) {
+                if (!starNum.getText().toString().equals("0")) {
                     Intent intent = new Intent(getActivity(), StarList.class);
                     intent.putExtra("type", "2");
                     getActivity().startActivity(intent);
                     getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                }
-                else{
-                    ToastTool.show(getActivity(),"您还没有关注社团，快去关注吧！");
+                } else {
+                    ToastTool.show(getActivity(), "您还没有关注社团，快去关注吧！");
                 }
 
             }
         });
 
         club = (LinearLayout) view.findViewById(R.id.team);
-        club.setOnClickListener(new View.OnClickListener(){
+        club.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!teamNum.getText().toString().equals("0")) {
+                if (!teamNum.getText().toString().equals("0")) {
                     Intent intent = new Intent(getActivity(), StarList.class);
                     intent.putExtra("type", "1");
                     getActivity().startActivity(intent);
                     getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                }
-                else{
-                    ToastTool.show(getActivity(),"您还没有加入社团，快去报名吧！");
+                } else {
+                    ToastTool.show(getActivity(), "您还没有加入社团，快去报名吧！");
                 }
             }
         });
 
         signup = (LinearLayout) view.findViewById(R.id.sign);
-        signup.setOnClickListener(new View.OnClickListener(){
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!signNum.getText().toString().equals("0")) {
+                if (!signNum.getText().toString().equals("0")) {
                     Intent intent = new Intent(getActivity(), StarList.class);
                     intent.putExtra("type", "3");
                     getActivity().startActivity(intent);
                     getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                }
-                else{
-                    ToastTool.show(getActivity(),"您还没有报名社团，快去报名吧！");
+                } else {
+                    ToastTool.show(getActivity(), "您还没有报名社团，快去报名吧！");
                 }
             }
         });
 
-        topersonal=(LinearLayout)view.findViewById(R.id.topersonal);
+        topersonal = (LinearLayout) view.findViewById(R.id.topersonal);
         topersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getActivity(),personal_edit.class);
+                Intent intent = new Intent(getActivity(), personal_edit.class);
+                startActivity(intent);
+            }
+        });
+
+        changePwd = (LinearLayout) view.findViewById(R.id.layout_change_pwd);
+        changePwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ChangePwd.class);
                 startActivity(intent);
             }
         });
@@ -166,7 +173,6 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         starNum.setText(InitTeam("2"));
         teamNum.setText(InitTeam("1"));
         signNum.setText(InitTeam("3"));
-
 
 
         return view;
@@ -211,11 +217,10 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     }
 
 
-
-    private void initData(){
+    private void initData() {
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
-        String url = ip.ip+"android/zqx/getUserInfo.php";
+        String url = ip.ip + "android/zqx/getUserInfo.php";
         JSONArray products = null;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", userConfig.userID));
@@ -228,7 +233,7 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
         try {
             username.setText(json.getString("user_name"));
-            userimg.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/"+json.getString("user_head")));
+            userimg.setImageBitmap(returnBitMap("http://123.206.61.96:8088/android/zqx/" + json.getString("user_head")));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -237,15 +242,14 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
     }
 
 
-
-    private String InitTeam(String type){
+    private String InitTeam(String type) {
         IpConfig ip = new IpConfig();
         JSONParser jParser = new JSONParser();
-        String url = ip.ip+"android/zqx/getMyTeam.php";
+        String url = ip.ip + "android/zqx/getMyTeam.php";
         JSONArray products = null;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("id", userConfig.userID));
-        params.add(new BasicNameValuePair("type",type));
+        params.add(new BasicNameValuePair("type", type));
         // getting JSON string from URL
         JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 
@@ -253,8 +257,8 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
         Log.d("All Products: ", json.toString());
 
         try {
-            int count=json.getInt("count");
-            return count+"";
+            int count = json.getInt("count");
+            return count + "";
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -263,7 +267,7 @@ public class Fragment4 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
     }
 
-    public Bitmap returnBitMap(String url){
+    public Bitmap returnBitMap(String url) {
         URL myFileUrl = null;
         Bitmap bitmap = null;
         try {
