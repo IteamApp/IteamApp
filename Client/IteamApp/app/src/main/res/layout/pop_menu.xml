@@ -6,6 +6,7 @@
               android:background="@drawable/menu_pop_bg"
               android:padding="10dp"
     >
+
   <LinearLayout
       android:id="@+id/menu1"
       android:layout_width="wrap_content"
@@ -71,6 +72,32 @@
             android:textSize="16dp"
             android:layout_marginLeft="10dp"
             />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        >
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_icon5"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:text="工程学院"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            />
+
+    </LinearLayout>
+
 
 </LinearLayout>

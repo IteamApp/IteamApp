@@ -101,7 +101,30 @@ public class PersonEnroll extends Activity {
 
         String showContent = "操作成功";
         Toast.makeText(PersonEnroll.this, showContent, Toast.LENGTH_SHORT).show();
+        if("1".equals(type)){
+            seedMessage();
+        }
         finish();
+    }
+    private void seedMessage() {
+        String text = "欢迎加入，请尽快上传空闲时间表~";
+
+        IpConfig ip = new IpConfig();
+        JSONParser jParser = new JSONParser();
+        String url = ip.ip + "android/zqx/getPush.php";
+        JSONArray products = null;
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("text", text));
+        params.add(new BasicNameValuePair("team_id", TeamConfig.TeamID));
+
+        params.add(new BasicNameValuePair("people[]", userConfig.userID));
+        // getting JSON string from URL
+        JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+
+        // Check your log cat for JSON reponse
+        Log.d("All Products: ", json.toString());
+
     }
 
 

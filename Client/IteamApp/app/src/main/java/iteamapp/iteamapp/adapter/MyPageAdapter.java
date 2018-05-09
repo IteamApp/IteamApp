@@ -390,7 +390,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     case R.id.menu2:
                         showContent = "信息学院";
                         newsType.type=4;
-                        new LoadAll("2").execute();
+                        new LoadAll("1").execute();
                         Flag=1;
                         rgGroup.clearCheck();
                         break;
@@ -398,7 +398,15 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     case R.id.menu3:
                         showContent = "法政学院";
                         newsType.type=5;
-                        new LoadAll("3").execute();
+                        new LoadAll("2").execute();
+                        Flag=1;
+                        rgGroup.clearCheck();
+                        break;
+
+                    case R.id.menu4:
+                        showContent = "工程学院";
+                        newsType.type=6;
+                        new LoadAll("4").execute();
                         Flag=1;
                         rgGroup.clearCheck();
                         break;
@@ -410,6 +418,7 @@ public  class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         contentView.findViewById(R.id.menu1).setOnClickListener(listener);
         contentView.findViewById(R.id.menu2).setOnClickListener(listener);
         contentView.findViewById(R.id.menu3).setOnClickListener(listener);
+        contentView.findViewById(R.id.menu4).setOnClickListener(listener);
     }
 
     private void mydata(String faculty) {

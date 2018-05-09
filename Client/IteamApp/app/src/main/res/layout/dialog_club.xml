@@ -15,6 +15,7 @@
         android:text="发送通知" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btn_delete"
         android:background="#ffffff"
         android:layout_width="match_parent"

@@ -83,11 +83,15 @@ public class Fragment3 extends Fragment {
 
                 }
                 if (i == R.id.radio_all_xinxi) {
-                    faculty="2";
+                    faculty="1";
+                    new LoadAllArticle().execute();
+                }
+                if (i == R.id.radio_all_gongcheng) {
+                    faculty="4";
                     new LoadAllArticle().execute();
                 }
                 if (i == R.id.radio_all_fazheng) {
-                    faculty="3";
+                    faculty="2";
                     new LoadAllArticle().execute();
                 }
             }
